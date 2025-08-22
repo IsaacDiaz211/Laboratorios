@@ -1,0 +1,80 @@
+/* SimpleCodeBlock.css */
+.simple-code-block {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 16px 0;
+  background: white;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #1890ff;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.language-label {
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  height: 24px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+.code-content {
+  background: #2d2d2d;
+  padding: 12px 0;
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #f8f8f2;
+}
+
+.code-line {
+  display: flex;
+  min-height: 20px;
+  padding: 0 16px;
+}
+
+.code-line:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.line-number {
+  display: inline-block;
+  width: 40px;
+  color: #6e7681;
+  user-select: none;
+  margin-right: 16px;
+  text-align: right;
+  flex-shrink: 0;
+}

@@ -7,7 +7,7 @@ html, body, #root {
 }
 .full-gradient-bg {
   /*background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
-  background: radial-gradient(circle at center,rgb(250, 210, 227) 0%, #ffffff 100%);
+  background: radial-gradient(circle at center,rgb(244, 151, 190) 0%, #ffffff 100%);
   min-height: 100vh;
   width: 100%;
   margin: 0;

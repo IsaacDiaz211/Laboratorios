@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SubTab from "../../components/SubTab";
 import Ex1UI from "./Ex1UI";
-import Code from "../../components/Code";
+import CodeBlock from "../../components/CodeBlock";
 import Seudo from "../../components/Seudo"; 
 
 function Ex1() {
@@ -35,9 +35,13 @@ function Ex1() {
                 FIN`} />
       )}
       {tab === "codigo" && (
-        <Code code={`function sumArray(arr: number[]): number {
-  return arr.reduce((acc, val) => acc + val, 0);
-}`} />
+        <CodeBlock code={`function alg_adding_arr(arr: number[]): number {
+            let sum = 0;
+            for (let i = 0; i < arr.length; i++) {
+              sum += arr[i];
+            }
+            return sum;
+          }`} />
       )}
     </div>
   );

@@ -26,6 +26,7 @@ function Ex1UI() {
     setManualValues(arr);
   }
   // desición para tomar los valor de a uno o por archivo
+  // y realizar la suma
   function handleCalculate() {
     let arr: number[] = [];
     if (n <= 15) {

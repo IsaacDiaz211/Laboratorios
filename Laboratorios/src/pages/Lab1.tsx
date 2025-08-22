@@ -1,5 +1,7 @@
 import { Tabs } from 'antd';
 import Ex1 from '../exercises/lab1/Ex1';
+import Ex2 from '../exercises/lab1/Ex2';
+import Ex3 from '../exercises/lab1/Ex3';
 
 function Lab1() {
   return (
@@ -15,18 +17,32 @@ function Lab1() {
               justifyContent: "center",
               paddingTop: "2rem",
             }}>
-            <Ex1 />
-          </div>,
+              <Ex1 />
+            </div>,
         },
         {
           label: "Ejercicio 2",
           key: "2",
-          children: <div>Ejercicio 2 pronto...</div>,
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex2 />
+            </div>,
         },
         {
           label: "Ejercicio 3",
           key: "3",
-          children: <div>Ejercicio 3 pronto...</div>,
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex3 />
+            </div>,
         },
         {
           label: "Ejercicio 4",

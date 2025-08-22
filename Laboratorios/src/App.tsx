@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 //import { useState } from "react";
 import { ConfigProvider, theme } from "antd";
 import "./App.css";
@@ -26,6 +26,7 @@ function App() {
                   <Route path="/lab5" element={<Lab5 />} />
                   <Route path="/lab6" element={<Lab6 />} />
                   <Route path="/lab7" element={<Lab7 />} />
+                  <Route path="/" element={<Navigate to="/lab1" />} />
               </Routes>
             </AppLayout>
           </Router>

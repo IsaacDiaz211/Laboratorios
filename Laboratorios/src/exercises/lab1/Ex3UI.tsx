@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { InputNumber, Button, Typography } from "antd";
+import { GithubOutlined } from '@ant-design/icons';
+import { InputNumber, Button, Typography, Space } from "antd";
 
 function Ex3UI() {
   const [n, setN] = useState<number>(0);
@@ -41,7 +42,13 @@ function Ex3UI() {
 
 
   return (
-    <div style={{ maxWidth: 500 }}>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh',
+      paddingBottom: '60px'
+    }}>
+      <div style={{ maxWidth: 500, flex: 1 }}>
       <Typography.Title level={5}>Suma de N números positivos</Typography.Title>
       <div style={{ marginBottom: 12 }}>
         <label>N: </label>
@@ -75,7 +82,38 @@ function Ex3UI() {
           </Typography.Text>
         </div>
       )}
+      <div style={{ 
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        borderTop: '1px solid #f0f0f0',
+        padding: '16px 0',
+        backgroundColor: '#fff',
+        boxShadow: '0 -2px 8px rgba(0,0,0,0.1)'
+      }}>
+        <Space>
+          <GithubOutlined />
+          <a 
+            href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab1/Ex3UI.tsx" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: 8,
+              textDecoration: 'none',
+              color: '#1890ff',
+              fontSize: 14
+            }}
+          >
+            Ver código en GitHub
+          </a>
+        </Space>
       </div>
+    </div>
+    </div>
   )
 };
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, Typography, Upload } from "antd";
+import { GithubOutlined } from '@ant-design/icons';
+import { Button, Typography, Upload, Space } from "antd";
 import type { UploadProps } from "antd";
 
 function Ex2UI() {
@@ -67,28 +68,65 @@ function Ex2UI() {
 
 
   return (
-    <div style={{ maxWidth: 500 }}>
-        <Typography.Title level={5}>Suma de 200 números positivos pares</Typography.Title>
-        <div style={{ marginBottom: 12 }}>
-            <Upload {...uploadProps}>
-            <Button>Cargar archivo JSON</Button>
-            </Upload>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh',
+      paddingBottom: '60px'
+    }}>
+      <div style={{ maxWidth: 500, flex: 1 }}>
+          <Typography.Title level={5}>Suma de 200 números positivos pares</Typography.Title>
+          <div style={{ marginBottom: 12 }}>
+              <Upload {...uploadProps}>
+              <Button>Cargar archivo JSON</Button>
+              </Upload>
+          </div>
+          <Button type="primary" onClick={handleCalculate}>
+              Calcular suma
+          </Button>
+          {result !== null && (
+              <div style={{ marginTop: 16 }}>
+              <Typography.Text strong>
+                  Resultado: {result}
+              </Typography.Text>
+              <br />
+              <Typography.Text type="secondary">
+                  Tiempo de ejecución: {execTime?.toFixed(9)} ms
+              </Typography.Text>
+              </div>
+          )}
+          <div style={{ 
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          borderTop: '1px solid #f0f0f0',
+          padding: '16px 0',
+          backgroundColor: '#fff',
+          boxShadow: '0 -2px 8px rgba(0,0,0,0.1)'
+        }}>
+          <Space>
+            <GithubOutlined />
+            <a 
+              href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab1/Ex2UI.tsx" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: 8,
+                textDecoration: 'none',
+                color: '#1890ff',
+                fontSize: 14
+              }}
+            >
+              Ver código en GitHub
+            </a>
+          </Space>
         </div>
-        <Button type="primary" onClick={handleCalculate}>
-            Calcular suma
-        </Button>
-        {result !== null && (
-            <div style={{ marginTop: 16 }}>
-            <Typography.Text strong>
-                Resultado: {result}
-            </Typography.Text>
-            <br />
-            <Typography.Text type="secondary">
-                Tiempo de ejecución: {execTime?.toFixed(9)} ms
-            </Typography.Text>
-            </div>
-        )}
       </div>
+    </div>
   )
 };
 

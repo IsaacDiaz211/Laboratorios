@@ -4,6 +4,8 @@ import Ex2 from '../exercises/lab1/Ex2';
 import Ex3 from '../exercises/lab1/Ex3';
 import Ex4 from '../exercises/lab1/Ex4';
 import Ex5 from '../exercises/lab1/Ex5';
+import Ex61 from '../exercises/lab1/Ex61';
+import Ex62 from '../exercises/lab1/Ex62';
 
 function Lab1() {
   return (
@@ -71,19 +73,28 @@ function Lab1() {
             </div>,
         },
         {
-          label: "Ejercicio 6",
-          key: "6",
-          children: <div>Ejercicio 3 pronto...</div>,
+          label: "Ejercicio 6.1",
+          key: "6.1",
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex61 />
+            </div>,
         },
         {
-          label: "Ejercicio 2.1",
-          key: "2.1",
-          children: <div>Ejercicio 3 pronto...</div>,
-        },
-        {
-          label: "Ejercicio 2.2",
-          key: "2.2",
-          children: <div>Ejercicio 2 pronto...</div>,
+          label: "Ejercicio 6.2",
+          key: "6.2",
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex62 />
+            </div>,
         },
       ]}
     />

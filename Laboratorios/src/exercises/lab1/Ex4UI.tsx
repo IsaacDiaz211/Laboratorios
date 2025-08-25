@@ -11,9 +11,9 @@ function Ex4UI() {
 
 
   // Realizar calculo de racies
-  function calculateRoots() {
+  function calculateOperationTime() {
     const start = performance.now();
-    const roots = findRoots(3, 2, -1);
+    const roots = calculateRoots(3, 2, -1);
     const end = performance.now();
     setRoots(roots);
     setExecTime(end-start);
@@ -21,7 +21,7 @@ function Ex4UI() {
   
 
   //ALGORITMO PROPIAMENTE DEL EJERCICIO 4
-  function findRoots(a: number, b: number, c: number): string {
+  function calculateRoots(a: number, b: number, c: number): string {
 
         const discriminant = Math.pow(b, 2) - 4 * a * c;
 
@@ -49,7 +49,7 @@ function Ex4UI() {
         triple de su cuadrado, se obtiene el triple del mismo más 1. </Typography.Paragraph>
         <Typography.Paragraph><b>Ecuación: </b> 5X + 3X² = 3X + 1</Typography.Paragraph>
 
-        <Button type="primary" onClick={calculateRoots}>
+        <Button type="primary" onClick={calculateOperationTime}>
           Calcular raices
         </Button>
 

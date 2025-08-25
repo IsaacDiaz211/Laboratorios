@@ -3,6 +3,7 @@ import Ex1 from '../exercises/lab1/Ex1';
 import Ex2 from '../exercises/lab1/Ex2';
 import Ex3 from '../exercises/lab1/Ex3';
 import Ex4 from '../exercises/lab1/Ex4';
+import Ex5 from '../exercises/lab1/Ex5';
 
 function Lab1() {
   return (
@@ -60,7 +61,14 @@ function Lab1() {
         {
           label: "Ejercicio 5",
           key: "5",
-          children: <div>Ejercicio 2 pronto...</div>,
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex5 />
+            </div>,
         },
         {
           label: "Ejercicio 6",

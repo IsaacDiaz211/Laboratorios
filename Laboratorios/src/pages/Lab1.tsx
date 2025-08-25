@@ -2,6 +2,7 @@ import { Tabs } from 'antd';
 import Ex1 from '../exercises/lab1/Ex1';
 import Ex2 from '../exercises/lab1/Ex2';
 import Ex3 from '../exercises/lab1/Ex3';
+import Ex4 from '../exercises/lab1/Ex4';
 
 function Lab1() {
   return (
@@ -47,7 +48,14 @@ function Lab1() {
         {
           label: "Ejercicio 4",
           key: "4",
-          children: <div>Ejercicio 3 pronto...</div>,
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+              <Ex4 />
+            </div>,
         },
         {
           label: "Ejercicio 5",

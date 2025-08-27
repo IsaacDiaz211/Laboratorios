@@ -15,31 +15,31 @@ Proyecto destinado a crear una app de escritorio para los laboratorios de la mat
 de la UNNE. A cargo de [Diaz, Isaac](https://github.com/IsaacDiaz211) y [Pérez Ruíz, Federico](https://github.com/Fede-Code-007).
 Construido con TypeScript, React y Tauri.
 Más informacíon sobre las tecnologías usadas:
-[TypeScript](https://www.typescriptlang.org/)
-[React](https://es.react.dev/)
-[Tauri](https://tauri.app/)
-[Ant Design](https://ant.design/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://es.react.dev/)
+- [Tauri](https://tauri.app/)
+- [Ant Design](https://ant.design/)
 
 ## Laboratorio 1
 Ejercicios 
 1. Dado 𝑁 números positivos, hallar la suma de todos los valores de 𝑋1 a 𝑋𝑁. Probar con N 
 comprendido en el siguiente rango de representación de números enteros: 0 a 255. 
 Luego probar con N=10000.
-  Para cargar listas mayores a 15 elementos se requerirá un archivo '.json' con el siguiente formato:
-"[
-  x1,
-  x2,
-  ...
-  xn
+  Para cargar listas mayores a 15 elementos se requerirá un archivo '.json' con el siguiente formato:  
+"[  
+  x1,  
+  x2,  
+  ...  
+  xn  
 ]"
 
 2. Dados 200 números positivos hallar la suma de todos los valores pares desde 𝑋1 a 𝑋𝑁.
-   Para cargar listas mayores a 15 elementos se requerirá un archivo '.json' con el siguiente formato:
-"[
-  x1,
-  x2,
-  ...
-  xn
+   Para cargar listas mayores a 15 elementos se requerirá un archivo '.json' con el siguiente formato:  
+"[  
+  x1,  
+  x2,  
+  ...  
+  xn  
 ]"
 
 3. Obtener los N primero números de la sucesión de Fibonacci. Probar con N=200

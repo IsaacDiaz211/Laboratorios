@@ -49,7 +49,7 @@ function Ex3UI() {
       paddingBottom: '60px'
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
-      <Typography.Title level={5}>Suma de N números positivos</Typography.Title>
+      <Typography.Title level={5}>Sucesión de Fibonacci hasta N</Typography.Title>
       <div style={{ marginBottom: 12 }}>
         <label>N: </label>
         <InputNumber min={0} max={1000} value={n} onChange={handleSetN} />

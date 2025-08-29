@@ -8,7 +8,6 @@ function Ex1UI() {
   const [n, setN] = useState<number>(0);
   const [manualValues, setManualValues] = useState<number[]>([]);
   const [fileValues, setFileValues] = useState<number[]>([]);
-  //const [bulkValues, setBulkValues] = useState<string>("");
   const [result, setResult] = useState<number | null>(null);
   const [execTime, setExecTime] = useState<number | null>(null);
 
@@ -27,6 +26,7 @@ function Ex1UI() {
     arr[index] = value ?? 0;
     setManualValues(arr);
   }
+
   // desición para tomar los valor de a uno o por archivo
   // y realizar la suma
   function handleCalculate() {
@@ -39,10 +39,6 @@ function Ex1UI() {
         alert(`El archivo contiene ${arr.length} números pero N=${n}`);
         return;
       }
-    }
-    if (arr.some(v => v < 0)) {
-      alert("Todos los números deben ser positivos");
-      return;
     }
     const start = performance.now();
     const sum = alg_adding_arr(arr);
@@ -62,8 +58,8 @@ function Ex1UI() {
             alert("El archivo debe contener un array de números");
             return;
           }
-          if (!json.every((x: any) => Number.isInteger(x) && x >= 0)) {
-            alert("El archivo debe contener solo enteros positivos");
+          if (!json.every((x: any) => Number.isInteger(x) && x >= 0 && x <= 255)) {
+            alert("El archivo debe contener solo enteros positivos menores a 256");
             return;
           }
           setFileValues(json);
@@ -98,7 +94,7 @@ function Ex1UI() {
         <Typography.Title level={5}>Suma de N números positivos</Typography.Title>
         <div style={{ marginBottom: 12 }}>
           <label>N: </label>
-          <InputNumber min={0} max={10000} value={n} onChange={handleSetN} />
+          <InputNumber min={1} max={10000} value={n} onChange={handleSetN} />
         </div>
 
         {n > 0 && n <= 15 && (
@@ -108,6 +104,7 @@ function Ex1UI() {
                 key={i}
                 value={val}
                 min={0}
+                max={255}
                 onKeyDown={(e) => {
                   const allowedKeys = [
                     "Backspace", "Delete", "Tab", "Enter",
@@ -118,7 +115,7 @@ function Ex1UI() {
                   }
                 }}
                 onChange={(v) => handleManualChange(i, v)}
-                placeholder={`X${i + 1}`}
+                placeholder={`X${i + 1} (1-255)`}
                 style={{ width: "100%" }}
               />
             ))}

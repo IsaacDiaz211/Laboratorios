@@ -4,7 +4,7 @@ import Ex2UI from "./Ex2UI";
 import CodeBlock from "../../components/CodeBlock";
 import Seudo from "../../components/Seudo"; 
 
-function Ex1() {
+function Ex2() {
   const [tab, setTab] = useState("interfaz");
 
   return (
@@ -50,4 +50,4 @@ function Ex1() {
   );
 }
 
-export default Ex1;
+export default Ex2;

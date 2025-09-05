@@ -8,7 +8,7 @@ function Ex2UI() {
   const [aprox1, setAprox1] = useState<number>(0);
   const [num2, setNum2] = useState<number>(0);
   const [aprox2, setAprox2] = useState<number>(0);
-  const [result, setResult] = useState<number | null>(null);
+  const [result, setResult] = useState<string | null>(null);
   const [execTime, setExecTime] = useState<number | null>(null);
 
   function handleSetNumbers(value: number | null, location: number) {
@@ -40,15 +40,23 @@ function Ex2UI() {
   }
 
   //ALGORITMO PROPIAMENTE DEL EJERCICIO 2
-  function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): number {
+  function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): string {
     let errorRela1 = Math.abs(num1 - aprox1) / num1;
     let errorRela2 = Math.abs(num2 - aprox2) / num2;
     if(errorRela1 > errorRela2) {
-        return num1;
+        return 	`El número 2 (${num2}) tiene un error relativo menor. 
+        Error relativo del número 2 (${num2}) es igual a ${errorRela2}
+        Error relativo del número 1 (${num1}) es igual a ${errorRela1}`;
     } else if(errorRela1 < errorRela2) {
-        return num2;
+        return 	`El número 1 (${num1}) tiene un error relativo menor.
+        Error relativo del número 1 (${num1}) es igual a ${errorRela1}  
+        Error relativo del número 2 (${num2}) es igual a ${errorRela2}`;
+    } else if(errorRela1 === errorRela2) {
+        return `Ambos números tienen el mismo error relativo.
+        Error relativo del número 1 (${num1}) es igual a ${errorRela1}
+        Error relativo del número 2 (${num2}) es igual a ${errorRela2}`;
     } else {
-        return 0;
+        return `Ambos números tienen el mismo error relativo`;
     }
   }
 
@@ -72,18 +80,18 @@ function Ex2UI() {
           </div>
           <div style={{ marginBottom: 12 }}>
             <label>Número 2: </label>
-            <InputNumber min={1} max={10000} value={num2} onChange={(value) => handleSetNumbers(value, 2)} />
+            <InputNumber min={0} max={10000} value={num2} onChange={(value) => handleSetNumbers(value, 2)} />
           </div>
           <div style={{ marginBottom: 12 }}>
             <label>Aproximación de número 2: </label>
-            <InputNumber min={1} max={10000} value={aprox2} onChange={(value) => handleSetNumbers(value, 3)} />
+            <InputNumber min={0} max={10000} value={aprox2} onChange={(value) => handleSetNumbers(value, 3)} />
           </div>
           <Button type="primary" onClick={handleCalculate}>
               Comparar Errores
           </Button>
           {result !== null && (
               <div style={{ marginTop: 16 }}>
-              <Typography.Text strong>
+              <Typography.Text strong style={{ whiteSpace: 'pre-line' }}>
                   Resultado: {result}
               </Typography.Text>
               <br />

@@ -1,69 +1,55 @@
 import { useState } from "react";
 import { GithubOutlined } from '@ant-design/icons';
-import { Button, Typography, Upload, Space } from "antd";
+import { Button, Typography, InputNumber, Space } from "antd";
 import type { UploadProps } from "antd";
 
 function Ex2UI() {
-  const n: number =200;
-  const [fileValues, setFileValues] = useState<number[]>([]);
+  const [num1, setNum1] = useState<number>(0);
+  const [aprox1, setAprox1] = useState<number>(0);
+  const [num2, setNum2] = useState<number>(0);
+  const [aprox2, setAprox2] = useState<number>(0);
   const [result, setResult] = useState<number | null>(null);
   const [execTime, setExecTime] = useState<number | null>(null);
 
+  function handleSetNumbers(value: number | null, location: number) {
+    const count = value ?? 0;
+    switch(location) {
+      case 0:
+        setNum1(count);
+        break;
+      case 1:
+        setAprox1(count);
+        break;
+      case 2:
+        setNum2(count);
+        break;
+      case 3:
+        setAprox2(count);
+        break;
+    };
+    setResult(null);
+    setExecTime(null);
+  }
+
   function handleCalculate() {
-    let arr: number[] = [];
-    arr = fileValues;
-    if (arr.length !== n) {
-      alert(`El archivo contiene ${arr.length} números pero deben ser 200`);
-      return;
-    }
-    if (arr.some(v => v < 0)) {
-      alert("Todos los números deben ser positivos");
-      return;
-    }
     const start = performance.now();
-    const sum = alg_adding_even(arr);
+    const sum = algo_comparing_errors(num1, aprox1, num2, aprox2);
     const end = performance.now();
     setResult(sum);
     setExecTime(end-start);
   }
-  // manejo del archivo json para cantidades grandes
-  const uploadProps: UploadProps = {
-    accept: ".json",
-    beforeUpload: (file) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const json = JSON.parse(e.target?.result as string);
-          if (!Array.isArray(json)) {
-            alert("El archivo debe contener un array de números");
-            return;
-          }
-          if (!json.every((x: any) => Number.isInteger(x) && x >= 0)) {
-            alert("El archivo debe contener solo enteros positivos");
-            return;
-          }
-          setFileValues(json);
-          alert("Archivo cargado correctamente");
-        } catch {
-          alert("Error al leer el archivo JSON");
-        }
-      };
-      reader.readAsText(file);
-      return false; // evita subida automática
-    },
-  };
 
   //ALGORITMO PROPIAMENTE DEL EJERCICIO 2
-  function alg_adding_even(arr: number[]): number {
-    let sum = 0;
-    let i = 0;
-    while (i < 200) {
-        if(arr[i] % 2 === 0) {
-            sum += arr[i];
-        }
-        i++;
+  function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): number {
+    let errorRela1 = Math.abs(num1 - aprox1) / num1;
+    let errorRela2 = Math.abs(num2 - aprox2) / num2;
+    if(errorRela1 > errorRela2) {
+        return num1;
+    } else if(errorRela1 < errorRela2) {
+        return num2;
+    } else {
+        return 0;
     }
-    return sum;
   }
 
 
@@ -75,14 +61,25 @@ function Ex2UI() {
       paddingBottom: '60px'
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
-          <Typography.Title level={5}>Hola</Typography.Title>
+          <Typography.Title level={5}>Comparación de Error relativo</Typography.Title>
           <div style={{ marginBottom: 12 }}>
-              <Upload {...uploadProps}>
-              <Button>Cargar archivo JSON</Button>
-              </Upload>
+            <label>Número 1: </label>
+            <InputNumber min={0} max={1000} value={num1} onChange={(value) => handleSetNumbers(value, 0)} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label>Aproximación de número 1: </label>
+            <InputNumber min={0} max={1000} value={aprox1} onChange={(value) => handleSetNumbers(value, 1)} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label>Número 2: </label>
+            <InputNumber min={1} max={10000} value={num2} onChange={(value) => handleSetNumbers(value, 2)} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label>Aproximación de número 2: </label>
+            <InputNumber min={1} max={10000} value={aprox2} onChange={(value) => handleSetNumbers(value, 3)} />
           </div>
           <Button type="primary" onClick={handleCalculate}>
-              Calcular suma
+              Comparar Errores
           </Button>
           {result !== null && (
               <div style={{ marginTop: 16 }}>
@@ -109,7 +106,7 @@ function Ex2UI() {
           <Space>
             <GithubOutlined />
             <a 
-              href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab1/Ex2UI.tsx" 
+              href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab2/Ex2UI.tsx" 
               target="_blank" 
               rel="noopener noreferrer"
               style={{ 

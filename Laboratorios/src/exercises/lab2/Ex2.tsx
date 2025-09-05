@@ -12,38 +12,41 @@ function Ex2() {
       <SubTab graph={false} onChange={setTab} value={tab} />
       {tab === "interfaz" && <Ex2UI />}
       {tab === "seudo" && (
-        <Seudo code={`Algoritmo “Suma números pares”
+        <Seudo code={`Algoritmo “Comparación entre Errores relativos”
             VAR
-            ENTERO suma, contador, num
+            Real num1, num2, aprox1, aprox2, errorRela1, errorRela2
             
             INICIO
-                contador = 0
-                suma = 0
-                ESCRIBIR “Ingrese 200 números enteros positivos”
-                LEER lista
-                MIENTRAS contador < 200
-                        SI lista[contador] >= 0 ENTONCES
-                            SI lista[contador] MOD 2 = 0 ENTONCES
-                                suma = suma + lista[contador]
-                            FIN SI
-                            contador = contador + 1
-                        FIN SI
-                    FIN MIENTRAS
-            ESCRIBIR “El valor de la suma de los números positivos pares ingresados es: ”, suma
-            FIN
+                ESCRIBIR “Ingrese el primer número”
+                LEER num1
+                ESCRIBIR “Ingrese la aproximación del primer número”
+                LEER aprox1
+                ESCRIBIR “Ingrese el segundo número”
+                LEER num2
+                ESCRIBIR “Ingrese la aproximación del segundo número”
+                LEER aprox2
+                errorRela1 = |(num1 - aprox1)| / num1
+                errorRela2 = |(num2 - aprox2)| / num2
+                ESCRIBIR “El error relativo del primer número es: ”, errorRela1
+                ESCRIBIR “El error relativo del segundo número es: ”, errorRela2
+                SI errorRela1 > errorRela2 ENTONCES
+                    ESCRIBIR “El error relativo del primer número es mayor”
+                    SINO
+                        ESCRIBIR "El error relativo del segundo número es mayor"
+                FIN SI
         `} />
       )}
       {tab === "codigo" && (
-        <CodeBlock code={`function alg_adding_even(arr: number[]): number {
-            let sum = 0;
-            let i = 0;
-            while (i < 200) {
-                if(arr[i] % 2 === 0) {
-                    sum += arr[i];
-                }
-                i++;
+        <CodeBlock code={`function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): number {
+            let errorRela1 = |(num1 - aprox1)| / num1;
+            let errorRela2 = |(num2 - aprox2)| / num2;
+            if(errorRela1 > errorRela2) {
+                return num1;
+            } else if(errorRela1 < errorRela2) {
+                return num2;
+            } else {
+                return 0;
             }
-            return sum;
         }`} />
       )}
     </div>

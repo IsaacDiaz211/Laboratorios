@@ -1,15 +1,16 @@
+import { useState } from "react";
 import { GithubOutlined } from '@ant-design/icons';
 import { Button, Space, Typography } from "antd";
 
 
 function Ex1UI() {
-
+    const [result, setResult] = useState<number | null>(null);
     const e_redondeado: number = 2.718282;
     const pi_redondeado: number = 3.141593;
     const cociente_real: number = 1.15572735;
-    let cociente_calculado = pi_redondeado/e_redondeado;
-
-
+    
+    const executeOperation = () => setResult(pi_redondeado/ e_redondeado);
+    
   return (
     <div style={{ 
       display: 'flex', 
@@ -19,14 +20,22 @@ function Ex1UI() {
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
         <Typography.Title level={5}> Dados 𝜋 y e redondeados a seis decimales, ¿cuantos dígitos significativos y decimales correctos tendrá el cociente 𝜋 / e?</Typography.Title>
-
-        {cociente_calculado !== null && (
+        <Button type="primary" onClick={executeOperation}>
+          Calcular cociente
+        </Button>
+        {result != null && (
           <div style={{ marginTop: 16 }}>
             <Typography.Text strong>
-              Resultado Calculado: {cociente_calculado}
-            </Typography.Text>
-            <Typography.Text strong>
               Resultado Real: {cociente_real}
+            </Typography.Text>
+            <br />
+            <Typography.Text strong>
+              Resultado Calculado: {result}
+            </Typography.Text>
+            <br />
+            <br />
+            <Typography.Text>
+              Finalmente vemos que el resultado calculado tiene 6 decimales correctos.
             </Typography.Text>
           </div>
         )}

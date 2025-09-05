@@ -26,7 +26,9 @@ function Ex1() {
             FIN`} />
       )}      
       {tab === "codigo" && (
-        <CodeBlock code={``} />
+        <CodeBlock code={`function executeOperation(){
+        setResult(pi_redondeado/ e_redondeado);
+    }`} />
       )}
     </div>
   );

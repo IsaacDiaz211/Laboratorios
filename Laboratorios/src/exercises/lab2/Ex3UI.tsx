@@ -24,15 +24,22 @@ function Ex3UI() {
   function calculateRoots(a: number, b: number, c: number): string {
 
         const discriminant = Math.pow(b, 2) - 4 * a * c;
+        let x1, x2;
 
         if (discriminant < 0) {
             return "La ecuación no tiene raíces reales";
         }
+        
+        if(b*b >= 4*a*c){
+            x1 = ((-2 * c) / (-b) + Math.sqrt(discriminant));
+            x2 = ((-2 * c) / (-b) - Math.sqrt(discriminant));
+        } else{
+            x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        }
+        
 
-        const x1: number = (-b + Math.sqrt(discriminant)) / (2 * a);
-        const x2: number = (-b - Math.sqrt(discriminant)) / (2 * a);
-
-        return `Las raíces de 3x² + 2x - 1 son ${x1} y ${x2}`;
+        return `Las raíces de la ecuación son ${x1} y ${x2}`;
     }
 
 
@@ -45,9 +52,7 @@ function Ex3UI() {
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
         <Typography.Title level={5}>Calculo de raices</Typography.Title>
-        <Typography.Paragraph><b>Enunciado del problema: </b> Si al quíntuple de un número se le suma el 
-        triple de su cuadrado, se obtiene el triple del mismo más 1. </Typography.Paragraph>
-        <Typography.Paragraph><b>Ecuación: </b> 5X + 3X² = 3X + 1</Typography.Paragraph>
+        <Typography.Paragraph><b>Ecuación: </b> X² + 10^8X + 1</Typography.Paragraph>
 
         <Button type="primary" onClick={calculateOperationTime}>
           Calcular raices

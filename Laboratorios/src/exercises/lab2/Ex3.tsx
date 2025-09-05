@@ -26,7 +26,26 @@ function Ex3() {
             FIN `} />
       )}      
       {tab === "codigo" && (
-        <CodeBlock code={``} />
+        <CodeBlock code={`function calculateRoots(a: number, b: number, c: number): string {
+
+        const discriminant = Math.pow(b, 2) - 4 * a * c;
+        let x1, x2;
+
+        if (discriminant < 0) {
+            return "La ecuación no tiene raíces reales";
+        }
+        
+        if(b*b >= 4*a*c){
+            x1 = ((-2 * c) / (-b) + Math.sqrt(discriminant));
+            x2 = ((-2 * c) / (-b) - Math.sqrt(discriminant));
+        } else{
+            x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        }
+        
+
+        return Las raíces de la ecuación son x1 y x2;
+    }`} />
       )}
     </div>
   );

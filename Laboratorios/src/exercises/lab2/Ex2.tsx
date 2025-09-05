@@ -37,16 +37,24 @@ function Ex2() {
         `} />
       )}
       {tab === "codigo" && (
-        <CodeBlock code={`function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): number {
-            let errorRela1 = |(num1 - aprox1)| / num1;
-            let errorRela2 = |(num2 - aprox2)| / num2;
-            if(errorRela1 > errorRela2) {
-                return num1;
-            } else if(errorRela1 < errorRela2) {
-                return num2;
-            } else {
-                return 0;
-            }
+        <CodeBlock code={`function algo_comparing_errors(num1: number, aprox1: number, num2: number, aprox2: number): string {
+          let errorRela1 = Math.abs(num1 - aprox1) / num1;
+          let errorRela2 = Math.abs(num2 - aprox2) / num2;
+          if(errorRela1 > errorRela2) {
+              return 	El número 2 tiene un error relativo menor. 
+              Error relativo del número 2 es igual a {errorRela2}
+              Error relativo del número 1 es igual a {errorRela1};
+          } else if(errorRela1 < errorRela2) {
+              return 	El número 1 tiene un error relativo menor.
+              Error relativo del número 1 es igual a {errorRela1}  
+              Error relativo del número 2 es igual a {errorRela2};
+          } else if(errorRela1 === errorRela2) {
+              return Ambos números tienen el mismo error relativo.
+              Error relativo del número 1 es igual a {errorRela1}
+              Error relativo del número 2 es igual a {errorRela2};
+          } else {
+              return Ambos números tienen el mismo error relativo;
+          }
         }`} />
       )}
     </div>

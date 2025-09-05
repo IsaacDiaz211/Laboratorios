@@ -57,7 +57,7 @@ function Lab2() {
                 justifyContent: "center",
                 paddingTop: "2rem",
               }}>
-              
+              <Ex2 />
             </div>,
         },
         {

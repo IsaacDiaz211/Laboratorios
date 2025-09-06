@@ -12,14 +12,14 @@ function Ex3() {
       <SubTab graph={false} onChange={setTab} value={tab} />
       {tab === "interfaz" && <Ex3UI />}
       {tab === "seudo" && (
-        <Seudo code={`ALGORITMO: "Calcular raices reales de X² + 10^8X + 1 
+        <Seudo code={`ALGORITMO: "Calcular raices reales de X² + 100000000X + 1 
             VAR
             REAL x1, x2, a, b, c
                 
             INICIO
-                a = 3
-                b = 2
-                c = -1
+                a = 1
+                b = 100000000
+                c = 1
                 x1 = (- b + RaizCuadrada(potencia(b, 2) - 4 * a * c)) / 2
                 x2 = (- b - RaizCuadrada(potencia(b, 2) - 4 * a * c)) / 2
                 ESCRIBIR “Las raíces de X² + 10^8X + 1 son ”, x1, “ y ”, x2 
@@ -42,8 +42,7 @@ function Ex3() {
             x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
             x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
         }
-        
-
+      
         return Las raíces de la ecuación son x1 y x2;
     }`} />
       )}

@@ -10,6 +10,29 @@ function Ex1UI() {
     const cociente_real: number = 1.15572735;
     
     const executeOperation = () => setResult(pi_redondeado/ e_redondeado);
+
+    function countEqualDecimals(a: number, b: number): number {
+      const strA = a.toString();
+      const strB = b.toString();
+
+      // Separar parte decimal
+      const decimalsA = strA.split(".")[1] ?? "";
+      const decimalsB = strB.split(".")[1] ?? "";
+
+      let count = 0;
+      const minLength = Math.min(decimalsA.length, decimalsB.length);
+
+      for (let i = 0; i < minLength; i++) {
+        if (decimalsA[i] === decimalsB[i]) {
+          count++;
+        } else {
+          break; // en cuanto no coinciden, cortamos
+        }
+      }
+
+      return count;
+    }
+
     
   return (
     <div style={{ 
@@ -35,7 +58,7 @@ function Ex1UI() {
             <br />
             <br />
             <Typography.Text>
-              Finalmente vemos que el resultado calculado tiene 6 decimales correctos.
+              Finalmente vemos que el resultado calculado tiene {countEqualDecimals(cociente_real, result)} decimales correctos.
             </Typography.Text>
           </div>
         )}

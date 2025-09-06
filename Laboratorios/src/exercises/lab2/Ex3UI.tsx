@@ -13,7 +13,7 @@ function Ex3UI() {
   // Realizar calculo de racies
   function calculateOperationTime() {
     const start = performance.now();
-    const roots = calculateRoots(3, 2, -1);
+    const roots = calculateRoots(1, 100000000, 1);
     const end = performance.now();
     setRoots(roots);
     setExecTime(end-start);
@@ -30,12 +30,13 @@ function Ex3UI() {
             return "La ecuación no tiene raíces reales";
         }
         
-        if(b*b >= 4*a*c){
-            x1 = ((-2 * c) / (-b) + Math.sqrt(discriminant));
-            x2 = ((-2 * c) / (-b) - Math.sqrt(discriminant));
-        } else{
-            x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        if(b >= 0){
             x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            x1 = (-2 * c) / (-b - Math.sqrt(discriminant));
+           
+        } else{
+            x2 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            x1 = (-2 * c) / (-b + Math.sqrt(discriminant));
         }
         
 
@@ -52,7 +53,7 @@ function Ex3UI() {
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
         <Typography.Title level={5}>Calculo de raices</Typography.Title>
-        <Typography.Paragraph><b>Ecuación: </b> X² + 10^8X + 1</Typography.Paragraph>
+        <Typography.Paragraph><b>Ecuación: </b> X² + 100000000X + 1</Typography.Paragraph>
 
         <Button type="primary" onClick={calculateOperationTime}>
           Calcular raices
@@ -63,6 +64,12 @@ function Ex3UI() {
             <Typography.Text strong>
               {roots}
             </Typography.Text>
+          <br />
+          <br />
+            <Typography.Text>
+              OBSERVACIÓN: Calculando manualmente las raices obtenidas fueron 1e^-8 y -100.000.000 respectivamente. En base a lo anterior podemos concluir que el programa resuelve la ecuación con un resultado identico al que si lo hubieramos resuelto manualmente desde una calculadora.
+            </Typography.Text>
+          <br />
           <br />
             <Typography.Text type="secondary">
               Tiempo de ejecución: {execTime?.toFixed(9)} ms
@@ -85,7 +92,7 @@ function Ex3UI() {
         <Space>
           <GithubOutlined />
           <a 
-            href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab1/Ex4UI.tsx" 
+            href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab2/Ex3UI.tsx" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ 

@@ -30,11 +30,13 @@ function Ex3UI() {
             return "La ecuación no tiene raíces reales";
         }
         
-        if(b >= 0){
+        //Usaremos la formula alternativa para evitar la cancelación en caso de que la diferencia en el númerador sea muy pequeña.
+
+        if(b >= 0){ 
             x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
             x1 = (-2 * c) / (-b - Math.sqrt(discriminant));
            
-        } else{
+        } else{ 
             x2 = (-b + Math.sqrt(discriminant)) / (2 * a);
             x1 = (-2 * c) / (-b + Math.sqrt(discriminant));
         }

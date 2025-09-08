@@ -4,8 +4,8 @@ import Ex2 from '../exercises/lab2/Ex2';
 import Ex3 from '../exercises/lab2/Ex3';
 //import Ex4 from '../exercises/lab2/Ex4';
 //import Ex5 from '../exercises/lab21/Ex5';
-//import Ex61 from '../exercises/lab2/Ex6';
-//import Ex62 from '../exercises/lab2/Ex7';
+//import Ex6 from '../exercises/lab2/Ex6';
+import Ex7 from '../exercises/lab2/Ex7';
 
 function Lab2() {
   return (
@@ -93,7 +93,7 @@ function Lab2() {
                 justifyContent: "center",
                 paddingTop: "2rem",
               }}>
-              
+              <Ex7 />
             </div>,
         },
       ]}

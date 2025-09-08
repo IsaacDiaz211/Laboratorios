@@ -106,7 +106,7 @@ function Ex7UI() {
           <br />
           <br />
             <Typography.Text>
-              Finalmente podemos concluir que calculando la serie de manera inversa podemos reducir el error considerablemente.
+              Sabemos que la serie tendiendo a infinito converge a {Math.pow(Math.PI,2)/6}, por lo tanto, podemos concluir que calculando la serie de manera inversa podemos reducir el error muy ligeramente.
             </Typography.Text>
           </div>
         )}

@@ -1,7 +1,7 @@
 import { Tabs } from 'antd';
-//import Ex1 from '../exercises/lab3/Ex1';
+import Ex1 from '../exercises/lab3/Ex1';
 //import Ex2 from '../exercises/lab3/Ex2';
-//import Ex3 from '../exercises/lab3/Ex3';
+import Ex3 from '../exercises/lab3/Ex3';
 
 function Lab3() {
   return (
@@ -17,7 +17,7 @@ function Lab3() {
               justifyContent: "center",
               paddingTop: "2rem",
             }}>
-              
+            <Ex1 />
             </div>,
         },
         {
@@ -41,7 +41,7 @@ function Lab3() {
                 justifyContent: "center",
                 paddingTop: "2rem",
               }}>
-
+            <Ex3 />
             </div>,
         },
       ]}

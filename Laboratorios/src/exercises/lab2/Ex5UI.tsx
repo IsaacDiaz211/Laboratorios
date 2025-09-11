@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Button, InputNumber, Space, Typography } from "antd";
+import { Button, InputNumber, Typography } from "antd";
 import RepoDir from "../../components/RepoDir";
-// @ts-ignore
-import Plot from "react-plotly.js";
 
 function Ex5UI() {
   const [largo, setLargo] = useState<number>(1); 

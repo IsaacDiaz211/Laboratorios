@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GithubOutlined } from '@ant-design/icons';
 import { Button, Typography, InputNumber, Space } from "antd";
-import type { UploadProps } from "antd";
 
 function Ex2UI() {
   const [num1, setNum1] = useState<number>(0);

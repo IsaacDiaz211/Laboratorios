@@ -10,7 +10,7 @@ function Ex3() {
   return (
     <div>
       <SubTab graph={false} onChange={setTab} value={tab} />
-      {tab === "interfaz" && <Ex3UI />}
+      {tab === "interfaz" && <Ex3UI/>}
       {tab === "seudo" && (
         <Seudo code={``} />
       )}      

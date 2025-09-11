@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { GithubOutlined} from '@ant-design/icons';
 import { InputNumber, Button, Space, Typography} from "antd";
+import 'katex/dist/katex.min.css';
+import { InlineMath } from 'react-katex'
 //import { Position } from "@tauri-apps/api/dpi";
 
 function Ex7UI() {
@@ -63,7 +65,10 @@ function Ex7UI() {
       paddingBottom: '60px'
     }}>
       <div style={{ maxWidth: 500, flex: 1 }}>
-        <Typography.Title level={5}>Calculo de la sumatoria de 1 hasta n de 1 sobre n al cuadrado.</Typography.Title>
+        <Typography.Title level={5}>
+          Cálculo de la  
+          <InlineMath math="\;\; \sum_{i=1}^{n} \frac{1}{i^2}" />
+        </Typography.Title>
         <div style={{ marginBottom: 12 }}>
           <label>N: </label>
           <InputNumber min={1} max={1000000} value={n} onChange={handleSetN} 

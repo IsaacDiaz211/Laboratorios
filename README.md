@@ -19,6 +19,7 @@ Más informacíon sobre las tecnologías usadas:
 - [React](https://es.react.dev/)
 - [Tauri](https://tauri.app/)
 - [Ant Design](https://ant.design/)
+- [Katex](https://katex.org/)
 
 ## Laboratorio 1
 Ejercicios 
@@ -64,6 +65,35 @@ serie:
   oclock u otro que considere apropiado. Emitir conclusiones. 
 
 ## Laboratorio 2
+1. Dados 𝜋 y e redondeados a seis decimales, ¿cuantos dígitos significativos y decimales 
+correctos tendrá el cociente 𝜋 / e?
+
+3.  Se mide un folio de 29,6 cm obteniéndose un resultado de 30 cm. Si con la misma regla 
+se mide el ancho de un pupitre de 65,0 cm, dando como resultado 65,4 cm. ¿Cuál es la 
+medida más precisa? ¿Por qué? 
+
+4. La fórmula cuadrática −𝑏±√𝑏2−4𝑎𝑐 /2𝑎 permite obtener las raíces de la ecuación cuadrática 
+a𝑥2 + 𝑏𝑥 + 𝑐 = 0.   Resuelva   la   ecuación   a𝑥^(2) + b𝑥 + 𝑐 cuando a = , 𝑐 = 1 y b = 108 
+manualmente y a través del uso de la computadora. Interprete los resultados. 
+
+4. En la medida de 1 m se ha cometido un error de 1 mm, y en 300 Km, 300 m. ¿Qué error 
+relativo es mayor?
+
+6. Una piscina tiene de dimensiones √2 m de ancho y √8 m de largo. Al realizar con la 
+calculadora dichas raíces obtenemos un ancho de, aproximadamente 1,41 m y un largo 
+de, aproximadamente 2,83 m. Si queremos calcular el área de la piscina, tenemos que 
+ésta tiene un valor de: A = 1,41 x 2,83 = 3,99 𝑚2 . 
+a) ¿Es ese el valor real del área? Justificar por qué. 
+b) ¿Existe alguna otra forma de calcular el área de manera más exacta? 
+
+7. Investigue el efecto del error de redondeo en un gran número de cálculos 
+interdependientes. Desarrolle un programa que sume un número 100 000 veces. Sume 
+el número 1 con precisión simple, y 0.00001 con precisiones simple y doble. 
+ 
+8. La serie infinita 𝑓(𝑁) = ∑i hasta N de 1/i^(2) converge sobre un valor de 𝑓(𝑁) = 𝜋2/6 conforme 𝑁 tiende 
+a infinito. Escriba un programa para calcular (𝑁) para 𝑁 = 10000 por medio de calcular la 
+suma desde i = 1 hasta 10000. Después repita el cálculo pero en sentido inverso (desde =10000 hasta 1). Explique los resultados.
+
 ## Laboratorio 3
 ## Laboratorio 4
 ## Laboratorio 5

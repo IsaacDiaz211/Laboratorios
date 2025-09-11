@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { GithubOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Typography } from "antd";
-// @ts-ignore
-import Plot from "react-plotly.js";
+import { Button, Input, Typography } from "antd";
+import RepoDir from "../../components/RepoDir";
+import 'katex/dist/katex.min.css';
+import { InlineMath } from 'react-katex'
 
 function Ex1UI() {
-  const [funcStr, setFuncStr] = useState<string>("Math.PI*(x**2)*((9-x)/3) - 30"); 
+  const funcStr: string = "Math.PI*(x**2)*((9-x)/3) - 30"; 
   const [dx, setDx] = useState<number>(0.5);
   const [tol, setTol] = useState<number>(0.001);
 
@@ -134,10 +134,14 @@ function Ex1UI() {
       <div style={{ maxWidth: 900, flex: 1 }}>
         <Typography.Title level={5}>Métodos Numéricos: Tanteo, Bisección e Interpolación</Typography.Title>
 
-        <Typography.Text>Ingrese la función de x:</Typography.Text>
-        <Input value={funcStr} onChange={(e) => setFuncStr(e.target.value)} style={{ marginBottom: 12 }} />
+        <Typography.Text>
+          Función del volumen de un líquido en un recipiente esférico:
+          <InlineMath math="\; V = \pi * h^2 (\frac{3R - h}{3})" />
+        </Typography.Text>
 
-        <Typography.Text>Incremento dx:</Typography.Text>
+        <div style={{ marginTop: 16 }}>
+          <Typography.Text>Incremento dx:</Typography.Text>
+        </div>
         <Input type="number" value={dx} onChange={(e) => setDx(parseFloat(e.target.value))} style={{ marginBottom: 12 }} />
 
         <Typography.Text>Error (tolerancia):</Typography.Text>
@@ -157,55 +161,12 @@ function Ex1UI() {
               </div>
             ))}
 
-            <Plot
-              data={[
-                {
-                  x: Array.from({ length: 400 }, (_, i) => domainStart + (i * (domainEnd - domainStart)) / 400),
-                  y: Array.from({ length: 400 }, (_, i) => f(domainStart + (i * (domainEnd - domainStart)) / 400)),
-                  type: "scatter",
-                  mode: "lines",
-                  name: "f(x)",
-                },
-                {
-                  x: results.map((r) => parseFloat(r.raizB)),
-                  y: results.map(() => 0),
-                  type: "scatter",
-                  mode: "markers",
-                  marker: { color: "red", size: 10 },
-                  name: "Raíces Bisección",
-                },
-                {
-                  x: results.map((r) => parseFloat(r.raizI)),
-                  y: results.map(() => 0),
-                  type: "scatter",
-                  mode: "markers",
-                  marker: { color: "blue", size: 10 },
-                  name: "Raíces Interpolación",
-                },
-              ]}
-              layout={{
-                title: "f(x) con raíces encontradas",
-                xaxis: { title: "x" },
-                yaxis: { title: "f(x)" },
-              }}
-              style={{ width: "100%", height: 500, marginTop: 16 }}
-            />
+            
           </div>
         )}
       </div>
 
-      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, textAlign: "center", borderTop: "1px solid #f0f0f0", padding: "16px 0", backgroundColor: "#fff", boxShadow: "0 -2px 8px rgba(0,0,0,0.1)" }}>
-        <Space>
-          <GithubOutlined />
-          <a href="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab3/Ex1UI.tsx"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", color: "#1890ff", fontSize: 14 }}
-          >
-            Ver código en GitHub
-          </a>
-        </Space>
-      </div>
+      <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab3/Ex1UI.tsx" />
     </div>
   );
 }

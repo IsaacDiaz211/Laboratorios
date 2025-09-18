@@ -21,7 +21,7 @@ function Lab3() {
             </div>,
         },
         {
-          label: "Ejercicio 2",
+          label: "Bisección",
           key: "2",
           children:
             <div style={{
@@ -33,8 +33,31 @@ function Lab3() {
             </div>,
         },
         {
-          label: "Ejercicio 3",
+          label: "Interpolación Lineal",
           key: "3",
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+
+            </div>,
+        },
+        {
+          label: "Newton-Raphson",
+          key: "4",
+          children:
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "2rem",
+              }}>
+
+            </div>,
+        },{
+          label: "Iteración",
+          key: "4",
           children:
             <div style={{
                 display: "flex",

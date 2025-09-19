@@ -1,7 +1,6 @@
 import { Tabs } from 'antd';
 import Ex1 from '../exercises/lab3/Ex1';
-//import Ex2 from '../exercises/lab3/Ex2';
-//import Ex3 from '../exercises/lab3/Ex3';
+import Ex2 from '../exercises/lab3/Ex2';
 
 function Lab3() {
   return (
@@ -21,7 +20,7 @@ function Lab3() {
             </div>,
         },
         {
-          label: "Bisección",
+          label: "Métodos",
           key: "2",
           children:
             <div style={{
@@ -29,44 +28,9 @@ function Lab3() {
                 justifyContent: "center",
                 paddingTop: "2rem",
               }}>
-          
+                <Ex2 />
             </div>,
-        },
-        {
-          label: "Interpolación Lineal",
-          key: "3",
-          children:
-            <div style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "2rem",
-              }}>
-
-            </div>,
-        },
-        {
-          label: "Newton-Raphson",
-          key: "4",
-          children:
-            <div style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "2rem",
-              }}>
-
-            </div>,
-        },{
-          label: "Iteración",
-          key: "4",
-          children:
-            <div style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: "2rem",
-              }}>
-
-            </div>,
-        },
+        }
       ]}
     />
   );

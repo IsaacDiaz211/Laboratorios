@@ -48,8 +48,8 @@ function Ex2() {
         <CartesianGraph
           xRange={[-5, 10]}
           yRange={[-30, 30]}
-          functionString={expresion || "Math.PI*(x**2)*((9-x)/3) - 30"}
-          expresion={expresion || "Math.PI*(x**2)*((9-x)/3) - 30"}
+          functionString={expresion || "x"}
+          expresion={expresion || "x"}
           step={0.1}
         />
       )}

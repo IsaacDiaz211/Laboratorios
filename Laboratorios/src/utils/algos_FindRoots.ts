@@ -1,5 +1,3 @@
-import { exp, parse } from "mathjs";
-
 export type Root = {
     root: number;
     error_abs: number;
@@ -213,30 +211,3 @@ const createFunctionFromString = (funcString: string): ((x: number) => number) =
   };
 
   export { createFunctionFromString };
-
-  function latexToJS(latex: string): string {
-    try {
-      const node = parse(latex);
-      return node.toString({ handler: jsHandler });
-    } catch (error) {
-      console.error('Error convirtiendo LaTeX a JS:', error);
-      return "x";
-    }
-  }
-
-  function jsHandler(node: any, options: any) {
-    if (node.type === "SymbolNode") {
-        if (node.name === "pi") return "Math.PI";
-        if (node.name === "e") return "Math.E";
-    }
-    if (node.type === "OperatorNode" && node.op === "^") {
-        // usar ** en vez de ^
-        return `(${node.args[0].toString(options)}**${node.args[1].toString(
-        options
-        )})`;
-    }
-    return node.toString(options);
-  }
-  export {latexToJS};
-
-

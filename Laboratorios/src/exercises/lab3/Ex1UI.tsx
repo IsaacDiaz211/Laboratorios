@@ -79,7 +79,7 @@ function Ex1UI() {
     const start = performance.now();
 
     while (Math.abs(b - a) > tol) {
-      x = a - (fa * (b - a)) / (fb - fa);
+      x = (a * fb - b * fa) / (fb - fa);
       const fx = f(x);
 
       if (fx === 0) break;

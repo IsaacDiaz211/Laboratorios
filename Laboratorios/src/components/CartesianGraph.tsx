@@ -2,7 +2,8 @@ import React from "react";
 import Plot from "react-plotly.js";
 import { Typography } from "antd";
 import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex'
+import { InlineMath } from 'react-katex';
+import { createFunctionFromString } from "../utils/algos_FindRoots";
 
 type GraphProps = {
   xRange: [number, number];
@@ -21,11 +22,12 @@ const FunctionPlot: React.FC<GraphProps> = ({
 }) => {
   const xValues: number[] = [];
   const yValues: number[] = [];
-
+  const func = createFunctionFromString(functionString);
+  
   for (let x = xRange[0]; x <= xRange[1]; x += step) {
     try {
-      // evaluamos la expresión con "x" en scope
-      const y = eval(functionString);
+      //evaluamos la expresión con "x" en scope
+      const y = func(x);
       if (typeof y === "number" && isFinite(y)) {
         xValues.push(x);
         yValues.push(y);

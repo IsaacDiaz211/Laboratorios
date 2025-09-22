@@ -14,7 +14,7 @@ import {
     algo_linear_interpolation,
     Root,
     createFunctionFromString
-} from "./algos";
+} from "../../utils/algos_FindRoots";
 
 type Props = {
   method: string;
@@ -24,7 +24,7 @@ type Props = {
 
 function Ex2UI({ method, setMethod, setExpression }: Props) {
   const [f, setF] = useState<string>("x");
-  const [iterr, setIterr] = useState<number>(0);
+  const [iterr, setIterr] = useState<number>(1);
   const [a, setA] = useState<number>(0);
   const [b, setB] = useState<number>(1);
   const [xn, setXn] = useState<number>(0);

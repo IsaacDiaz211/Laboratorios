@@ -1,33 +1,56 @@
-function algo_Gauss_Elimination(A: number[][], b: number[]): number[] | undefined {
-    const n: number = A.length;
-    for (let i = 0; i < n; i++) {
-        // Pivoteo parcial
-        let maxRow: number = i;
-        for (let k = i + 1; k < n; k++) {
-            if (Math.abs(A[k][i]) > Math.abs(A[maxRow][i])) {
-                maxRow = k;
-            }
-        }
-        [A[i], A[maxRow]] = [A[maxRow], A[i]];
-        [b[i], b[maxRow]] = [b[maxRow], b[i]];
+/**
+ * Resuelve un sistema de ecuaciones lineales Ax = b usando eliminación de Gauss.
+ * @param matrix Matriz cuadrada de coeficientes (n x n)
+ * @param vector Vector de términos independientes (n)
+ * @returns Vector solución x o null si el sistema no tiene solución única
+ */
+function algo_gauss_elimination(matrix: number[][], b: number[]): number[] | null {
+    const n = matrix.length;
+    let i: number = 1;
+    let j: number = 0;
 
-        // Eliminación
-        for (let k = i + 1; k < n; k++) {            const factor: number = A[k][i] / A[i][i];
-            for (let j = i; j < n; j++) {
-                A[k][j] -= factor * A[i][j];
-            }
-            b[k] -= factor * b[i];
-        } 
-        // Sustitución regresiva
-        const x: number[] = new Array(n).fill(0);
-        for (let i = n - 1; i >= 0; i--) {
-            x[i] = b[i];
-            for (let j = i + 1; j < n; j++) {
-                x[i] -= A[i][j] * x[j];
-            }
-            x[i] /= A[i][i];
-        }
-        return x;
+    //Verificaciones
+    if(n !== b.length) {
+        return null;
     }
+    if (n === 0) return [];
+    if (!matrix.every((row) => row.length === n)) {
+        throw new Error("La matriz A debe ser cuadrada n x n");
+    }
+    if(matrix[0][0] === 0) {
+        return null;
+    }
+    
+    // Eliminación hacia adelante
+    const A = matrix.map((row, i) => [...row, b[i]]); // Matriz ampliada
+    while ( j < n){
+        while (i < n) {
+            if(A[j][j] === 0) {
+                return null;
+            }
+            let factor: number = A[i][j] / A[j][j];
+            let vector: number[] = A[j].map(val => factor * val);
+            A[i] = A[i].map((val, k) => val - vector[k]);
+            if(A[i][j] !== 0) {
+                return null;
+            }
+            i++;
+        }
+        j++;
+        i = j + 1;
+    }
+
+    // Sustitución hacia atrás
+    let x = new Array(n).fill(0)
+    for (let k = n-1; k >= 0; k--) {
+        let sum: number = 0;
+        for (let l = k+1; l < n; l++) {
+            sum += A[k][l] * x[l];
+        }
+        x[k] = (A[k][n] - sum) / A[k][k];
+    }
+    
+    return x;
 }
-export { algo_Gauss_Elimination };
+
+export { algo_gauss_elimination };

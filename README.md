@@ -2,6 +2,7 @@
 
 ## Índice
 - [Descripción](#descripción)
+- [Instalación](#instalación)
 - [Laboratorio 1](#laboratorio1)
 - [Laboratorio 2](#laboratorio2)
 - [Laboratorio 3](#laboratorio3)
@@ -9,6 +10,7 @@
 - [Laboratorio 5](#laboratorio5)
 - [Laboratorio 6](#laboratorio6)
 - [Laboratorio 7](#laboratorio7)
+
 ## Descripción
 
 Proyecto destinado a crear una app de escritorio para los laboratorios de la materia Métodos Computacionales de la carrera Licenciatura en Sistemas
@@ -20,6 +22,28 @@ Más informacíon sobre las tecnologías usadas:
 - [Tauri](https://tauri.app/)
 - [Ant Design](https://ant.design/)
 - [Katex](https://katex.org/)
+
+## Instalación
+¿Quiere instalar y probar la app en su escritorio Windows? Sigue los siguientes pasos:
+
+### 🔧 Requisitos previos
+
+Antes de comenzar, asegurate de tener instalados los siguientes componentes:
+
+#### 📦 Node.js ≥ 18
+Descargá desde [nodejs.org](https://nodejs.org/)
+#### 📦 Rust ≥ 1.89.0
+Descargá desde [rust-lang.org](https://rust-lang.org/learn/get-started/)
+#### 📦 Microsoft C++ Build Tools
+Descargá desde [c++-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
+Es importante reiniciar la Terminal para asegurarse que reconozca la nueva instalación. En algunos casos, podría ser necesario reiniciar el equipo.
+Una vez listo con los requisitos puedes clonar el repositorio o descargarlo en formato zip. Abre una terminal y ubicate en la carpeta donde haz
+creado el proyecto, instala las dependencias, espera a que esté listo y ejecuta el proyecto:
+`npm install`
+`npm run tauri dev`
+Si desea obtener el ejecutable '.exe', utilice `npm run tauri build`, le generará el archivo y lo encontrará al finalizar su ejecución en la carpeta
+Laboratorios\Laboratorios\src-tauri\target\release\bundle\nsis.
 
 ## Laboratorio 1
 Ejercicios 

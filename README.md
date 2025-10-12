@@ -37,11 +37,11 @@ Descargá desde [rust-lang.org](https://rust-lang.org/learn/get-started/)
 #### 📦 Microsoft C++ Build Tools
 Descargá desde [c++-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 
-Es importante reiniciar la Terminal para asegurarse que reconozca la nueva instalación. En algunos casos, podría ser necesario reiniciar el equipo.
-Una vez listo con los requisitos puedes clonar el repositorio o descargarlo en formato zip. Abre una terminal y ubicate en la carpeta donde haz
-creado el proyecto, instala las dependencias, espera a que esté listo y ejecuta el proyecto:
-`npm install`
-`npm run tauri dev`
+Es importante reiniciar la Terminal para asegurarse que reconozca la nueva instalación. En algunos casos, podría ser necesario reiniciar el equipo.<br>
+Una vez listo con los requisitos puedes clonar el repositorio o descargarlo en formato zip. Abra una terminal y ubiquese en la carpeta donde haz
+creado el proyecto, instala las dependencias, espere a que esté listo y ejecute el proyecto:<br>
+`npm install`<br>
+`npm run tauri dev`<br>
 Si desea obtener el ejecutable '.exe', utilice `npm run tauri build`, le generará el archivo y lo encontrará al finalizar su ejecución en la carpeta
 Laboratorios\Laboratorios\src-tauri\target\release\bundle\nsis.
 

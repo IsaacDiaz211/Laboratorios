@@ -111,7 +111,7 @@ function LUDecompUI() {
                     key={`A-${i}-${j}`}
                     value={A[i]?.[j] ?? 0}
                     onChange={(val) => updateA(i, j, val)}
-                    step={0.1}
+                    step={1}
                   />
                 ))
               )}
@@ -176,7 +176,7 @@ function LUDecompUI() {
       )}
 
       <Divider />
-      <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab4/LUDecompUI.tsx" />
+      <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab4/algos_SystemOfLinearEquations.ts" />
     </Flex>
   );
 }

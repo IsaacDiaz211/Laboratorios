@@ -2,8 +2,7 @@ import { useState } from "react";
 import SubTab from "../../components/SubTab";
 import LUDecompositionUI from "./LUDecompUI";
 import CodeBlock from "../../components/CodeBlock";
-import Seudo from "../../components/Seudo"; 
-import CartesianGraph from "../../components/CartesianGraph";
+import Seudo from "../../components/Seudo";
 
 function LUDecomposition() {
   const [tab, setTab] = useState("interfaz");

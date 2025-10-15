@@ -3,7 +3,7 @@ import Plot from "react-plotly.js";
 import { Typography } from "antd";
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
-import { createFunctionFromString } from "../utils/algos_FindRoots";
+import { createFunctionFromString } from "../exercises/lab3/algos_FindRoots";
 
 type GraphProps = {
   xRange: [number, number];

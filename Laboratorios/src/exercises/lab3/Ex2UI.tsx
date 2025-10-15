@@ -1,4 +1,5 @@
-import { 
+import {
+    Alert,
     Button,
     Radio, 
     InputNumber, 
@@ -14,7 +15,8 @@ import {
     algo_linear_interpolation,
     Root,
     createFunctionFromString
-} from "../../utils/algos_FindRoots";
+} from "./algos_FindRoots";
+import { normalizeError } from "../../utils/helpers";
 
 type Props = {
   method: string;
@@ -24,14 +26,14 @@ type Props = {
 
 function Ex2UI({ method, setMethod, setExpression }: Props) {
   const [f, setF] = useState<string>("x");
-  const [iterr, setIterr] = useState<number>(1);
+  const [iterr, setIterr] = useState<number>(10);
   const [a, setA] = useState<number>(0);
   const [b, setB] = useState<number>(1);
-  const [xn, setXn] = useState<number>(0);
-  const [err, setErr] = useState<number>(0);
+  const [err, setErr] = useState<number>(0.0001);
   const [errorB, setErrorB] = useState<string | null>(null);
   const [result, setResult] = useState<Root | null>(null);
   const [execTime, setExecTime] = useState<number | null>(null);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   function handleFChange(value: string | null){
     const expresion = value ?? "x";
@@ -39,18 +41,21 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
     setExpression(expresion);
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
   }
 
   function handleIterrChange(value: number | null){
     setIterr(value ?? 0);
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
   }
 
   function handleErrChange(value: number | null){
     setErr(value ?? 0);
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
   }
 
   function handleAChange(value: number | null){
@@ -62,6 +67,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
     }
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
   };
 
   function handleBChange(value: number | null){
@@ -73,25 +79,28 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
     }
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
   };
 
-  function handleXnChange(value: number | null){
-    setXn(value ?? 0);
-    setResult(null);
-    setExecTime(null);
-  }
 
   function handleCalculate(){
     setResult(null);
     setExecTime(null);
+    setErrMsg(null);
     let start: number = 0;
     let end: number = 0;
     let roots: Root | null = null;
     
     // Convertir string a función
-    const func = createFunctionFromString(f);
-    
-    switch(method){
+    let func: (x: number) => number;
+    try {
+      func = createFunctionFromString(f);
+    } catch (e) {
+      setErrMsg("No pude interpretar f(x). Revísala. Detalle: " + normalizeError(e));
+      return;
+    }
+    try {
+      switch(method){
         case "biseccion":
             start = performance.now();
             roots = algo_bisection(func, a, b, iterr, err);
@@ -108,7 +117,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
             break;
         case "newton":
             start = performance.now();
-            roots = algo_newton_raphson(func, a, b, xn, iterr, err);
+            roots = algo_newton_raphson(func, a, b, iterr, err);
             end = performance.now();
             setResult(roots);
             setExecTime(end - start);
@@ -120,9 +129,15 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
             setResult(roots);
             setExecTime(end - start);
             break;
+        default:
+          throw new Error("Método no soportado");
         }
+    } catch (e) {
+      setErrMsg(normalizeError(e));
+      return;
     }
-  
+  }
+
   return(
     <div
       style={{ 
@@ -138,7 +153,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
       </div>
       <div>
         <Typography.Title level={5}>Cantidad máxima de iteraciones: </Typography.Title>
-        <InputNumber min={1} max={255} defaultValue={1} value={iterr} onChange={handleIterrChange} />
+        <InputNumber min={10} max={500} defaultValue={10} value={iterr} onChange={handleIterrChange} />
       </div>
       <div>
         <Typography.Title level={5}>Error tolerado: </Typography.Title>
@@ -161,12 +176,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
         />
         {errorB && <div style={{ color: "red", fontSize: "12px", marginTop: "4px" }}>{errorB}</div>}
       </div>
-      {method === "newton" && (
-        <div>
-          <Typography.Title level={5}>Aproximación inicial xn: </Typography.Title>
-          <InputNumber min={0} max={500} value={xn} onChange={handleXnChange} />
-        </div>
-      )}
+      
 
       <Radio.Group
         value={method}
@@ -182,7 +192,16 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
       <Button type="primary" onClick={handleCalculate}>
         Hallar raíces
       </Button> 
-
+      {errMsg && (
+        <div style={{ marginTop: 12 }}>
+          <Alert
+            message="Error al calcular"
+            description={errMsg}
+            type="error"
+            showIcon
+          />
+        </div>
+      )}
       {result !== null && (
           <div style={{ marginTop: 20 }}>
               <div style={{ marginBottom: 10 }}>
@@ -198,6 +217,6 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
       <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab3/Ex2UI.tsx" />
     </div>
   );
-}
+};
 
 export default Ex2UI;

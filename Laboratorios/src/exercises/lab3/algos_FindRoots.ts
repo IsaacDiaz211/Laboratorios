@@ -1,6 +1,6 @@
 export type Root = {
     root: number;
-    error_abs: number;
+    error_a: number;
     iterations: number;
 }
 
@@ -30,17 +30,20 @@ function algo_linear_interpolation(
         throw new Error("xl debe ser menor que xu");
     }
     const eps = 1e-12;
-    let xr: number;
+    let xr: number = 0;
+    let xr_old: number = 0;
     let i: number = 0;
+    let err_rel: number = 100;
     do {
         i++;
         let denom = f(xl) - f(xu);
         if (Math.abs(denom) < 1e-15) throw new Error("Denominador muy pequeño: posible división por cero.");
+        xr_old = xr;
         xr = xu - (f(xu) * (xl - xu)) / (f(xl) - f(xu));
         if (Math.abs(f(xr)) < eps) {
             return {
                 root: xr,
-                error_abs: 0,
+                error_a: Math.abs((xr - xr_old) / xr),
                 iterations: i,
             }
         } else if (f(xl) * f(xr) < 0){
@@ -48,10 +51,11 @@ function algo_linear_interpolation(
         } else {
             xl = xr;
         }
-    } while (Math.abs(f(xr)) > err && i < iter_max);
+        err_rel = Math.abs((xr - xr_old) / xr);
+    } while (err_rel > err && i < iter_max);
     return {
         root: xr,
-        error_abs: Math.abs(f(xr)),
+        error_a: err_rel,
         iterations: i,
     }
 }
@@ -73,7 +77,7 @@ function algo_iteration(
     } while (i <= iter_max && Math.abs(f(a)) > err);
     return {
         root: + a + b,
-        error_abs: Math.abs(f(a)),
+        error_a: Math.abs(f(a)),
         iterations: i,
     }
 }
@@ -91,13 +95,12 @@ export { algo_iteration };
  * @returns Raíz aproximada, error absoluto y número de iteraciones
  */
 function algo_newton_raphson(
-    f:(x: number) => number, 
-    a: number,
+    f:(x: number) => number,
     b: number,
     iter_max: number, 
     err: number
 ): Root {
-    // Validaciones iniciales
+    /* // Validaciones iniciales
     if (f(a) * f(b) >= 0) {
         console.log("La función no cumple con la condición de cambio de signo en el intervalo [a, b]");
         throw new Error("La función debe cambiar de signo en el intervalo [a, b]");
@@ -112,32 +115,34 @@ function algo_newton_raphson(
     if (!third_condition_Fourier(f, b)) {
         console.log("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
         throw new Error("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
-    }
+    }*/
 
     const eps = 1e-12;
     let xn: number = b;
     let xr: number = 0;
     let i: number = 0;
+    let err_rel: number = 100;
     do{
-        i++;
         xr = xn - (f(xn) / derivative(f, xn));
         if (Math.abs(f(xr)) < eps) {
             return {
                 root: xr,
-                error_abs: 0,
+                error_a: Math.abs((xr - xn) / xr),
                 iterations: i,
             }
         }
-        xn = xr;
-        if(!third_condition_Fourier(f, xn)) {
+        if(!third_condition_Fourier(f, xr)) {
             console.log("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
             throw new Error("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
         }
-    } while(i <= iter_max && Math.abs(f(xr)) > err)
+        err_rel = Math.abs((xr - xn) / xr);
+        xn = xr;
+        i++;
+    } while(i <= iter_max && err_rel > err)
 
     return {
         root: xr,
-        error_abs: Math.abs(f(xr)),
+        error_a: err_rel,
         iterations: i,
     }
 }
@@ -173,34 +178,38 @@ function algo_bisection(
         throw new Error("xl debe ser menor que xu");
     }
     if (Math.abs(fl) <= err) {
-    return { root: xl, error_abs: Math.abs(fl), iterations: 0 };
+        return { root: xl, error_a: Math.abs(fl), iterations: 0 };
     }
     if (Math.abs(fu) <= err) {
-        return { root: xu, error_abs: Math.abs(fu), iterations: 0 };
+        return { root: xu, error_a: Math.abs(fu), iterations: 0 };
     }
 
     const eps = 1e-12;
-    let xr: number;
+    let xr: number = 0;
+    let xr_old: number = 0;
     let i: number = 0;
+    let err_rel: number = 100;
     do {
         i++;
+        xr_old = xr;
         xr = (xl + xu) / 2;
         if (Math.abs(f(xr)) < eps) {
             return {
                 root: xr,
-                error_abs: 0,
+                error_a: 0,
                 iterations: i,
             }
         } else if (f(xl) * f(xr) < 0){
+            err_rel = Math.abs((xr - xr_old) / xr);
             xu = xr;
         } else {
             xl = xr;
         }
-    } while (i <= iter_max && Math.abs(f(xr)) > err);
+    } while (i <= iter_max && err_rel > err);
     
     return {
         root: xr,
-        error_abs: Math.abs(f(xr)),
+        error_a: err_rel,
         iterations: i,
     }
 }
@@ -259,6 +268,8 @@ function isDerivativeNonZero(
     }
     return true;
 }
+
+export { isDerivativeNonZero };
 
 /**
  * Verifica si la tercera condición de Fourier se cumple para una función en un intervalo dado.

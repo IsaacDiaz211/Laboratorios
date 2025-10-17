@@ -117,7 +117,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
             break;
         case "newton":
             start = performance.now();
-            roots = algo_newton_raphson(func, a, b, iterr, err);
+            roots = algo_newton_raphson(func, b, iterr, err);
             end = performance.now();
             setResult(roots);
             setExecTime(end - start);
@@ -205,7 +205,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
       {result !== null && (
           <div style={{ marginTop: 20 }}>
               <div style={{ marginBottom: 10 }}>
-                <Typography.Text>Raíz: {result.root}, Iter: {result.iterations}, Error absoluto: {result.error_abs}</Typography.Text>
+                <Typography.Text>Raíz: {result.root}, Iter: {result.iterations}, Error relativo: {result.error_a}</Typography.Text>
                 <br/>
                 <Typography.Text type="secondary">
                   Tiempo de ejecución: {execTime?.toFixed(9)} ms
@@ -214,7 +214,7 @@ function Ex2UI({ method, setMethod, setExpression }: Props) {
           </div>
         )}
 
-      <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab3/Ex2UI.tsx" />
+      <RepoDir url="https://github.com/IsaacDiaz211/Laboratorios/blob/master/Laboratorios/src/exercises/lab3/algos_FindRoots.ts" />
     </div>
   );
 };

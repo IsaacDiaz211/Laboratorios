@@ -1,0 +1,15 @@
+{
+  "name": "laboratorios-mc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun src/cli.ts"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "@types/prompts": "^2.4.9"
+  }
+}

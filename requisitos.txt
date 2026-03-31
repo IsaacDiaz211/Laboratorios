@@ -1,0 +1,46 @@
+Todos los cálculos deben ir acompañados del tiempo de ejecución que llevó desde que se solicitó hasta que se dió la respuesta.
+Los datos se ingresan por teclado a través de la TUI (terminal user interface).
+Respetar la numeración del documento. Los ejercicios faltantes en los laboratorios son porque no son para realizar con código.
+Laboratorio 1: 
+1) Hallar la suma de todos los valores de x1 a x2. Comprendido en el siguiente rango de representación de números enteros: 0 a 255.
+2) Dados 200 números positivos hallar la suma de todos los valores pares desde x1 a x2.
+3) Obtener los N primeros números de la sucesión de Fibonacci.
+4) Dada la ecuación de segundo grado "3*x^(2) + 2*x - 1 = 0" hallar sus raíces.
+5) Calcular el número e como suma de la serie: e = 1 + 1/1! + 1/2! + ... + 1/N!
+6) Calcular pi con N cifras decimales exactas a partir de la serie de Taylor: pi = 4 * (1 - 1/3 + 1/5 + 1/7 + ...)
+
+Laboratorio 2:
+1) Dados pi y e redondeados a seis decimales, ¿cuántos dígitos significativos y decimales correctos tendrá el cociente pi / e?
+3) Dado una ecuación N de segundo grado de la forma "ax^(2) + bx + c" permitir obtener las raíces.
+4) En la medida de N metros se ha cometido un error de M milimetros, y en X Km, un error de Y metros. ¿Qué error relativo es mayor?
+6) Desarrolle un programa que sume un mismo número 100000 (cien mil) veces. Sume el número 1 con precisión simple, y 0.00001 con precisiones simple (32 bits) y doble (64 bits).
+7) La serie infinita f(N) = ∑ de 1 hasta N de 1/N^(2) converge sobre un valor de f(N) = pi * 2/6
+conforme N tiende a infinito. Escriba un programa para calcular N para N = m (dado por el usuario) por medio de calcular la suma desde i = 1 hasta m. Después repita el cálculo pero en sentido inverso (desde N = m hasta 1).
+
+Laboratorio 3:
+Contenidos:
+Raíces de Ecuaciones. Método de Tanteo, intervalo medio, Interpolación Lineal.
+Newton Raphson. Iteración. Aceleración de la convergencia Método de Aitken.
+Convergencia y error de los métodos.
+Este laboratorio cuenta de un único ejercicio separado en tres partes.
+Parte 1: el usuario ingresa una ecuación en formato de JS/TS y el sistema 
+generará un gráfico para que el usuario pueda evaluar gráficamente las 
+raíces de la ecuación.
+Parte 2: el usuario pide separar las raíces con el método de Tanteo. ingresa
+la ecuación en formato JS/TS y el valor del incremento.
+Parte 3: para hallar la raíz el usuario tendrá que ingresar la cota de error 
+aceptada, la cantidad máxima de iteraciones, el valor aproximado de la raíz 
+a hallar y el rango de x-lower y x-upper (el rango dónde se encuentra la raíz).
+Algoritmos para hallar o aproximar raíces:
+1) Algoritmo de Intervalo Medio (Bisección)
+2) Algoritmo de Interpolación Lineal (Regula falsi)
+3) Algoritmo de Newton Raphson (no requiere rango xl-xu)
+4) Algoritmo de Método de Iteración (con y sin Aceleración de Aitken)
+Métodos para acotar y separar raíces
+1) Método de Tanteo: el usuario debe ingresar el valor del incremento.
+2) Método gráfico: aquí se generan los gráficos.
+Laboratorio 4: 
+Laboratorio 5: 
+Laboratorio 6: 
+Laboratorio 7: 
+

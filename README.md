@@ -1,6 +1,6 @@
 # Laboratorios de Metodos Computacionales (Bun + TypeScript)
 
-Programa de consola (TUI) para resolver ejercicios de los laboratorios 1 y 2.
+Programa de consola (TUI) para resolver ejercicios de los laboratorios 1, 2 y 4.
 Todas las ejecuciones muestran el tiempo con formato:
 
 `Tiempo de ejecuccion: 2.340000 ms`
@@ -98,6 +98,39 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
 
 - **7) Serie sum(1/n^2) en orden ascendente y descendente**
   - Entrada por consola: `m` entero positivo.
+
+### Laboratorio 4
+
+- **1) Eliminacion de Gauss**
+  - Entrada por consola: dimension `n`, matriz `A` y vector `b`.
+  - Usa pivoteo parcial.
+  - Permite redondeo opcional por cifras significativas.
+  - Muestra solucion y residuo `Ax - b`.
+
+- **2) Gauss-Jordan**
+  - Entrada por consola: dimension `n`, matriz `A` y vector `b`.
+  - Resuelve por reduccion completa de la matriz aumentada.
+  - Muestra solucion y residuo `Ax - b`.
+
+- **3) Descomposicion LU**
+  - Entrada por consola: dimension `n`, matriz `A` y vector `b`.
+  - Usa factorizacion `PA = LU` con pivoteo parcial.
+  - Muestra `L`, `U`, `P`, solucion y residuo `Ax - b`.
+
+- **4) Gauss-Seidel**
+  - Entrada por consola: dimension `n`, matriz `A`, vector `b`, vector inicial `x0`, tolerancia y maximo de iteraciones.
+  - Requiere dominancia diagonal estricta para garantizar convergencia.
+  - Muestra historial de iteraciones, solucion aproximada y residuo.
+
+- **5) Fadeev-Leverrier**
+  - Entrada por consola: dimension `n` y matriz `A`.
+  - Calcula coeficientes del polinomio caracteristico.
+  - Para matrices `3x3`, tambien calcula autovalores y un autovector por cada autovalor distinto.
+
+- **6) Metodo de las potencias**
+  - Entrada por consola: dimension `n`, matriz `A`, vector inicial `x0` y criterio de parada.
+  - Permite trabajar por tolerancia o por cantidad fija de iteraciones.
+  - Muestra autovalor dominante, autovector dominante e historial iterativo.
 
 ## 5) Ejemplos JSON
 

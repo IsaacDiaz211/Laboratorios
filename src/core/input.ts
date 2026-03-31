@@ -19,6 +19,10 @@ type NumbersListOptions = NumberOptions & {
   integerOnly?: boolean;
 };
 
+type MatrixOptions = NumberOptions & {
+  label?: string;
+};
+
 function handleCancel(): void {
   console.log("Operacion cancelada.");
   process.exit(0);
@@ -138,4 +142,51 @@ export async function askNumbersList(
     numbers.push(value);
   }
   return numbers;
+}
+
+/**
+ * Solicita por consola los valores de un vector de longitud fija.
+ * @param size Cantidad de componentes del vector.
+ * @param label Etiqueta base usada en cada prompt.
+ * @param options Restricciones numericas para cada componente.
+ * @returns Vector con los valores ingresados por el usuario.
+ */
+export async function askVector(
+  size: number,
+  label: string,
+  options: NumbersListOptions = {}
+): Promise<number[]> {
+  return askNumbersList(size, {
+    ...options,
+    label,
+  });
+}
+
+/**
+ * Solicita por consola una matriz cuadrada de tamaño n x n.
+ * @param size Dimension de la matriz a capturar.
+ * @param options Restricciones numericas y etiqueta base para cada entrada.
+ * @returns Matriz con los valores ingresados por el usuario.
+ */
+export async function askMatrix(
+  size: number,
+  options: MatrixOptions = {}
+): Promise<number[][]> {
+  const label = options.label ?? "Ingrese el valor";
+  const matrix: number[][] = [];
+
+  for (let row = 0; row < size; row += 1) {
+    const currentRow: number[] = [];
+    for (let column = 0; column < size; column += 1) {
+      const value = await askNumber(`${label} A[${row + 1}][${column + 1}]`, {
+        min: options.min,
+        max: options.max,
+        float: options.float ?? true,
+      });
+      currentRow.push(value);
+    }
+    matrix.push(currentRow);
+  }
+
+  return matrix;
 }

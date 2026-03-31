@@ -10,6 +10,12 @@ import { runLab2Exercise3 } from "./labs/lab2/lab2-3";
 import { runLab2Exercise4 } from "./labs/lab2/lab2-4";
 import { runLab2Exercise6 } from "./labs/lab2/lab2-6";
 import { runLab2Exercise7 } from "./labs/lab2/lab2-7";
+import { runLab4Exercise1 } from "./labs/lab4/lab4-1";
+import { runLab4Exercise2 } from "./labs/lab4/lab4-2";
+import { runLab4Exercise3 } from "./labs/lab4/lab4-3";
+import { runLab4Exercise4 } from "./labs/lab4/lab4-4";
+import { runLab4Exercise5 } from "./labs/lab4/lab4-5";
+import { runLab4Exercise6 } from "./labs/lab4/lab4-6";
 
 type Exercise = {
   title: string;
@@ -37,6 +43,15 @@ const lab2Exercises: Exercise[] = [
   { title: "7) Serie 1/n^2", run: runLab2Exercise7 },
 ];
 
+const lab4Exercises: Exercise[] = [
+  { title: "1) Eliminacion de Gauss", run: runLab4Exercise1 },
+  { title: "2) Gauss-Jordan", run: runLab4Exercise2 },
+  { title: "3) Descomposicion LU", run: runLab4Exercise3 },
+  { title: "4) Gauss-Seidel", run: runLab4Exercise4 },
+  { title: "5) Fadeev-Leverrier", run: runLab4Exercise5 },
+  { title: "6) Metodo de las potencias", run: runLab4Exercise6 },
+];
+
 async function chooseExercise(exercises: Exercise[]): Promise<Exercise> {
   const choiceIndex = await askSelect<number>(
     "Seleccione un ejercicio",
@@ -57,11 +72,12 @@ async function main(): Promise<void> {
     clearConsole();
     console.log("Laboratorios de Metodos Computacionales");
 
-    const labChoice = await askSelect<"lab1" | "lab2" | "exit">(
+    const labChoice = await askSelect<"lab1" | "lab2" | "lab4" | "exit">(
       "Seleccione un laboratorio",
       [
         { title: "Laboratorio 1", value: "lab1" },
         { title: "Laboratorio 2", value: "lab2" },
+        { title: "Laboratorio 4", value: "lab4" },
         { title: "Salir", value: "exit" },
       ]
     );
@@ -70,7 +86,12 @@ async function main(): Promise<void> {
       break;
     }
 
-    const exercises = labChoice === "lab1" ? lab1Exercises : lab2Exercises;
+    const exercises =
+      labChoice === "lab1"
+        ? lab1Exercises
+        : labChoice === "lab2"
+          ? lab2Exercises
+          : lab4Exercises;
     const selected = await chooseExercise(exercises);
 
     clearConsole();

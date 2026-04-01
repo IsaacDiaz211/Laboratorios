@@ -6,10 +6,12 @@
     "start": "bun src/cli.ts"
   },
   "dependencies": {
+    "pngjs": "^7.0.0",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/node": "^25.2.1",
+    "@types/pngjs": "^6.0.5",
     "@types/prompts": "^2.4.9"
   }
 }

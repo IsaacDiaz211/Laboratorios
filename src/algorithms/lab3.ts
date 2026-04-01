@@ -104,7 +104,8 @@ function algo_iteration(
     a: number, 
     b: number,
     iter_max: number, 
-    err: number
+    err: number,
+    x0?: number,
 ): Root {
     if (iter_max <= 0) {
         throw new Error("iter_max debe ser mayor que 0");
@@ -114,7 +115,7 @@ function algo_iteration(
     }
 
     let i = 0;
-    let xPrev = (a + b) / 2;
+    let xPrev = x0 ?? (a + b) / 2;
     let xCurr = xPrev;
     let err_rel = Number.POSITIVE_INFINITY;
 
@@ -155,7 +156,8 @@ function algo_iteration_aitken(
     a: number,
     b: number,
     iter_max: number,
-    err: number
+    err: number,
+    x0?: number,
 ): Root {
     if (iter_max <= 0) {
         throw new Error("iter_max debe ser mayor que 0");
@@ -165,7 +167,7 @@ function algo_iteration_aitken(
     }
 
     let i = 0;
-    let x = (a + b) / 2;
+    let x = x0 ?? (a + b) / 2;
     let error_a = Number.POSITIVE_INFINITY;
 
     while (i < iter_max && error_a > err) {
@@ -214,7 +216,7 @@ export { algo_iteration_aitken };
  */
 function algo_newton_raphson(
     f:(x: number) => number,
-    b: number,
+    x0: number,
     iter_max: number, 
     err: number
 ): Root {
@@ -236,7 +238,7 @@ function algo_newton_raphson(
     }*/
 
     const eps = 1e-12;
-    let xCurr: number = b;
+    let xCurr: number = x0;
     let i: number = 0;
     let err_rel: number = Number.POSITIVE_INFINITY;
 
@@ -419,13 +421,14 @@ function third_condition_Fourier(f: (x: number) => number, x: number): boolean {
  * @returns Función que se puede evaluar en un punto dado
  */
 const createFunctionFromString = (funcString: string): ((x: number) => number) => {
+    const expression = funcString.replace(/\^/g, '**');
+    const func = new Function(
+      'x',
+      `const { abs, acos, asin, atan, ceil, cos, exp, floor, log, max, min, pow, round, sin, sqrt, tan, E, PI } = Math; return ${expression};`
+    ) as (x: number) => unknown;
+
     return (x: number): number => {
       try {
-        // Reemplazar ^ con ** para potencias
-        const expression = funcString.replace(/\^/g, '**');
-        
-        // Crear función segura
-        const func = new Function('x', `return ${expression}`);
         const result = func(x);
         
         // Validar resultado
@@ -448,10 +451,19 @@ const createFunctionFromString = (funcString: string): ((x: number) => number) =
  * @param funcString Cadena de texto que representa la función
  * @returns Lista de intervalos [a, b] donde la función cambia de signo
  */
-  const guessIntervals = (funcString: string): [number, number][] => {
-    const domainStart = -100;
-    const domainEnd = 100;
-    const dx = 0.5;
+  const guessIntervals = (
+    funcString: string,
+    domainStart = -100,
+    domainEnd = 100,
+    dx = 0.5,
+  ): [number, number][] => {
+    if (dx <= 0) {
+      throw new Error("El incremento debe ser mayor que 0.");
+    }
+    if (domainEnd <= domainStart) {
+      throw new Error("x_upper debe ser mayor que x_lower.");
+    }
+
     const f = createFunctionFromString(funcString);
     const intervals: [number, number][] = [];
     let prevX = domainStart;
@@ -459,6 +471,13 @@ const createFunctionFromString = (funcString: string): ((x: number) => number) =
 
     for (let x = domainStart + dx; x <= domainEnd; x += dx) {
       const currF = f(x);
+
+      if (!Number.isFinite(prevF) || !Number.isFinite(currF)) {
+        prevX = x;
+        prevF = currF;
+        continue;
+      }
+
       if (prevF * currF <= 0) {
         intervals.push([prevX, x]);
       }

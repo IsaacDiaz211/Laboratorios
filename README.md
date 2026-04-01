@@ -1,6 +1,6 @@
 # Laboratorios de Metodos Computacionales (Bun + TypeScript)
 
-Programa de consola (TUI) para resolver ejercicios de los laboratorios 1, 2 y 4.
+Programa de consola (TUI) para resolver ejercicios de los laboratorios 1, 2, 3, 4, 5, 6 y 7.
 Todas las ejecuciones muestran el tiempo con formato:
 
 `Tiempo de ejecuccion: 2.340000 ms`
@@ -99,6 +99,39 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
 - **7) Serie sum(1/n^2) en orden ascendente y descendente**
   - Entrada por consola: `m` entero positivo.
 
+### Laboratorio 3
+
+- **1) Raices de ecuaciones**
+  - Se presenta como un unico ejercicio dividido en 3 partes.
+
+- **Parte 1: Metodo grafico**
+  - Entrada por consola: `f(x)`, `x_lower`, `x_upper`, cantidad de muestras.
+  - Muestra una vista ASCII en consola.
+  - Genera un PNG en `outputs/plots/` y lo abre automaticamente.
+  - Formato de funcion aceptado: JS/TS.
+  - Ejemplos: `x**2 - 4`, `Math.sin(x)`, `sin(x)`, `exp(x) - 3*x`.
+
+- **Parte 2: Metodo de tanteo**
+  - Entrada por consola: `f(x)`, `x_lower`, `x_upper`, incremento.
+  - Devuelve los intervalos donde la funcion cambia de signo.
+
+- **Parte 3: Metodos de aproximacion de raices**
+  - Metodos disponibles:
+    - Biseccion
+    - Interpolacion lineal (Regula Falsi)
+    - Newton-Raphson
+    - Iteracion
+    - Iteracion con aceleracion de Aitken
+  - Entrada por consola:
+    - `f(x)` para todos los metodos.
+    - `g(x)` para Iteracion y Iteracion con Aitken.
+    - tolerancia, iteraciones maximas y aproximacion inicial.
+    - `x_lower` y `x_upper` para todos excepto Newton-Raphson.
+  - Durante el calculo se imprime por iteracion:
+    - aproximacion obtenida
+    - error relativo
+    - `x_lower` y `x_upper` cuando el metodo usa intervalo
+
 ### Laboratorio 4
 
 - **1) Eliminacion de Gauss**
@@ -131,6 +164,105 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
   - Entrada por consola: dimension `n`, matriz `A`, vector inicial `x0` y criterio de parada.
   - Permite trabajar por tolerancia o por cantidad fija de iteraciones.
   - Muestra autovalor dominante, autovector dominante e historial iterativo.
+
+### Laboratorio 5
+
+- **1) Newton-Gregory Ascendente**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Requiere nodos equidistantes.
+  - Muestra tabla ingresada, tabla de diferencias hacia adelante y valor interpolado.
+
+- **2) Newton-Gregory Descendente**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Requiere nodos equidistantes.
+  - Muestra tabla ingresada, tabla de diferencias hacia atras y valor interpolado.
+
+- **3) Interpolacion Inversa Lineal**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `y` objetivo y referencia opcional.
+  - Selecciona automaticamente 2 puntos cercanos al `y` objetivo.
+  - Muestra la tabla ingresada, los puntos usados y el valor estimado de `x`.
+
+- **4) Interpolacion Inversa Cuadratica**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `y` objetivo y referencia opcional.
+  - Requiere al menos 3 puntos.
+  - Selecciona automaticamente 3 puntos cercanos al `y` objetivo.
+  - Muestra la tabla ingresada, los puntos usados y el valor estimado de `x`.
+
+- **5) Lagrange**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Soporta nodos no necesariamente equidistantes.
+  - Muestra la tabla ingresada y el valor interpolado.
+
+- **6) Interpolacion parabolica progresiva**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Usa 3 puntos consecutivos equidistantes.
+  - Muestra tabla ingresada, puntos usados, tabla de diferencias y valor interpolado.
+
+### Laboratorio 6
+
+- **1) Construir tabla de diferencias**
+  - Entrada por consola: tipo de tabla, cantidad de puntos y vectores `x` e `y`.
+  - Muestra la tabla ingresada y la tabla de diferencias finitas generada.
+
+- **2) Derivacion por Newton-Gregory Ascendente**
+  - Entrada por consola: orden de derivada, cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Requiere nodos equidistantes.
+  - Muestra tabla ingresada, tabla de diferencias, formula aplicada y derivada aproximada.
+
+- **3) Derivacion por Newton-Gregory Descendente**
+  - Entrada por consola: orden de derivada, cantidad de puntos, vectores `x` e `y`, valor `x` objetivo y referencia opcional.
+  - Requiere nodos equidistantes.
+  - Muestra tabla ingresada, tabla de diferencias, formula aplicada y derivada aproximada.
+
+- **4) Integracion por Trapecio**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y` y referencia opcional.
+  - Usa el rango completo tabulado.
+  - Muestra tabla ingresada, formula aplicada, cantidad de subintervalos e integral aproximada.
+
+- **5) Integracion por Simpson 1/3**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y` y referencia opcional.
+  - Requiere nodos equidistantes y una cantidad par de subintervalos.
+  - Muestra tabla ingresada, formula aplicada, cantidad de subintervalos e integral aproximada.
+
+- **6) Integracion por Simpson 3/8**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y` y referencia opcional.
+  - Requiere nodos equidistantes y una cantidad multiplo de 3 de subintervalos.
+  - Muestra tabla ingresada, formula aplicada, cantidad de subintervalos e integral aproximada.
+
+- **7) Integracion combinada**
+  - Entrada por consola: cantidad de puntos, vectores `x` e `y` y referencia opcional.
+  - Usa el rango completo tabulado y selecciona automaticamente Trapecio, Simpson 1/3 y/o Simpson 3/8 segun la cantidad de subintervalos.
+  - Muestra tabla ingresada, formula global, desglose de tramos e integral aproximada.
+
+### Laboratorio 7
+
+- **1) Metodo de Euler**
+  - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Muestra tabla por paso con `x`, `y`, `y'` y errores si existe solucion exacta.
+
+- **2) Metodo Modificado de Euler**
+  - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Usa la variante predictor-corrector de Heun.
+  - Muestra tabla por paso con predictor, corrector y errores opcionales.
+
+- **3) Runge-Kutta de 2do orden**
+  - Entrada por consola: variante (`Punto medio` o `Heun`), `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Muestra tabla por paso con `x`, `y`, `y'` y errores si existe solucion exacta.
+
+- **4) Runge-Kutta de 4to orden**
+  - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Usa la formula clasica de cuarto orden.
+  - Muestra tabla por paso con `x`, `y`, `y'` y errores si existe solucion exacta.
+
+- **5) Metodo de Milne**
+  - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Permite generar automaticamente los valores iniciales con RK4 o ingresarlos manualmente.
+  - Requiere al menos `4` pasos para aplicar predictor-corrector.
+
+- **6) Comparacion entre metodos**
+  - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
+  - Compara Euler, Euler modificado, RK2 (punto medio y Heun), RK4 y Milne cuando haya pasos suficientes.
+  - Muestra una tabla resumen con valor final, error y tiempo de ejecucion por metodo.
 
 ## 5) Ejemplos JSON
 

@@ -3,7 +3,7 @@ import {
   inverseLinearInterpolation,
 } from "../../algorithms/lab5/interpolation";
 import { askNumber } from "../../core/input";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askInterpolationTableInput,
@@ -35,9 +35,9 @@ export async function runLab5Exercise3(): Promise<void> {
 
     console.log("Metodo: Interpolacion Inversa Lineal");
     printInputTable(xValues, yValues);
-    console.log(`y objetivo: ${yTarget}`);
+    console.log(`y objetivo: ${formatNumber(yTarget)}`);
     printSelectedPoints(result.selectedPoints);
-    console.log(`Valor interpolado de x: ${result.value}`);
+    console.log(`Valor interpolado de x: ${formatNumber(result.value)}`);
     printWarnings(result.warnings);
 
     if (referenceValue !== undefined) {

@@ -236,6 +236,11 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
 
 ### Laboratorio 7
 
+- **Formato de expresiones para EDOs**
+  - `f(x, y)` y `y(x)` se ingresan en formato JS/TS.
+  - Ejemplos validos para `f(x, y)`: `x + y`, `y - x**2 + 1`, `sin(x) - y`, `x*y`.
+  - Ejemplos validos para `y(x)`: `exp(x)`, `(x + 1)**2 - 0.5*exp(x)`, `cos(x)`.
+
 - **1) Metodo de Euler**
   - Entrada por consola: `f(x, y)`, `x0`, `y0`, `h`, `xEnd` o cantidad de pasos y solucion exacta opcional.
   - Muestra tabla por paso con `x`, `y`, `y'` y errores si existe solucion exacta.
@@ -264,7 +269,21 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
   - Compara Euler, Euler modificado, RK2 (punto medio y Heun), RK4 y Milne cuando haya pasos suficientes.
   - Muestra una tabla resumen con valor final, error y tiempo de ejecucion por metodo.
 
-## 5) Ejemplos JSON
+## 5) Pruebas automatizadas
+
+- Type-check:
+
+```bash
+npx --yes -p typescript tsc --noEmit
+```
+
+- Tests de Lab 6 y Lab 7:
+
+```bash
+npx --yes -p tsx tsx --test tests/lab6.test.ts tests/lab7.test.ts
+```
+
+## 6) Ejemplos JSON
 
 ### Ejemplo para Lab 1 - Ejercicio 1 (cuando N > 9)
 

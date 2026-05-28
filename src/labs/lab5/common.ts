@@ -9,6 +9,12 @@ import {
   askPositiveInteger,
   askVector,
 } from "../../core/input";
+import { formatNumber } from "../../core/output";
+import {
+  printCapturedError,
+  printErrorMetrics as printSharedErrorMetrics,
+  printWarnings as printSharedWarnings,
+} from "../../core/report";
 
 export type InterpolationTableInput = {
   count: number;
@@ -17,7 +23,7 @@ export type InterpolationTableInput = {
 };
 
 function formatCell(value: number | undefined): string {
-  return value === undefined ? "" : String(value);
+  return value === undefined ? "" : formatNumber(value);
 }
 
 function formatPointsRows(points: DataPoint[]): string[] {
@@ -121,7 +127,7 @@ export function formatFiniteDifferenceTable(table: FiniteDifferenceTable): strin
 
   const rows = [headers.join("\t")];
   for (let row = 0; row < table.xValues.length; row += 1) {
-    const values = [String(row + 1), String(table.xValues[row]), formatCell(table.columns[0][row])];
+    const values = [String(row + 1), formatCell(table.xValues[row]), formatCell(table.columns[0][row])];
 
     for (let order = 1; order < table.columns.length; order += 1) {
       const column = table.columns[order];
@@ -159,14 +165,7 @@ export function printFiniteDifferenceTable(table: FiniteDifferenceTable): void {
  * @returns No retorna valor; solo imprime en consola.
  */
 export function printErrorMetrics(metrics: InterpolationErrorMetrics): void {
-  console.log(`Error absoluto: ${metrics.absoluteError}`);
-  console.log(
-    `Error relativo: ${metrics.relativeError === null ? "N/A" : metrics.relativeError}`
-  );
-
-  if (metrics.warning !== undefined) {
-    console.log(`Advertencia: ${metrics.warning}`);
-  }
+  printSharedErrorMetrics(metrics);
 }
 
 /**
@@ -175,9 +174,7 @@ export function printErrorMetrics(metrics: InterpolationErrorMetrics): void {
  * @returns No retorna valor; solo imprime en consola.
  */
 export function printWarnings(warnings: string[]): void {
-  for (const warning of warnings) {
-    console.log(`Advertencia: ${warning}`);
-  }
+  printSharedWarnings(warnings);
 }
 
 /**
@@ -186,6 +183,5 @@ export function printWarnings(warnings: string[]): void {
  * @returns No retorna valor; solo imprime el mensaje final.
  */
 export function printLab5Error(error: unknown): void {
-  const message = error instanceof Error ? error.message : String(error);
-  console.log(`Error: ${message}`);
+  printCapturedError(error);
 }

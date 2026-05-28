@@ -3,7 +3,7 @@ import {
   newtonGregoryForward,
 } from "../../algorithms/lab5/interpolation";
 import { askNumber } from "../../core/input";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askInterpolationTableInput,
@@ -35,9 +35,9 @@ export async function runLab5Exercise1(): Promise<void> {
 
     console.log("Metodo: Newton-Gregory Ascendente");
     printInputTable(xValues, yValues);
-    console.log(`x objetivo: ${xTarget}`);
+    console.log(`x objetivo: ${formatNumber(xTarget)}`);
     printFiniteDifferenceTable(result.differenceTable);
-    console.log(`Valor interpolado: ${result.value}`);
+    console.log(`Valor interpolado: ${formatNumber(result.value)}`);
     printWarnings(result.warnings);
 
     if (referenceValue !== undefined) {

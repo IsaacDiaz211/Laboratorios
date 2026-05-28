@@ -1,6 +1,6 @@
 import { integrateSimpsonThreeEighths } from "../../algorithms/lab6/integration";
 import { calculateErrorMetrics } from "../../algorithms/lab6/tabulated";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askOptionalReferenceValue,
@@ -28,10 +28,12 @@ export async function runLab6Exercise6(): Promise<void> {
 
     console.log("Metodo: Regla de Simpson 3/8");
     printInputTable(xValues, yValues);
-    console.log(`Intervalo de integracion: [${result.intervalStart}, ${result.intervalEnd}]`);
+    console.log(
+      `Intervalo de integracion: [${formatNumber(result.intervalStart)}, ${formatNumber(result.intervalEnd)}]`
+    );
     console.log(`Formula aplicada: ${result.formula}`);
     console.log(`Cantidad de subintervalos: ${result.subintervals}`);
-    console.log(`Integral aproximada: ${result.value}`);
+    console.log(`Integral aproximada: ${formatNumber(result.value)}`);
     printWarnings(result.warnings);
 
     if (referenceValue !== undefined) {

@@ -18,6 +18,8 @@ import {
   askSelect,
   askText,
 } from "../../core/input";
+import { formatNumber } from "../../core/output";
+import { printCapturedError, printWarnings as printSharedWarnings } from "../../core/report";
 
 type GridMode = "steps" | "xEnd";
 type MilneSeedMode = "rk4" | "manual";
@@ -45,7 +47,7 @@ function formatCell(value: number | string | null | undefined): string {
     return "N/A";
   }
 
-  return String(value);
+  return typeof value === "number" ? formatNumber(value) : value;
 }
 
 async function askDifferentialFunctionExpression(): Promise<{
@@ -189,7 +191,7 @@ export async function askMilneManualSeedPoints(
 
   for (let index = 1; index <= 3; index += 1) {
     const xValue = x0 + index * h;
-    const yValue = await askNumber(`Ingrese y para x = ${xValue}`, { float: true });
+    const yValue = await askNumber(`Ingrese y para x = ${formatNumber(xValue)}`, { float: true });
     points.push({ x: xValue, y: yValue });
   }
 
@@ -203,11 +205,11 @@ export async function askMilneManualSeedPoints(
  */
 export function printProblemInput(input: Lab7ProblemInput): void {
   console.log(`Ecuacion diferencial: y' = ${input.functionExpression}`);
-  console.log(`x0: ${input.x0}`);
-  console.log(`y0: ${input.y0}`);
-  console.log(`h: ${input.h}`);
+  console.log(`x0: ${formatNumber(input.x0)}`);
+  console.log(`y0: ${formatNumber(input.y0)}`);
+  console.log(`h: ${formatNumber(input.h)}`);
   console.log(`Pasos: ${input.steps}`);
-  console.log(`x final: ${input.xEnd}`);
+  console.log(`x final: ${formatNumber(input.xEnd)}`);
 
   if (input.exactExpression !== undefined) {
     console.log(`Solucion exacta: y(x) = ${input.exactExpression}`);
@@ -284,10 +286,10 @@ export function printFinalErrorMetrics(result: OdeMethodResult): void {
     return;
   }
 
-  console.log(`Valor exacto final: ${lastStep.exactValue}`);
-  console.log(`Error absoluto final: ${lastStep.absoluteError}`);
+  console.log(`Valor exacto final: ${formatNumber(lastStep.exactValue)}`);
+  console.log(`Error absoluto final: ${formatCell(lastStep.absoluteError)}`);
   console.log(
-    `Error relativo final: ${lastStep.relativeError === null ? "N/A" : lastStep.relativeError}`
+    `Error relativo final: ${formatCell(lastStep.relativeError)}`
   );
 }
 
@@ -297,9 +299,7 @@ export function printFinalErrorMetrics(result: OdeMethodResult): void {
  * @returns No retorna valor; solo imprime las advertencias.
  */
 export function printWarnings(warnings: string[]): void {
-  for (const warning of warnings) {
-    console.log(`Advertencia: ${warning}`);
-  }
+  printSharedWarnings(warnings);
 }
 
 /**
@@ -343,6 +343,5 @@ export function printComparisonTable(rows: MethodComparisonRow[]): void {
  * @returns No retorna valor; solo imprime el mensaje final.
  */
 export function printLab7Error(error: unknown): void {
-  const message = error instanceof Error ? error.message : String(error);
-  console.log(`Error: ${message}`);
+  printCapturedError(error);
 }

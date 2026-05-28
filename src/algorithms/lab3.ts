@@ -1,3 +1,5 @@
+import { createSingleVariableExpression } from "../core/expression";
+
 export type Root = {
     root: number;
     error_a: number;
@@ -421,27 +423,7 @@ function third_condition_Fourier(f: (x: number) => number, x: number): boolean {
  * @returns Función que se puede evaluar en un punto dado
  */
 const createFunctionFromString = (funcString: string): ((x: number) => number) => {
-    const expression = funcString.replace(/\^/g, '**');
-    const func = new Function(
-      'x',
-      `const { abs, acos, asin, atan, ceil, cos, exp, floor, log, max, min, pow, round, sin, sqrt, tan, E, PI } = Math; return ${expression};`
-    ) as (x: number) => unknown;
-
-    return (x: number): number => {
-      try {
-        const result = func(x);
-        
-        // Validar resultado
-        if (typeof result === 'number' && isFinite(result)) {
-          return result;
-        }
-        console.log("Resultado no válido:", result);
-        throw new Error('Resultado no válido');
-      } catch (error) {
-        console.error('Error evaluando función:', error);
-        return NaN;
-      }
-    };
+    return createSingleVariableExpression(funcString, "f(x)");
   };
 
   export { createFunctionFromString };

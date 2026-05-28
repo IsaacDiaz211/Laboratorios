@@ -1,7 +1,7 @@
 import { solveEuler, solveModifiedEuler } from "../../algorithms/lab7/euler";
 import { solveMilnePredictorCorrector } from "../../algorithms/lab7/milne";
 import { solveRungeKuttaFourthOrder, solveRungeKuttaSecondOrder } from "../../algorithms/lab7/runge-kutta";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askInitialValueProblemInput,
@@ -26,6 +26,28 @@ function createComparisonRow(
     relativeError,
     timeMs,
   };
+}
+
+function getFastestMethod(rows: MethodComparisonRow[]): MethodComparisonRow {
+  return rows.reduce((fastest, current) =>
+    current.timeMs < fastest.timeMs ? current : fastest
+  );
+}
+
+function getLowestAbsoluteErrorMethod(
+  rows: MethodComparisonRow[]
+): MethodComparisonRow | undefined {
+  return rows.reduce<MethodComparisonRow | undefined>((best, current) => {
+    if (current.absoluteError === undefined) {
+      return best;
+    }
+
+    if (best === undefined || best.absoluteError === undefined) {
+      return current;
+    }
+
+    return current.absoluteError < best.absoluteError ? current : best;
+  }, undefined);
 }
 
 /**
@@ -122,6 +144,21 @@ export async function runLab7Exercise6(): Promise<void> {
     printProblemInput(input);
     console.log("Resumen comparativo:");
     printComparisonTable(result.rows);
+
+    const fastestMethod = getFastestMethod(result.rows);
+    console.log(
+      `Metodo mas rapido: ${fastestMethod.method} (${formatNumber(fastestMethod.timeMs)} ms)`
+    );
+
+    const lowestErrorMethod = getLowestAbsoluteErrorMethod(result.rows);
+    if (lowestErrorMethod !== undefined && lowestErrorMethod.absoluteError !== undefined) {
+      console.log(
+        `Menor error absoluto final: ${lowestErrorMethod.method} (${formatNumber(lowestErrorMethod.absoluteError)})`
+      );
+    } else {
+      console.log("Menor error absoluto final: no disponible (sin solucion exacta).");
+    }
+
     printWarnings(result.warnings);
     printExecutionTime(ms);
   } catch (error) {

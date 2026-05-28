@@ -4,7 +4,7 @@ import {
 } from "../../algorithms/lab6/differentiation";
 import { calculateErrorMetrics } from "../../algorithms/lab6/tabulated";
 import { askNumber } from "../../core/input";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askDerivativeOrder,
@@ -42,12 +42,12 @@ export async function runLab6Exercise3(): Promise<void> {
 
     console.log("Metodo: Newton-Gregory Descendente");
     printInputTable(xValues, yValues);
-    console.log(`x objetivo: ${xTarget}`);
+    console.log(`x objetivo: ${formatNumber(xTarget)}`);
     console.log(`Orden de derivada: ${formatDerivativeOrder(order)}`);
     printFiniteDifferenceTable(result.differenceTable);
     console.log(`Formula aplicada: ${result.formula}`);
-    console.log(`Paso h: ${result.step}`);
-    console.log(`Derivada aproximada: ${result.value}`);
+    console.log(`Paso h: ${formatNumber(result.step)}`);
+    console.log(`Derivada aproximada: ${formatNumber(result.value)}`);
     printWarnings(result.warnings);
 
     if (referenceValue !== undefined) {

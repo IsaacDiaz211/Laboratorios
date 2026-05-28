@@ -1,3 +1,7 @@
+import {
+  createSingleVariableExpression,
+  createTwoVariableExpression,
+} from "../../core/expression";
 import type { Vector } from "../../core/matrix";
 
 const GRID_TOLERANCE = 1e-9;
@@ -73,14 +77,6 @@ function validateFiniteNumber(value: number, label: string): void {
   }
 }
 
-function normalizeExpression(expression: string): string {
-  return expression.trim().replace(/\^/g, "**");
-}
-
-function buildMathScopeDeclarations(): string {
-  return "const { abs, acos, asin, atan, ceil, cos, exp, floor, log, max, min, pow, round, sin, sqrt, tan, E, PI } = Math;";
-}
-
 /**
  * Crea una funcion f(x, y) a partir de una expresion escrita en formato JS/TS.
  * @param expression Expresion de la ecuacion diferencial y' = f(x, y).
@@ -89,35 +85,7 @@ function buildMathScopeDeclarations(): string {
 export function createDifferentialFunctionFromString(
   expression: string
 ): DifferentialFunction {
-  const normalized = normalizeExpression(expression);
-  if (normalized.length === 0) {
-    throw new Error("La expresion de la ecuacion diferencial no puede estar vacia.");
-  }
-
-  let evaluator: (x: number, y: number) => unknown;
-  try {
-    evaluator = new Function(
-      "x",
-      "y",
-      `${buildMathScopeDeclarations()} return ${normalized};`
-    ) as (x: number, y: number) => unknown;
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`No se pudo interpretar f(x, y): ${message}`);
-  }
-
-  return (x: number, y: number): number => {
-    try {
-      const result = evaluator(x, y);
-      if (typeof result !== "number" || Number.isNaN(result) || !Number.isFinite(result)) {
-        throw new Error("La expresion devolvio un valor no numerico.");
-      }
-      return result;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      throw new Error(`No se pudo evaluar f(x, y) en x=${x}, y=${y}: ${message}`);
-    }
-  };
+  return createTwoVariableExpression(expression, "f(x, y)");
 }
 
 /**
@@ -128,34 +96,7 @@ export function createDifferentialFunctionFromString(
 export function createSingleVariableFunctionFromString(
   expression: string
 ): ExactSolutionFunction {
-  const normalized = normalizeExpression(expression);
-  if (normalized.length === 0) {
-    throw new Error("La expresion de la solucion exacta no puede estar vacia.");
-  }
-
-  let evaluator: (x: number) => unknown;
-  try {
-    evaluator = new Function(
-      "x",
-      `${buildMathScopeDeclarations()} return ${normalized};`
-    ) as (x: number) => unknown;
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`No se pudo interpretar y(x): ${message}`);
-  }
-
-  return (x: number): number => {
-    try {
-      const result = evaluator(x);
-      if (typeof result !== "number" || Number.isNaN(result) || !Number.isFinite(result)) {
-        throw new Error("La expresion devolvio un valor no numerico.");
-      }
-      return result;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      throw new Error(`No se pudo evaluar y(x) en x=${x}: ${message}`);
-    }
-  };
+  return createSingleVariableExpression(expression, "y(x)");
 }
 
 /**

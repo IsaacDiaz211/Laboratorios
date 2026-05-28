@@ -12,6 +12,12 @@ import {
   askSelect,
   askVector,
 } from "../../core/input";
+import { formatNumber } from "../../core/output";
+import {
+  printCapturedError,
+  printErrorMetrics as printSharedErrorMetrics,
+  printWarnings as printSharedWarnings,
+} from "../../core/report";
 
 export type TabulatedInput = {
   count: number;
@@ -20,7 +26,7 @@ export type TabulatedInput = {
 };
 
 function formatCell(value: number | undefined): string {
-  return value === undefined ? "" : String(value);
+  return value === undefined ? "" : formatNumber(value);
 }
 
 /**
@@ -97,7 +103,7 @@ export function formatInputTable(xValues: number[], yValues: number[]): string {
   const rows = ["i\tx\ty"];
 
   for (let index = 0; index < xValues.length; index += 1) {
-    rows.push(`${index + 1}\t${xValues[index]}\t${yValues[index]}`);
+    rows.push(`${index + 1}\t${formatNumber(xValues[index])}\t${formatNumber(yValues[index])}`);
   }
 
   return rows.join("\n");
@@ -127,7 +133,7 @@ export function formatFiniteDifferenceTable(table: FiniteDifferenceTable): strin
 
   const rows = [headers.join("\t")];
   for (let row = 0; row < table.xValues.length; row += 1) {
-    const values = [String(row + 1), String(table.xValues[row]), formatCell(table.columns[0][row])];
+    const values = [String(row + 1), formatCell(table.xValues[row]), formatCell(table.columns[0][row])];
 
     for (let order = 1; order < table.columns.length; order += 1) {
       const column = table.columns[order];
@@ -163,12 +169,7 @@ export function printFiniteDifferenceTable(table: FiniteDifferenceTable): void {
  * @returns No retorna valor; solo imprime en consola.
  */
 export function printErrorMetrics(metrics: ErrorMetrics): void {
-  console.log(`Error absoluto: ${metrics.absoluteError}`);
-  console.log(`Error relativo: ${metrics.relativeError === null ? "N/A" : metrics.relativeError}`);
-
-  if (metrics.warning !== undefined) {
-    console.log(`Advertencia: ${metrics.warning}`);
-  }
+  printSharedErrorMetrics(metrics);
 }
 
 /**
@@ -184,7 +185,7 @@ export function printIntegrationSegments(segments: IntegrationSegment[]): void {
   console.log("Desglose de tramos:");
   for (const [index, segment] of segments.entries()) {
     console.log(
-      `${index + 1}. ${segment.formula} en [${segment.xStart}, ${segment.xEnd}] -> ${segment.subintervals} subintervalos, valor = ${segment.value}`
+      `${index + 1}. ${segment.formula} en [${formatNumber(segment.xStart)}, ${formatNumber(segment.xEnd)}] -> ${segment.subintervals} subintervalos, valor = ${formatNumber(segment.value)}`
     );
   }
 }
@@ -195,9 +196,7 @@ export function printIntegrationSegments(segments: IntegrationSegment[]): void {
  * @returns No retorna valor; solo imprime cada advertencia.
  */
 export function printWarnings(warnings: string[]): void {
-  for (const warning of warnings) {
-    console.log(`Advertencia: ${warning}`);
-  }
+  printSharedWarnings(warnings);
 }
 
 /**
@@ -206,6 +205,5 @@ export function printWarnings(warnings: string[]): void {
  * @returns No retorna valor; solo imprime el mensaje final.
  */
 export function printLab6Error(error: unknown): void {
-  const message = error instanceof Error ? error.message : String(error);
-  console.log(`Error: ${message}`);
+  printCapturedError(error);
 }

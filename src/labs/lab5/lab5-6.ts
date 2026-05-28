@@ -3,7 +3,7 @@ import {
   progressiveParabolicInterpolation,
 } from "../../algorithms/lab5/interpolation";
 import { askNumber } from "../../core/input";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askInterpolationTableInput,
@@ -36,10 +36,10 @@ export async function runLab5Exercise6(): Promise<void> {
 
     console.log("Metodo: Interpolacion parabolica progresiva");
     printInputTable(xValues, yValues);
-    console.log(`x objetivo: ${xTarget}`);
+    console.log(`x objetivo: ${formatNumber(xTarget)}`);
     printSelectedPoints(result.selectedPoints);
     printFiniteDifferenceTable(result.differenceTable);
-    console.log(`Valor interpolado: ${result.value}`);
+    console.log(`Valor interpolado: ${formatNumber(result.value)}`);
     printWarnings(result.warnings);
 
     if (referenceValue !== undefined) {

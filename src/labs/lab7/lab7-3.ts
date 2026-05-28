@@ -1,5 +1,5 @@
 import { solveRungeKuttaSecondOrder } from "../../algorithms/lab7/runge-kutta";
-import { printExecutionTime } from "../../core/output";
+import { formatNumber, printExecutionTime } from "../../core/output";
 import { timeExecution } from "../../core/timer";
 import {
   askInitialValueProblemInput,
@@ -31,7 +31,7 @@ export async function runLab7Exercise3(): Promise<void> {
     console.log(`Formula aplicada: ${result.formula}`);
     console.log("Tabla por paso:");
     printOdeResultsTable(result.results);
-    console.log(`Valor final aproximado: ${result.finalValue}`);
+    console.log(`Valor final aproximado: ${formatNumber(result.finalValue)}`);
     printFinalErrorMetrics(result);
     printWarnings(result.warnings);
     printExecutionTime(ms);

@@ -1,1 +1,4 @@
 legacy-deprecated/
+node_modules/
+docs/
+outputs/

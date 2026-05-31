@@ -247,7 +247,7 @@ function algo_newton_raphson(
     while (i < iter_max && err_rel > err) {
         i++;
         const der = derivative(f, xCurr);
-        if (Math.abs(der) < 1e-15) {
+        if (Math.abs(der) < eps) {
             throw new Error("Derivada cercana a cero, no se puede continuar Newton-Raphson.");
         }
 

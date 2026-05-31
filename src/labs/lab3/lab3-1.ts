@@ -14,6 +14,7 @@ import { generateFunctionPlot, openFile } from "../../core/plot";
 import { timeExecution } from "../../core/timer";
 
 type Lab3Part = "grafico" | "tanteo" | "raices";
+
 type RootMethod =
   | "biseccion"
   | "regula_falsi"
@@ -168,7 +169,7 @@ function printRootResult(result: Root, fn: (x: number) => number): void {
   console.log(`Iteraciones: ${result.iterations}`);
 }
 
-async function runPartRoots(): Promise<void> {
+export async function runPartRoots(): Promise<void> {
   clearConsole();
   console.log("Laboratorio 3 - Parte 3: Aproximacion de raices");
 
@@ -259,12 +260,12 @@ async function runPartRoots(): Promise<void> {
 
 export async function runLab3Exercise1(): Promise<void> {
   clearConsole();
-  console.log("Laboratorio 3 - Ejercicio 1");
+  console.log("Laboratorio 3 - Parte 1");
 
-  const part = await askSelect<Lab3Part>("Seleccione una parte", [
-    { title: "Parte 1) Metodo grafico", value: "grafico" },
-    { title: "Parte 2) Metodo de tanteo", value: "tanteo" },
-    { title: "Parte 3) Metodos de aproximacion", value: "raices" },
+  const part = await askSelect<Lab3Part>("Seleccione un método", [
+    { title: "1) Metodo grafico", value: "grafico" },
+    { title: "2) Metodo de tanteo", value: "tanteo" },
+    { title: "3) Metodos de aproximacion", value: "raices" },
   ]);
 
   if (part === "grafico") {

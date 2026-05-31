@@ -11,6 +11,7 @@ import { runLab2Exercise4 } from "./labs/lab2/lab2-4";
 import { runLab2Exercise6 } from "./labs/lab2/lab2-6";
 import { runLab2Exercise7 } from "./labs/lab2/lab2-7";
 import { runLab3Exercise1 } from "./labs/lab3/lab3-1";
+import { runPartRoots } from "./labs/lab3/lab3-1";
 import { runLab4Exercise1 } from "./labs/lab4/lab4-1";
 import { runLab4Exercise2 } from "./labs/lab4/lab4-2";
 import { runLab4Exercise3 } from "./labs/lab4/lab4-3";
@@ -64,7 +65,8 @@ const lab2Exercises: Exercise[] = [
 ];
 
 const lab3Exercises: Exercise[] = [
-  { title: "1) Raices de ecuaciones", run: runLab3Exercise1 },
+  { title: "1) Intervalos", run: runLab3Exercise1 },
+  { title: "2) Raices de ecuaciones", run: runPartRoots },
 ];
 
 const lab4Exercises: Exercise[] = [

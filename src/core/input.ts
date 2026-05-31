@@ -28,10 +28,14 @@ function handleCancel(): void {
   process.exit(0);
 }
 
+function parseNumberInput(value: string): number | null {
+  // Allow both dot and comma as decimal separator
+  const normalized = value.trim().replace(",", ".");
+  const parsed = Number(normalized);
+  return Number.isNaN(parsed) || !Number.isFinite(parsed) ? null : parsed;
+}
+
 function validateNumber(value: number, options: NumberOptions): true | string {
-  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) {
-    return "Ingrese un numero valido.";
-  }
   if (!options.float && !Number.isInteger(value)) {
     return "Ingrese un numero entero.";
   }
@@ -96,20 +100,24 @@ export async function askNumber(
   message: string,
   options: NumberOptions = {}
 ): Promise<number> {
+  const initialStr = options.initial !== undefined ? String(options.initial).replace(".", ",") : undefined;
   const response = await prompts(
     {
-      type: "number",
+      type: "text",
       name: "value",
       message,
-      min: options.min,
-      max: options.max,
-      float: options.float ?? false,
-      initial: options.initial,
-      validate: (value: number) => validateNumber(value, options),
+      initial: initialStr,
+      validate: (value: string) => {
+        const parsed = parseNumberInput(value);
+        if (parsed === null) {
+          return "Ingrese un numero valido.";
+        }
+        return validateNumber(parsed, options);
+      },
     },
     { onCancel: handleCancel }
   );
-  return Number(response.value);
+  return parseNumberInput(String(response.value))!;
 }
 
 export async function askInteger(

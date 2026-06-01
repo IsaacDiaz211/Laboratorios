@@ -11,6 +11,7 @@ import {
   type Matrix,
   type Vector,
 } from "../../core/matrix";
+import { formatMatrix, formatNumber } from "../../core/output";
 import { applySignificantDigits } from "../../core/precision";
 
 const EPSILON = 1e-12;
@@ -72,10 +73,6 @@ function cleanSmallValue(value: number): number {
   return Math.abs(value) <= EPSILON ? 0 : value;
 }
 
-function swapVectorEntries(vector: Vector, firstIndex: number, secondIndex: number): void {
-  [vector[firstIndex], vector[secondIndex]] = [vector[secondIndex], vector[firstIndex]];
-}
-
 function getPivotRow(matrix: Matrix, column: number): number {
   let pivotRow = column;
   for (let row = column + 1; row < matrix.length; row += 1) {
@@ -88,6 +85,8 @@ function getPivotRow(matrix: Matrix, column: number): number {
 
 /**
  * Resuelve un sistema Ax = b mediante eliminacion de Gauss con pivoteo parcial.
+ * Imprime en consola el estado de la matriz aumentada en cada paso de la eliminacion
+ * y de la sustitucion hacia atras.
  * @param matrix Matriz cuadrada de coeficientes A.
  * @param vector Vector de terminos independientes b.
  * @param options Opciones de redondeo por cifras significativas.
@@ -100,13 +99,23 @@ export function solveGauss(
 ): LinearSolveResult {
   validateMatrixVectorDimensions(matrix, vector, "A", "b");
 
-  const workingMatrix = roundInputMatrix(matrix, options.significantDigits);
-  const workingVector = roundInputVector(vector, options.significantDigits);
-  const size = workingMatrix.length;
+  const roundedMatrix = roundInputMatrix(matrix, options.significantDigits);
+  const roundedVector = roundInputVector(vector, options.significantDigits);
+  const size = roundedMatrix.length;
+
+  const augmented: Matrix = roundedMatrix.map((row, rowIndex) => [
+    ...row,
+    roundedVector[rowIndex],
+  ]);
+
+  console.log("Matriz aumentada [A|b]:");
+  console.log(formatMatrix(augmented));
+  console.log("---");
+  console.log("Eliminacion:");
 
   for (let pivotColumn = 0; pivotColumn < size; pivotColumn += 1) {
-    const pivotRow = getPivotRow(workingMatrix, pivotColumn);
-    const pivotValue = workingMatrix[pivotRow][pivotColumn];
+    const pivotRow = getPivotRow(augmented, pivotColumn);
+    const pivotValue = augmented[pivotRow][pivotColumn];
 
     if (Math.abs(pivotValue) <= EPSILON) {
       throw new Error(
@@ -114,45 +123,80 @@ export function solveGauss(
       );
     }
 
-    swapRows(workingMatrix, pivotColumn, pivotRow);
-    swapVectorEntries(workingVector, pivotColumn, pivotRow);
+    const swapped = pivotRow !== pivotColumn;
+    swapRows(augmented, pivotColumn, pivotRow);
 
+    const multipliers: { row: number; factor: number }[] = [];
     for (let row = pivotColumn + 1; row < size; row += 1) {
       const factor = roundValue(
-        workingMatrix[row][pivotColumn] / workingMatrix[pivotColumn][pivotColumn],
+        augmented[row][pivotColumn] / augmented[pivotColumn][pivotColumn],
         options.significantDigits
       );
 
-      workingMatrix[row][pivotColumn] = 0;
-      for (let column = pivotColumn + 1; column < size; column += 1) {
+      augmented[row][pivotColumn] = 0;
+      for (let column = pivotColumn + 1; column <= size; column += 1) {
         const scaledValue = roundValue(
-          factor * workingMatrix[pivotColumn][column],
+          factor * augmented[pivotColumn][column],
           options.significantDigits
         );
-        workingMatrix[row][column] = cleanSmallValue(
+        augmented[row][column] = cleanSmallValue(
           roundValue(
-            workingMatrix[row][column] - scaledValue,
+            augmented[row][column] - scaledValue,
             options.significantDigits
           )
         );
       }
 
-      const scaledRightSide = roundValue(
-        factor * workingVector[pivotColumn],
-        options.significantDigits
+      multipliers.push({ row, factor });
+    }
+
+    console.log(
+      `Paso ${pivotColumn + 1}: pivote en columna ${pivotColumn + 1}, fila ${pivotRow + 1}${swapped ? " (intercambio aplicado)" : ""}`
+    );
+    if (multipliers.length > 0) {
+      console.log(
+        `Multiplicadores: ${multipliers
+          .map((m) => `m${m.row + 1} = ${formatNumber(m.factor)}`)
+          .join(", ")}`
       );
-      workingVector[row] = roundValue(
-        workingVector[row] - scaledRightSide,
+    }
+    console.log("Matriz aumentada [A|b]:");
+    console.log(formatMatrix(augmented));
+  }
+
+  console.log("---");
+  console.log("Sustitucion hacia atras:");
+
+  const solution: Vector = new Array<number>(size).fill(0);
+  for (let row = size - 1; row >= 0; row -= 1) {
+    const diagonal = augmented[row][row];
+    if (Math.abs(diagonal) <= EPSILON) {
+      throw new Error("Pivote cero durante la sustitucion hacia atras.");
+    }
+
+    let sum = 0;
+    for (let column = row + 1; column < size; column += 1) {
+      sum = roundValue(
+        sum + roundValue(
+          augmented[row][column] * solution[column],
+          options.significantDigits
+        ),
         options.significantDigits
       );
     }
-  }
 
-  const solution = backSubstitution(
-    workingMatrix,
-    workingVector,
-    options.significantDigits
-  );
+    const xRow = roundValue(
+      (augmented[row][size] - sum) / diagonal,
+      options.significantDigits
+    );
+    solution[row] = xRow;
+
+    console.log(
+      `Paso ${size - row}: x${row + 1} = ${formatNumber(xRow)}, x actual = [${solution
+        .map((value) => formatNumber(value))
+        .join(", ")}]`
+    );
+  }
 
   return {
     solution,

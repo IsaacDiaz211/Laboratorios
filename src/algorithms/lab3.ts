@@ -209,36 +209,19 @@ export { algo_iteration_aitken };
 /**
  * Resuelve una ecuación no lineal usando el método de Newton-Raphson.
  * @param f Función no lineal
- * @param a Límite inferior del intervalo
- * @param b Límite superior del intervalo
- * @param xn Punto inicial
+ * @param x0 Punto inicial de iteración
  * @param iter_max Número máximo de iteraciones
  * @param err Error relativo aceptado
- * @returns Raíz aproximada, error absoluto y número de iteraciones
+ * @param onIteration Callback opcional que recibe información numérica de cada iteración
+ * @returns Raíz aproximada, error relativo y número de iteraciones
  */
 function algo_newton_raphson(
     f:(x: number) => number,
     x0: number,
-    iter_max: number, 
-    err: number
+    iter_max: number,
+    err: number,
+    onIteration?: (info: NewtonIterationInfo) => void
 ): Root {
-    /* // Validaciones iniciales
-    if (f(a) * f(b) >= 0) {
-        console.log("La función no cumple con la condición de cambio de signo en el intervalo [a, b]");
-        throw new Error("La función debe cambiar de signo en el intervalo [a, b]");
-    }
-    if (a >= b) {
-        throw new Error("a debe ser menor que b");
-    }
-    if (!isDerivativeNonZero(f, a, b)) {
-        console.log("La función no es distinta de cero en el intervalo [a, b]");
-        throw new Error("La función no es distinta de cero en el intervalo [a, b]");
-    }
-    if (!third_condition_Fourier(f, b)) {
-        console.log("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
-        throw new Error("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
-    }*/
-
     const eps = 1e-12;
     let xCurr: number = x0;
     let i: number = 0;
@@ -251,11 +234,30 @@ function algo_newton_raphson(
             throw new Error("Derivada cercana a cero, no se puede continuar Newton-Raphson.");
         }
 
+        const xPrev = xCurr;
         const xNext = xCurr - (f(xCurr) / der);
         err_rel = i === 1 ? Number.POSITIVE_INFINITY : relativeError(xNext, xCurr);
         logIterationNoBounds("NewtonRaphson", i, xNext, err_rel);
 
-        if (Math.abs(f(xNext)) < eps) {
+        const y = f(xNext);
+        const derAtNext = derivative(f, xNext);
+        const secondAtNext = secondDerivative(f, xNext);
+        const fourierProduct = y * secondAtNext;
+
+        if (onIteration) {
+            onIteration({
+                iteration: i,
+                approx: xNext,
+                previousApprox: xPrev,
+                errorRel: err_rel,
+                y,
+                derivative: derAtNext,
+                secondDerivative: secondAtNext,
+                fourierProduct,
+            });
+        }
+
+        if (Math.abs(y) < eps) {
             return {
                 root: xNext,
                 error_a: err_rel,
@@ -263,8 +265,7 @@ function algo_newton_raphson(
             }
         }
         if(!third_condition_Fourier(f, xNext)) {
-            console.log("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
-            throw new Error("La función no cumple con la tercera condición de Fourier en el intervalo [a, b]");
+            throw new Error("La función no cumple con la tercera condición de Fourier.");
         }
 
         xCurr = xNext;
@@ -416,6 +417,114 @@ function third_condition_Fourier(f: (x: number) => number, x: number): boolean {
     }
     return false;
 }
+
+export type FourierConditionId = "I" | "II" | "III";
+
+export type FourierConditionResult = {
+    id: FourierConditionId;
+    description: string;
+    satisfied: boolean;
+    details: string;
+};
+
+export type FourierEvaluation = {
+    ok: boolean;
+    results: FourierConditionResult[];
+};
+
+export type NewtonIterationInfo = {
+    iteration: number;
+    approx: number;
+    previousApprox: number;
+    errorRel: number;
+    y: number;
+    derivative: number;
+    secondDerivative: number;
+    fourierProduct: number;
+};
+
+/**
+ * Evalua las tres condiciones de Fourier sobre un intervalo [a, b].
+ *
+ * I)   f(a)·f(b) < 0  (la raiz esta encerrada)
+ * II)  f'(x) != 0 para todo x en (a, b)
+ * III) f''(x) != 0 para todo x en (a, b)
+ *
+ * @param f Funcion no lineal
+ * @param a Limite inferior del intervalo
+ * @param b Limite superior del intervalo
+ * @param samples Cantidad de puntos para muestrear f' y f'' dentro del intervalo
+ * @returns Resultado con el detalle de cada condicion y si todas se cumplen
+ */
+function evaluateFourierConditions(
+    f: (x: number) => number,
+    a: number,
+    b: number,
+    samples = 200
+): FourierEvaluation {
+    if (b <= a) {
+        throw new Error("b debe ser mayor que a para evaluar las condiciones de Fourier.");
+    }
+    if (samples < 2) {
+        throw new Error("La cantidad de muestras debe ser al menos 2.");
+    }
+    const eps = 1e-12;
+
+    const fa = f(a);
+    const fb = f(b);
+    const productEnds = fa * fb;
+    const cond1Satisfied = productEnds < 0;
+    const cond1: FourierConditionResult = {
+        id: "I",
+        description: "f(a)·f(b) < 0 (raiz encerrada en el intervalo)",
+        satisfied: cond1Satisfied,
+        details: `f(a)·f(b) = ${fa} · ${fb} = ${productEnds} (${cond1Satisfied ? "< 0" : "no < 0"})`,
+    };
+
+    let minAbsDeriv = Number.POSITIVE_INFINITY;
+    let xAtMinDeriv = a;
+    for (let i = 1; i < samples; i += 1) {
+        const x = a + (i / samples) * (b - a);
+        const d = derivative(f, x);
+        if (Math.abs(d) < minAbsDeriv) {
+            minAbsDeriv = Math.abs(d);
+            xAtMinDeriv = x;
+        }
+    }
+    const cond2Satisfied = minAbsDeriv > eps;
+    const cond2: FourierConditionResult = {
+        id: "II",
+        description: "f'(x) != 0 para todo x en (a, b)",
+        satisfied: cond2Satisfied,
+        details: `min|f'(x)| ≈ ${minAbsDeriv} en x ≈ ${xAtMinDeriv} (${cond2Satisfied ? "> eps" : "<= eps"})`,
+    };
+
+    let minAbsSecond = Number.POSITIVE_INFINITY;
+    let xAtMinSecond = a;
+    for (let i = 1; i < samples; i += 1) {
+        const x = a + (i / samples) * (b - a);
+        const s = secondDerivative(f, x);
+        if (Math.abs(s) < minAbsSecond) {
+            minAbsSecond = Math.abs(s);
+            xAtMinSecond = x;
+        }
+    }
+    const cond3Satisfied = minAbsSecond > eps;
+    const cond3: FourierConditionResult = {
+        id: "III",
+        description: "f''(x) != 0 para todo x en (a, b)",
+        satisfied: cond3Satisfied,
+        details: `min|f''(x)| ≈ ${minAbsSecond} en x ≈ ${xAtMinSecond} (${cond3Satisfied ? "> eps" : "<= eps"})`,
+    };
+
+    const results = [cond1, cond2, cond3];
+    return {
+        ok: results.every((r) => r.satisfied),
+        results,
+    };
+}
+
+export { evaluateFourierConditions };
 
 /**
  * Crea una función a partir de una cadena de texto.

@@ -106,8 +106,9 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
 
 - **Parte 1: Metodo grafico**
   - Entrada por consola: `f(x)`, `x_lower`, `x_upper`, cantidad de muestras.
-  - Muestra una vista ASCII en consola.
-  - Genera un PNG en `outputs/plots/` y lo abre automaticamente.
+  - Levanta un servidor HTTP efimero con la curva renderizada en Chart.js (ejes con etiquetas, titulo `Funcion <expresion>`).
+  - Imprime por consola los intervalos donde la funcion cambia de signo y la URL del servidor.
+  - El servidor se cierra automaticamente tras un periodo de inactividad.
   - Formato de funcion aceptado: JS/TS.
   - Ejemplos: `x**2 - 4`, `Math.sin(x)`, `sin(x)`, `exp(x) - 3*x`.
 
@@ -131,6 +132,12 @@ Algunos ejercicios leen datos desde archivos JSON en la carpeta `data/`.
     - aproximacion obtenida
     - error relativo
     - `x_lower` y `x_upper` cuando el metodo usa intervalo
+  - **Newton-Raphson** (comportamiento especifico):
+    - Pide `a` y `b` por consola; `a` se usa como `x0`.
+    - Antes del bucle valida las 3 condiciones de Fourier en `[a, b]` (`f(a)·f(b) < 0`, `f'(x) != 0`, `f''(x) != 0`). Si alguna falla, aborta indicando cual.
+    - En cada iteracion imprime `y`, `f'(x)`, `f''(x)`, `f(x)·f''(x)` y vuelve a evaluar las 3 condiciones en el intervalo local.
+    - Al final levanta un servidor HTTP efimero con un grafico interactivo (Chart.js via CDN): curva con ejes etiquetados, titulo `Funcion <expresion>`, linea vertical en `x = raiz` y un punto sobre la curva. Se cierra automaticamente tras 60s sin conexiones.
+  - **Nota sobre el residuo**: cuando la raiz es matemáticamente exacta (por ej. `f(x) = x² - 4` con raiz en `x = 2`), el algoritmo devuelve un valor que esta a `~1e-13` del valor real por redondeo de float64. En esos casos `f(raiz)` se imprime como `≈ 0 (residual = X.Xe-13)` para reflejar el ruido de punto flotante.
 
 ### Laboratorio 4
 

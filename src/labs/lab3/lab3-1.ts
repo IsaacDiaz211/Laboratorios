@@ -5,13 +5,16 @@ import {
   algo_linear_interpolation,
   algo_newton_raphson,
   createFunctionFromString,
+  evaluateFourierConditions,
   guessIntervals,
+  type FourierConditionResult,
+  type NewtonIterationInfo,
   type Root,
 } from "../../algorithms/lab3";
 import { askNumber, askSelect, askText } from "../../core/input";
 import { printExecutionTime } from "../../core/output";
-import { generateFunctionPlot, openFile } from "../../core/plot";
 import { timeExecution } from "../../core/timer";
+import { startWebPlot } from "../../core/web-plot";
 
 type Lab3Part = "grafico" | "tanteo" | "raices";
 
@@ -22,8 +25,34 @@ type RootMethod =
   | "iteracion"
   | "iteracion_aitken";
 
+const RESIDUAL_EPS = 1e-12;
+
 function clearConsole(): void {
   console.clear();
+}
+
+function trimTrailingZeros(value: string): string {
+  if (!value.includes(".")) return value;
+  return value.replace(/\.?0+$/, "");
+}
+
+function formatHighPrecision(value: number): string {
+  if (!Number.isFinite(value)) return String(value);
+  if (Object.is(value, -0)) return "0";
+  const abs = Math.abs(value);
+  if (abs !== 0 && (abs < 1e-4 || abs >= 1e5)) {
+    return value.toExponential(16).replace(/(\.\d*?)0+e/, "$1e").replace(/\.e/, "e");
+  }
+  return trimTrailingZeros(value.toPrecision(17));
+}
+
+function formatResidual(value: number): string {
+  if (!Number.isFinite(value)) return String(value);
+  if (Math.abs(value) < RESIDUAL_EPS) {
+    if (Object.is(value, -0) || value === 0) return "≈ 0 (residual = 0)";
+    return `≈ 0 (residual = ${formatHighPrecision(value)})`;
+  }
+  return formatHighPrecision(value);
 }
 
 async function askRange(
@@ -103,24 +132,22 @@ async function runPartGraph(): Promise<void> {
   });
 
   const { result, ms } = await timeExecution(async () => {
-    const plot = await generateFunctionPlot(fn, {
+    const intervals = guessIntervals(expression, xLower, xUpper, (xUpper - xLower) / samples);
+    const plotHandle = await startWebPlot({
+      expression,
+      fn,
       xLower,
       xUpper,
       samples,
-      filePrefix: "lab3-grafico",
+      markRoot: false,
     });
-    const intervals = guessIntervals(expression, xLower, xUpper, (xUpper - xLower) / samples);
-    await openFile(plot.filePath);
-    return { plot, intervals };
+    return { plotHandle, intervals };
   });
 
-  console.log("Vista ASCII del grafico:");
-  console.log(result.plot.ascii);
-  console.log(`Archivo PNG: ${result.plot.filePath}`);
-  console.log(`Rango X: [${result.plot.xLower}, ${result.plot.xUpper}]`);
-  console.log(`Rango Y: [${result.plot.yLower}, ${result.plot.yUpper}]`);
   printIntervals(result.intervals);
   printExecutionTime(ms);
+  console.log(`Grafico web disponible en: ${result.plotHandle.url}`);
+  console.log("El servidor se cerrara automaticamente tras un periodo de inactividad.");
 }
 
 async function runPartTanteo(): Promise<void> {
@@ -162,10 +189,18 @@ async function askRootMethod(): Promise<RootMethod> {
   ]);
 }
 
+function printFourierResults(label: string, results: FourierConditionResult[]): void {
+  console.log(label);
+  for (const result of results) {
+    const status = result.satisfied ? "cumple" : "no cumple";
+    console.log(`  ${result.id}) ${result.description} -> ${result.details} [${status}]`);
+  }
+}
+
 function printRootResult(result: Root, fn: (x: number) => number): void {
-  console.log(`Raiz aproximada: ${result.root}`);
-  console.log(`f(raiz): ${fn(result.root)}`);
-  console.log(`Error relativo final: ${result.error_a}`);
+  console.log(`Raiz aproximada: ${formatHighPrecision(result.root)}`);
+  console.log(`f(raiz): ${formatResidual(fn(result.root))}`);
+  console.log(`Error relativo final: ${formatHighPrecision(result.error_a)}`);
   console.log(`Iteraciones: ${result.iterations}`);
 }
 
@@ -174,7 +209,7 @@ export async function runPartRoots(): Promise<void> {
   console.log("Laboratorio 3 - Parte 3: Aproximacion de raices");
 
   const method = await askRootMethod();
-  const { fn } = await askFunctionExpression("Ingrese f(x) en formato JS/TS");
+  const { expression, fn } = await askFunctionExpression("Ingrese f(x) en formato JS/TS");
   const tolerance = await askNumber("Ingrese la cota de error aceptada", {
     float: true,
     min: Number.EPSILON,
@@ -186,17 +221,56 @@ export async function runPartRoots(): Promise<void> {
   });
 
   if (method === "newton") {
-    const x0 = await askNumber("Ingrese el valor aproximado de la raiz", {
+    const a = await askNumber("Ingrese a (extremo izquierdo del intervalo y x0)", {
       float: true,
       initial: 1,
     });
+    const b = await askNumber("Ingrese b (extremo derecho del intervalo)", {
+      float: true,
+      initial: 2,
+    });
+    if (b <= a) {
+      throw new Error("b debe ser mayor que a.");
+    }
+
+    const initialEval = evaluateFourierConditions(fn, a, b);
+    console.log("Condiciones de Fourier (intervalo inicial):");
+    printFourierResults("", initialEval.results);
+    if (!initialEval.ok) {
+      const failed = initialEval.results.filter((r) => !r.satisfied);
+      const labels = failed.map((r) => r.id).join(", ");
+      throw new Error(
+        `Las condiciones de Fourier no se cumplen en [${a}, ${b}]: ${labels}.`
+      );
+    }
+
+    const onIteration = (info: NewtonIterationInfo): void => {
+      const lo = Math.min(info.previousApprox, info.approx);
+      const hi = Math.max(info.previousApprox, info.approx);
+      const iterEval = evaluateFourierConditions(fn, lo, hi, 50);
+      console.log(
+        `  y = ${formatResidual(info.y)} | f'(x) = ${formatHighPrecision(info.derivative)} | f''(x) = ${formatHighPrecision(info.secondDerivative)} | f(x)·f''(x) = ${formatHighPrecision(info.fourierProduct)}`
+      );
+      printFourierResults(
+        `  Condiciones de Fourier en [${lo}, ${hi}]:`,
+        iterEval.results
+      );
+    };
 
     const { result, ms } = await timeExecution(() =>
-      algo_newton_raphson(fn, x0, maxIterations, tolerance)
+      algo_newton_raphson(fn, a, maxIterations, tolerance, onIteration)
     );
 
     printRootResult(result, fn);
     printExecutionTime(ms);
+
+    const plotHandle = await startWebPlot({
+      expression,
+      root: result.root,
+      fn,
+    });
+    console.log(`Grafico web disponible en: ${plotHandle.url}`);
+    console.log("El servidor se cerrara automaticamente tras un periodo de inactividad.");
     return;
   }
 

@@ -11,18 +11,22 @@ Agents should make small, local changes that preserve the current CLI/TUI flow, 
 - TS config: `strict: true`, `noEmit: true`, `moduleResolution: "Bundler"`
 - Entry point: `src/cli.ts`
 - Shared helpers: `src/core/`
-- Lab implementations: `src/labs/lab1/`, `src/labs/lab2/`
+- Lab implementations: `src/labs/lab1/`, `src/labs/lab2/`, `src/labs/lab3/`, `src/labs/lab4/`, `src/labs/lab5/`, `src/labs/lab6/`, `src/labs/lab7/`
 - Additional numerical methods: `src/algorithms/lab3.ts`
 - Input files: `data/*.json`
+- Deprecated code (no longer in use, kept for reference): `legacy-deprecated/`
 
 ## Important Files
-- `package.json`: only defines the `start` script
+- `package.json`: defines the `start` script; runtime deps `pngjs` y `prompts`
 - `tsconfig.json`: strict type-checking rules
 - `README.md`: user-facing usage and JSON expectations
 - `src/core/input.ts`: prompts and validation
 - `src/core/files.ts`: JSON loading and numeric validation
 - `src/core/timer.ts`: execution timing
-- `src/core/output.ts`: execution time formatting
+- `src/core/output.ts`: execution time formatting and numeric formatting helpers
+- `src/core/expression.ts`: parsing of user-provided math expressions
+- `src/core/web-plot.ts`: ephemeral HTTP server + Chart.js page for the Lab 3 web plots
+- `src/algorithms/lab3.ts`: pure numerical algorithms (bisection, regula falsi, Newton-Raphson, iteration, Aitken) and `evaluateFourierConditions`
 
 ## Build, Run, And Verification Commands
 - Install dependencies: `bun install`
@@ -140,6 +144,7 @@ Agents should follow this file and the codebase's existing patterns.
 - Lab-specific code belongs in the matching `src/labs/labX/` directory.
 - Keep top-level orchestration in `src/cli.ts`.
 - Keep JSON fixtures/examples in `data/`.
+- Files moved out of the active codebase (e.g. `src/core/plot.ts` -> `legacy-deprecated/plot.ts`) live in `legacy-deprecated/` for historical reference and are no longer imported.
 - Avoid moving files unless there is a strong structural reason.
 
 ## Change Strategy
@@ -156,4 +161,6 @@ Agents should follow this file and the codebase's existing patterns.
 4. Confirm JSON expectations still match `README.md` and `src/core/files.ts`.
 
 ## Notes
-- Bun was not installed in the execution environment used for analysis, so the commands above were derived from repository configuration rather than executed successfully here.
+- The Lab 3 graphical method (Part 1) and Newton-Raphson (Part 3) both rely on `startWebPlot` from `src/core/web-plot.ts`, which boots `Bun.serve` and serves a Chart.js page. Any change to that helper affects both flows.
+- The old PNG/ASCII plotter (`src/core/plot.ts`) has been moved to `legacy-deprecated/plot.ts` and is no longer imported. `pngjs` is still listed in `package.json` but is unused; keep it for now since the deprecated file may be referenced later.
+- The Newton-Raphson display uses a residual-aware formatter (`formatResidual` in `src/labs/lab3/lab3-1.ts` and `fmtResidual` in the web-plot HTML) that prints `≈ 0 (residual = X.Xe-13)` when `|f(root)| < 1e-12`. This is honest about float64 noise and applies to the web plot status text too.

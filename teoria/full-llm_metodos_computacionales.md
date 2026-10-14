@@ -122,16 +122,20 @@ El pseudocódigo es la herramienta estándar para describir algoritmos. Convenci
 **Técnicas de ciclo (looping):**
 
 - Controlado por **contador:**
+
   ```
   Para i = 1, 2, ..., n
     Sea xᵢ = a + aᵢ · h
   ```
+
 - Controlado por **condición:**
+
   ```
   Mientras sea i < N realizar los pasos 3-6
   ```
 
 **Ejecución condicional:**
+
 ```
 Si ... Entonces
 Si ... Entonces / de lo contrario
@@ -268,6 +272,7 @@ Dos enfoques posibles:
 
 > 💡 **Flashcard — La solución numérica**
 > **P:** ¿De qué depende la eficiencia en el calculo de la solución numérica?
+
 ### Números exactos y aproximados
 
 - Clasificación al efecto del cálculo numérico o aproximado:
@@ -377,7 +382,7 @@ Error del método: $R_x(x) = \sum_{i=n+1}^{\infty} \frac{x^i}{i!} = \frac{x^{(n+
 - El uso de dígitos binarios tiende a encubrir las dificultades de cálculo que ocurren cuando se usa un conjunto finito de nros de máquina para representar a todos los nros reales.
 - Para explicar los problemas que pueden surgir, se considera que los nros de máquina se representan en la forma de punto flotante decimal normalizada.
 - En una PC no se pueden poner infinitos dígitos. Se trabaja solo con números de desarrollo finito y de una longitud dada.
-- Se toma como standard la representación denominada normalizada, que consiste en que la mantisa no tiene parte entera y el primer dígito a la derecha del punto decimal es significativo (distinto de cero), salvo en la representación del número 0. Ej. 0,3 x 10 -4
+- Se toma como standard la representación denominada normalizada, que consiste en que la mantisa no tiene parte entera y el primer dígito a la derecha del punto decimal es significativo (distinto de cero), salvo en la representación del número 0. Ej. $0{,}3 \times 10^{-4}$
 
 > 💡 **Flashcard — Representación de los números**
 > **P:** ¿Cómo se representan los números en máquina?
@@ -405,7 +410,7 @@ Los números $k$, $M_1$ y $M_2$ dependen de la máquina.
 - Cualquier número real positivo y puede ser normalizado a
 
 $$
-y = 0. d_{1} d_{2} \dots d_{k} d_{k+1} d_{k+2} \dots \times 10^{n}.
+y = 0.d_{1} d_{2} \dots d_{k} d_{k+1} d_{k+2} \dots \times 10^{n}.
 $$
 
 Si $\mathbf{y}$ está dentro del rango numérico de la máquina, la forma de punto flotante de $\mathbf{y}$, que se representará por $\mathrm{fl}(\mathbf{y})$, se obtiene terminando la mantisa de $\mathbf{y}$ en $k$ cifras decimales.
@@ -417,14 +422,14 @@ Existen dos formas de llevar a cabo tal terminación.
 Método 1) Un método es simplemente cortar los dígitos $d_{k+1}$, $d_{k+2}$. ... y se obtiene:
 
 $$
-fl(y) = 0. d_{1} d_{2} \dots d_{k} \times 10^{n}.
+fl(y) = 0.d_{1} d_{2} \dots d_{k} \times 10^{n}.
 $$
 
 Este método es bastante preciso y se llama truncar el número.
 
 ---
 
-- Método 2) Agregar $5 \times 10^{n-(k+1)}$ a $\pmb{y}$ y después truncar para que resulte un número de la forma:
+- Método 2) Agregar $5 \times 10^{n-(k+1)}$ a $\boldsymbol{y}$ y después truncar para que resulte un número de la forma:
 
 $$
 fl(y) = 0. \delta_1 \delta_2 \dots \delta_k \times 10^n.
@@ -432,7 +437,7 @@ $$
 
 - Este último método comúnmente se designa por redondeo del número.
 - Si $d_{k+1} \geq 5$, se agrega 1 a $d_k$ para obtener $fl(y)$; esto es, redondeamos hacia arriba.
-- Si $d_{k+1} < 5$, simplemente se trunca luego de los primeros $k$ dígitos; se redondea así hacia abajo.
+- Si $d_{k+1} < 5$, simplemente se trunca luego de los primeros $k$ dígitos; se redondea hacia abajo.
 
 ---
 
@@ -474,18 +479,17 @@ $$
 
 - Considere los errores absoluto y relativo al representar $p$ por $p^*$ en el siguiente ejemplo.
 
-|  p | p *  |
+| $p$ | $p^*$ |
 | --- | --- |
-|  0.3000 × 10^{1} | 0.3100 × 10^{1}  |
-|  0.3000 × 10^{-3} | 0.3100 × 10^{-3}  |
-|  0.3000 × 10^{4} | 0.3100 × 10^{4}  |
+|  $0.3000 \times 10^{1}$ | $0.3100 \times 10^{1}$  |
+|  $0.3000 \times 10^{-3}$ | $0.3100 \times 10^{-3}$  |
+|  $0.3000 \times 10^{4}$ | $0.3100 \times 10^{4}$  |
 
 Analize los errores obtenidos!!
 
 ---
 
-
-|  p | p * | Absoluto | Relativo  |
+| $p$ | $p^*$ | Absoluto | Relativo |
 | --- | --- | --- | --- |
 |  $0.3000 \times 10^{1}$ | $0.3100 \times 10^{1}$ |  |   |
 |  $0.3000 \times 10^{-3}$ | $0.3100 \times 10^{-3}$ |  |   |
@@ -493,8 +497,7 @@ Analize los errores obtenidos!!
 
 ---
 
-
-|  p | p * | Absoluto | Relativo  |
+| $p$ | $p^*$ | Absoluto | Relativo |
 | --- | --- | --- | --- |
 |  $0.3000 \times 10^{1}$ | $0.3100 \times 10^{1}$ | 0.1 | $0.3333 \times 10^{-1}$  |
 |  $0.3000 \times 10^{-3}$ | $0.3100 \times 10^{-3}$ | $0.1 \times 10^{-4}$ | $0.3333 \times 10^{-1}$  |
@@ -517,7 +520,7 @@ $$
 Si se emplean k cifras decimales y el truncamiento para la representación en la máquina de:
 
 $$
-y = 0. d_{1} d_{2} \dots \dots d_{k} d_{k+1} \dots \dots \times 10^{n}
+y = 0.d_{1} d_{2} \dots \dots d_{k} d_{k+1} \dots \dots \times 10^{n}
 $$
 
 Entonces:
@@ -546,7 +549,7 @@ $$
 
 ---
 
-- Considere que la representación de punto flotante $f(x)$ y $f(y)$ esté dada para los números reales $x$ e $y$, y que los símbolos $+$, $-, $	imes$, $/$, representan las operaciones de adición, sustracción, multiplicación y división de máquina o en la computadora, respectivamente.
+- Considere que la representación de punto flotante $f(x)$ y $f(y)$ esté dada para los números reales $x$ e $y$, y que los símbolos $+$, $-$, $*$, $/$, representan las operaciones de adición, sustracción, multiplicación y división de máquina o en la computadora, respectivamente.
 - Supondremos una aritmética con un nro. finito de cifras dadas por
 $$
 \begin{array}{l}
@@ -566,10 +569,10 @@ $$
 
 |  Operación | Resultado | Valor Real  |
 | --- | --- | --- |
-|  x+y | 0,10476*10^1 | 22/21  |
-|  y-x | 0,38095*10^0 | 8/21  |
-|  x*y | 0,23809*10^0 | 5/21  |
-|  y/x | 0,21428*10^1 | 15/7  |
+|  x+y | $0,10476 \times 10^{1}$ | $22/21$ |
+|  y-x | $0,38095 \times 10^{0}$ | $8/21$ |
+|  x*y | $0,23809 \times 10^{0}$ | $5/21$ |
+|  y/x | $0,21428 \times 10^{1}$ | $15/7$ |
 
 ---
 
@@ -579,10 +582,10 @@ $$
 
 |  Operación | Resultado | Valor Real | Error Absoluto | Error Relativo  |
 | --- | --- | --- | --- | --- |
-|  x+y | 0,10476*10^1 | 22/21 |  |   |
-|  y-x | 0,38095*10^0 | 8/21 |  |   |
-|  x*y | 0,23809*10^0 | 5/21 |  |   |
-|  y/x | 0,21428*10^1 | 15/7 |  |   |
+|  x+y | $0,10476 \times 10^{1}$ | $22/21$ |  |   |
+|  y-x | $0,38095 \times 10^{0}$ | $8/21$ |  |   |
+|  x*y | $0,23809 \times 10^{0}$ | $5/21$ |  |   |
+|  y/x | $0,21428 \times 10^{1}$ | $15/7$ |  |   |
 
 ---
 
@@ -592,19 +595,19 @@ $$
 
 |  Operación | Resultado | Valor Real | Error Absoluto | Error Relativo  |
 | --- | --- | --- | --- | --- |
-|  x+y | 0,10476*10^1 | 22/21 | 0,190*10^-4 | 0,182*10^-4  |
-|  y-x | 0,38095*10^0 | 8/21 | 0,238*10^-5 | 0,625*10^-5  |
-|  x*y | 0,23809*10^0 | 5/21 | 0,524*10^-5 | 0,220*10^-4  |
-|  y/x | 0,21428*10^1 | 15/7 | 0,571*10^-4 | 0,267*10^-4  |
+|  x+y | $0,10476 \times 10^{1}$ | $22/21$ | $0,190 \times 10^{-4}$ | $0,182 \times 10^{-4}$ |
+|  y-x | $0,38095 \times 10^{0}$ | $8/21$ | $0,238 \times 10^{-5}$ | $0,625 \times 10^{-5}$ |
+|  x*y | $0,23809 \times 10^{0}$ | $5/21$ | $0,524 \times 10^{-5}$ | $0,220 \times 10^{-4}$ |
+|  y/x | $0,21428 \times 10^{1}$ | $15/7$ | $0,571 \times 10^{-4}$ | $0,267 \times 10^{-4}$ |
 
-- Nótese que el máximo error relativo para las operaciones en el ejemplo es $0.267 \times 10^{-4}$, \rightarrow la aritmética produce resultados satisfactorios a cinco dígitos. (cifras significativas 1) (cifras significativas 2)
+- Nótese que el máximo error relativo para las operaciones en el ejemplo es $0.267 \times 10^{-4}$, $\rightarrow$ la aritmética produce resultados satisfactorios a cinco dígitos. (cifras significativas 1) (cifras significativas 2)
 
 ---
 
 Si se tiene.  $u = 0.714251$,  $v = 98765.9$,  $w = 0.11111 \times 10^{-4}$ de tal forma que
 
 $$
-fl(u) = 0.71415 \times 10^0
+fl(u) = 0.71425 \times 10^0
 $$
 
 Se muestran algunos problemas que pueden surgir con la aritmética cuando se tiene una cantidad finita de cifras.
@@ -621,19 +624,19 @@ $$
 
 |  Operac. | Resultado | Valor real | Error absoluto | Error relativo  |
 | --- | --- | --- | --- | --- |
-|  y-u | 0.30000 X 10^{-4} | 0.34714 X 10^{-4} |  |   |
-|  (y-u)/w | 0.27000 X 10^{1} | 0.31243 X 10^{1} |  |   |
-|  (y-u)*v | 0.29629 X 10^{1} | 0.34285 X 10^{1} |  |   |
-|  u+v | 0.98765 X 10^{5} | 0.98766 X 10^{5} |  |   |
+|  y-u | $0.30000 \times 10^{-4}$ | $0.34714 \times 10^{-4}$ |  |   |
+|  (y-u)/w | $0.27000 \times 10^{1}$ | $0.31243 \times 10^{1}$ |  |   |
+|  (y-u)*v | $0.29629 \times 10^{1}$ | $0.34285 \times 10^{1}$ |  |   |
+|  u+v | $0.98765 \times 10^{5}$ | $0.98766 \times 10^{5}$ |  |   |
 
 ---
 
 |  Operac. | Resultado | Valor real | Error absoluto | Error relativo  |
 | --- | --- | --- | --- | --- |
-|  y-u | 0.30000 X 10^{-4} | 0.34714 X 10^{-4} | 0.471 X 10^{-5} | 0.136  |
-|  (y-u)/w | 0.27000 X 10^{1} | 0.31243 X 10^{1} | 0.424 | 0.136  |
-|  (y-u)*v | 0.29629 X 10^{1} | 0.34285 X 10^{1} | 0.465 | 0.136  |
-|  u+v | 0.98765 X 10^{5} | 0.98766 X 10^{5} | 0.161 X 10^{1} | 0.163 X 10^{-4}  |
+|  y-u | $0.30000 \times 10^{-4}$ | $0.34714 \times 10^{-4}$ | $0.471 \times 10^{-5}$ | 0.136  |
+|  (y-u)/w | $0.27000 \times 10^{1}$ | $0.31243 \times 10^{1}$ | 0.424 | 0.136  |
+|  (y-u)*v | $0.29629 \times 10^{1}$ | $0.34285 \times 10^{1}$ | 0.465 | 0.136  |
+|  u+v | $0.98765 \times 10^{5}$ | $0.98766 \times 10^{5}$ | $0.161 \times 10^{1}$ | $0.163 \times 10^{-4}$ |
 
 - En particular, $u + v$ nos dice que si se tiene que sumar varios nros $x_1, x_2, \ldots, x_N$ conviene hacerlo de menor a mayor (¿Por qué?).
 - La pérdida de precisión debida al error de redondeo puede ser evitada con frecuencia por una cuidadosa serie de operaciones o por una reformulación del problema.
@@ -644,13 +647,13 @@ $$
 - Suponga que dos números casi iguales $x$ e $y$, con $x > y$, con representaciones de $k$ cifras
 
 $$
-fl(x) = 0. d_1 d_2 \dots d_p \alpha_{p+1} \alpha_{p+2} \dots \alpha_k \times 10^n
+fl(x) = 0.d_1 d_2 \dots d_p \alpha_{p+1} \alpha_{p+2} \dots \alpha_k \times 10^n
 $$
 
 y
 
 $$
-fl(y) = 0. d_1 d_2 \dots d_p \beta_{p+1} \beta_{p+2} \dots \beta_k \times 10^n,
+fl(y) = 0.d_1 d_2 \dots d_p \beta_{p+1} \beta_{p+2} \dots \beta_k \times 10^n,
 $$
 
 La forma de punto flotante de $x-y$ es:
@@ -668,18 +671,19 @@ $$
 ---
 
 - El nro. de pto. flotante utilizado para representar la diferencia $x-y$, tiene a lo sumo: $k-p$ cifras significativas
-- La mayor parte de las computadoras a $x-y$ le asignarán $k$ cifras \rightarrow las últimas $p$ se anularán o serán asignadas al azar.
+- La mayor parte de las computadoras a $x-y$ le asignarán $k$ cifras $\rightarrow$ las últimas $p$ se anularán o serán asignadas al azar.
 - Así en los cálculos posteriores con $x-y$ se tendrá el problema de contar con $k-p$ cifras significativas
-- Si una representación con un número finito de cifras o un cálculo introduce error \rightarrow este aumenta al dividir entre un nro. con magnitud pequeña
+- Si una representación con un número finito de cifras o un cálculo introduce error $\rightarrow$ este aumenta al dividir entre un nro. con magnitud pequeña
 - Multiplicación: el error aumenta en forma equivalente al multiplicar dicho error por un nro. con magnitud grande.
 
 ---
 
-Sean $p = 0.54617$ y $q = 0.54601$. El valor exacto de la resta $R = p - q$ es = 0.00016.
+Sean $p = 0.54617$ y $q = 0.54601$. El valor exacto de la resta $R = p - q$ es $0.00016$.
 
-1) Si la resta se realiza con aritmética a 4 cifras.
-1) Redondear p y q. Hallar el error relativo de la resta.
-2) Truncar, realizar la resta y obtener el error relativo.
+1) Si la resta se realiza con aritmética a 4 cifras:
+
+   1. Redondear $p$ y $q$. Hallar el error relativo de la resta.
+   2. Truncar, realizar la resta y obtener el error relativo.
 
 Analizar si se pierde precisión en dichos cálculos.
 
@@ -688,8 +692,7 @@ Analizar si se pierde precisión en dichos cálculos.
 **Valores redondeados**
 
 P = 0.5462
-P = 0.54617 + 0.00005 = 0.54622 a 4
-dígitos es 0.5462
+$$P = 0.54617 + 0.00005 = 0.54622 \quad \text{a 4 dígitos es } 0.5462$$
 
 Q = 0.5460
 Q = 0.5460 + 0.00005 = 0.54605 a 4
@@ -706,8 +709,7 @@ Er = $\frac{0.00016 - 0.0002}{0.00016} = -0.25$
 - Valores truncados
 - P = 0.5461    Q = .5460
 - R = 0.5461 - 0.5460 = 0.0001 (Con valores truncados)
-- Er = 0.00016 - 0.0001 = 0.3750
-- 0.00016
+- $$E_r = \frac{0.00016 - 0.0001}{0.00016} = 0.3750$$
 - El error relativo en valor absoluto es menor cuando se redondean los valores que intervienen en la resta que cuando se los trunca, por lo que se concluye que con valores truncados se pierde precisión en los resultados.
 
 ### Consideraciones aritméticas: Problemas Mal Planteados
@@ -722,13 +724,13 @@ $$
 
 ---
 
-—En los casos donde $b^2 \geq 4ac$, la diferencia en el numerador puede ser muy pequeña. En tales casos la precisión doble reduce el problema. Además se puede usar como alternativa la fórmula:
+- En los casos donde $b^2 \geq 4ac$, la diferencia en el numerador puede ser muy pequeña. En tales casos la precisión doble reduce el problema. Además se puede usar como alternativa la fórmula:
 
 $$
 x_1 \text{ y } x_2 = \frac{-2c}{-b \pm \sqrt{b^2 - 4ac}}
 $$
 
-—Para estos casos se cambia la fórmula cuadrática mediante la racionalización del numerador.
+- Para estos casos se cambia la fórmula cuadrática mediante la racionalización del numerador.
 
 ---
 
@@ -750,9 +752,9 @@ $$
 - Este proceso se efectúa varias veces, esperando obtener cada vez mejores aproximaciones.
 - El error se calcula como la diferencia entre la aproximación previa y la actual.
 - Se utiliza: Error relativo porcentual aproximado.
-  $$
+$$
   E_{rp} = \frac{|\text{aproximación actual} - \text{aproximac. anterior}|}{|\text{aproximación actual}|} \times 100
-  $$
+$$
 
 ---
 
@@ -787,16 +789,16 @@ $$
 - Errores por redondeo se producen en cada operación aritmética elemental
 - Errores por truncamiento son producidos cada vez que en el procesamiento del modelo aparecen procesos iterativos o algoritmos infinitos
 - El ERROR TOTAL: se produce por la adición de todas las fuentes de error.
-- Varia generalmente a medida que avanza en el desarrollo del modelo \rightarrow Propagación de los errores.
+- Varía generalmente a medida que avanza en el desarrollo del modelo $\rightarrow$ Propagación de los errores.
 
 ---
 
 - Definición: Supongamos que $E_0$ representa un error inicial y que $\varepsilon(n)$ representa el crecimiento de dicho error después de $n$ operaciones sucesivas.
   - Donde K es una constante independiente de n
   - $| \varepsilon(n)| \approx K_n E_0$ \rightarrow el crecimiento del error es lineal
-  - $| \varepsilon(n)| \approx K^n E_0$ \rightarrow el crecimiento es exponencial.
+  - $| \varepsilon(n)| \approx K^n E_0$ $\rightarrow$ el crecimiento es exponencial.
   - Si $K > 1$, entonces un error exponencial crece cuando $n \to \infty$ sin que podamos acotarlo;
-  - Si $0 < K < 1$, \rightarrow un error exponencial disminuye a 0 cuando $n \to \infty$
+  - Si $0 < K < 1$, $\rightarrow$ un error exponencial disminuye a 0 cuando $n \to \infty$
 
 ---
 
@@ -809,15 +811,15 @@ $$
 
 ![Gráfico de crecimiento de errores en algoritmos](image_url)
 **Variables**
-- Eje horizontal: \(n\)
-- Eje vertical: \(E_n\)
+- Eje horizontal: $n$
+- Eje vertical: $E_n$
 
 **Series representadas**
 - Serie 1: crecimiento lineal estable
-  - Modelo: \(E_n = C n E_0\)
-  - Comportamiento: el error aumenta aproximadamente de forma proporcional a \(n\)
+  - Modelo: $E_n = C n E_0$
+  - Comportamiento: el error aumenta aproximadamente de forma proporcional a $n$
 - Serie 2: crecimiento exponencial inestable
-  - Modelo: \(E_n = C^n E_0\)
+  - Modelo: $E_n = C^n E_0$
   - Comportamiento: el error aumenta cada vez más rápido
 
 **Lectura conceptual**
@@ -842,15 +844,15 @@ Objetivo: Estudiar como los errores en los números pueden propagarse a través 
 
 - Considérese un modelo en el cual interviene una sola variable independiente, de la forma:
 
-  $$
+$$
   y = f(x)
-  $$
+$$
 
 - Dada una variación $h$ de la variable independiente, se experimenta una variación $k$ en el valor de la función. Si esta es diferenciable, su incremento $k$ se podrá expresar mediante:
 
-  $$
+$$
   k = f'(x) h + e h
-  $$
+$$
 
 ---
 
@@ -865,9 +867,9 @@ Objetivo: Estudiar como los errores en los números pueden propagarse a través 
 - teniendo en cuenta que $e h$ es un infinitéstimo de orden superior, tanto a $h$ como a $k$, por lo que resulta despreciable.
 - el error cometido en el procesamiento de un algoritmo, debido al error inherente de la variable, puede expresarse por:
 
-  $$
+$$
   k \cong f'(x) h
-  $$
+$$
 
 - El valor de $h$ no incluye el error por redondeo que ocasiona el procesamiento del algoritmo.
 - Tanto $h$ como $k$, son errores absolutos.
@@ -917,15 +919,15 @@ Para este caso, el análisis del error de primer orden proporciona una estimaci�
 
 - Sea una función $y$, derivable y con derivada continua; es decir, diferenciable, y que depende de diversas variables: $x_{1}$; $x_{2}$; ..., $x_{n}$, cada una de las cuales está afectada por cierto error absoluto $h_{1}$; $h_{2}$; ..., $h_{n}$:
 
-  $$
+$$
   k \cong \sum_ {i = 1} ^{n} f_{x_{i}} \left(x_{1}; x_{2}; \dots ; x_{n}\right) h_{i}
-  $$
+$$
 
 - Resulta imposible determinar el signo de c/u de los términos del segundo miembro, se aplica desigualdad triangular y resulta.
 
-  $$
+$$
   \left| k \right| \leq \sum_ {i = 1} ^{n} \left| f_{x_{i}} \left(x_{1}; x_{2}; \dots ; x_{n}\right) \right| \cdot \left| h_{i} \right|
-  $$
+$$
 
 - K error cometido en el procesamiento debido a errores inherentes de las variables
 
@@ -1018,24 +1020,25 @@ Esto significa que el volumen real está entre $0.005592048$ m³ y $0.006974352$
 Para verificar estas estimaciones, calculamos los valores extremos del volumen utilizando los valores extremos de las mediciones:
 
 1. Volumen mínimo:
-   $$
+$$
    V_{\min} = \pi \times (0.10 - 0.001)^2 \times (0.20 - 0.002) = \pi \times 0.099^2 \times 0.198 \approx 0.006035 \text{ m}^3
-   $$
+$$
 
 2. Volumen máximo:
-   $$
+$$
    V_{\max} = \pi \times (0.10 + 0.001)^2 \times (0.20 + 0.002) = \pi \times 0.101^2 \times 0.202 \approx 0.006548 \text{ m}^3
-   $$
+$$
 
 Como puedes ver, los valores extremos exactos caen dentro del intervalo estimado mediante la propagación de primer orden. Esto es esperable, ya que la propagación de primer orden proporciona una cota superior conservadora del error.
 
 ### Problema inverso del cálculo de errores
+
 (Isaac)
 - Dado el problema del cálculo de errores, cabe hacerse la siguiente pregunta: ¿con qué aproximación deberán tomarse los valores de las variables que intervienen como datos en una determinada función:
 
-  $$
+$$
   y = f(x_1; x_2; \dots; x_n)
-  $$
+$$
 
 - para que esta sea calculada con un error menor o igual a una cantidad arbitraria, fijada de antemano?
 - Este es un problema que se resuelve mediante la aplicación de la fórmula fundamental del cálculo de errores
@@ -1045,15 +1048,15 @@ Como puedes ver, los valores extremos exactos caen dentro del intervalo estimado
 - La condición de un problema matemático relaciona su sensibilidad con los cambios en los datos de entrada. Se dice que un cálculo es **numéricamente inestable** si la inexactitud de los valores de entrada se aumenta considerablemente por el método numérico.
 - Estas ideas pueden estudiarse usando una serie de Taylor de primer orden
 
-  $$
+$$
   f(x) = f(\bar{x}) + f'(\bar{x})(x - \bar{x})
-  $$
+$$
 
 - Esta relación se emplea para estimar el **error relativo** de $f(x)$ como en
 
-  $$
+$$
   \frac{f(x) - f(\bar{x})}{f(x)} = \frac{f'(\bar{x})(x - \bar{x})}{f(\bar{x})}
-  $$
+$$
 
 - El **error relativo** de $x$ está dado por: $\frac{x - \bar{x}}{\bar{x}}$
 
@@ -1065,13 +1068,13 @@ $$\text{Número de condición} = \frac{\tilde{x} \cdot f'(\tilde{x})}{f(\tilde{x
 - EJEMPLO: Número de condición
 - Planteamiento del problema: Calcule e interprete el número de condición para
 
-  $$
+$$
   f(x) = \tan x \quad \text{para } \tilde{x} = \frac{\pi}{2} + 0.1\left(\frac{\pi}{2}\right)
-  $$
+$$
 
-  $$
+$$
   f(x) = \tan x \quad \text{para } \tilde{x} = \frac{\pi}{2} + 0.01\left(\frac{\pi}{2}\right)
-  $$
+$$
 
 Solución. El número de condición se calcula como:
 
@@ -1084,9 +1087,9 @@ Solución. El número de condición se calcula como:
 
 - Para $\tilde{x} = \frac{\pi}{2} + 0.01\left(\frac{\pi}{2}\right)$ esta situación es aún peor:
 
-  $$
+$$
   \text{Número de condición} = \frac{1.5865(4053)}{-6 \cdot 66} = -101
-  $$
+$$
 
 - En este caso, la causa principal del mal condicionamiento parece ser la derivada. Esto tiene sentido, ya que en la vecindad de $\frac{\pi}{2}$, la tangente tiende tanto a infinito positivo como a infinito negativo.
 
@@ -1104,6 +1107,7 @@ En cambio la **exactitud** se refiere a la aproximación de un número o una med
 ---
 
 #### Figura 2.4: Ejemplo de los conceptos de precisión y exactitud (a) Inexactos e imprecisos, (b) Exactos e imprecisos, (c) inexactos y precisos, (d) exactos (centradas en el valor real) y precisos (muy cercanas todas entre si).
+
 ![Figura.2.4](./img/figura-2-4.png)
 
 La exactitud indica qué tan cerca está una medición del valor real.
@@ -1165,9 +1169,9 @@ Dichos factores son:
 
 - Uno de los problemas que con frecuencia se presenta, consiste en tener la necesidad de determinar las raíces de una ecuación de la forma:
 
-  $$
+$$
   f(x) = 0
-  $$
+$$
 
 - Donde $f(x)$ es una función de la variable real $x$ con coeficientes reales.
 
@@ -1218,9 +1222,9 @@ $$
 - Para separar raíces de ecuaciones algebraicas se estudiarán algunos métodos particulares.
 - Cuando se trata de ecuaciones trascendentes el estudio debe realizarse para cada caso especial. Ej de ecuaciones trascendentes:
 
-  $$
+$$
   \cos (x) - x + 1 = 0
-  $$
+$$
 
 - Este paso es de fundamental importancia, para evitar pasar por alto algunas raíces o no identificar raíces múltiples, principalmente.
 
@@ -1239,8 +1243,8 @@ $$
 - II.- Si $f(x)$ tiene igual signo en dos puntos de abscisas a y b, o bien se anula un número par de veces en el intervalo $(a,b)$, o bien no tiene ninguna raíz en el mismo.
 - Puede apreciarse en la figura 4.2, que entre los puntos $x = c$ y $x = d$, la función no se anula, mientras que, en el intervalo $(a; b)$ se anula cuatro veces.
 
-- III.- Si $f(x)$ es monótona creciente (o monótona decreciente) en el intervalo $(a; b)$; \rightarrow $f'(x)$ tiene un signo determinado (más o menos) en todo punto del intervalo, y es
-  - $sg f(a) \neq sg f(b), =>$ hay una sola raíz $r$ de $f(x)=0$, mientras que,
+- III.- Si $f(x)$ es monótona creciente (o monótona decreciente) en el intervalo $(a; b)$; $\rightarrow$ $f'(x)$ tiene un signo determinado (más o menos) en todo punto del intervalo, y es
+  - $signo de f(a) \neq signo de  f(b), =>$ hay una sola raíz $r$ de $f(x)=0$, mientras que,
   - $sg f(a) = sg f(b), =>$ con seguridad no hay ninguna raíz.
 - Nota: Una función entre conjuntos ordenados, se denomina monótona (isótona), si conserva el orden dado
 
@@ -1249,7 +1253,8 @@ $$
 - Nótese que en $a6$, es $f(a) = f'(a) = 0$, siendo pues, una raíz de tipo especial: **RAÍZ MÚLTIPLE**, (en este caso doble).
 - En el punto $a8$, se presenta otra particularidad; en este caso se trata de un **PUNTO DE ENSILLADURA**.
 
-#### Figura 4.1 — Gráfica de una función en \([a,b]\)
+#### Figura 4.1 — Gráfica de una función en $[a,b]$
+
 con la imagen
 ![Figura.4.1](./img/figura-4-1.png)
 
@@ -1257,104 +1262,106 @@ con la imagen
 Gráfico cartesiano de f(x) continua en [a,b] con f(a)<0 y f(b)>0. La curva cruza el eje x tres veces, ilustrando el caso I: un cambio de signo entre los extremos garantiza un número impar de raíces en el intervalo, pero no necesariamente una sola.
 
 **Tipo de gráfico**
-- Gráfico cartesiano de una función \(y=f(x)\)
-- Curva continua en el intervalo \([a,b]\)
+- Gráfico cartesiano de una función $y=f(x)$
+- Curva continua en el intervalo $[a,b]$
 
 **Elementos visibles**
-- Eje horizontal: \(x\)
-- Eje vertical: \(y\)
-- Extremo izquierdo del intervalo: \(x=a\)
-- Extremo derecho del intervalo: \(x=b\)
-- Punto inicial visible: \(A=(a,f(a))\), con \(f(a)<0\)
-- Punto final visible: \(B=(b,f(b))\), con \(f(b)>0\)
+- Eje horizontal: $x$
+- Eje vertical: $y$
+- Extremo izquierdo del intervalo: $x=a$
+- Extremo derecho del intervalo: $x=b$
+- Punto inicial visible: $A=(a,f(a))$, con $f(a)<0$
+- Punto final visible: $B=(b,f(b))$, con $f(b)>0$
 
 **Comportamiento observado**
-- La curva cruza el eje \(x\) tres veces dentro del intervalo \([a,b]\).
-- Por lo tanto, la ecuación \(f(x)=0\) tiene tres raíces visibles en ese intervalo.
-- Como \(f(a)<0\) y \(f(b)>0\), hay cambio de signo entre los extremos.
+- La curva cruza el eje $x$ tres veces dentro del intervalo $[a,b]$.
+- Por lo tanto, la ecuación $f(x)=0$ tiene tres raíces visibles en ese intervalo.
+- Como $f(a)<0$ y $f(b)>0$, hay cambio de signo entre los extremos.
 
 **Interpretación teórica**
-- Si \(f\) es continua en \([a,b]\), entonces por el teorema de Bolzano existe al menos una raíz en \((a,b)\).
-- En esta figura no solo se observa al menos una raíz, sino tres cambios de cruce con el eje \(x\).
+- Si $f$ es continua en $[a,b]$, entonces por el teorema de Bolzano existe al menos una raíz en $(a,b)$.
+- En esta figura no solo se observa al menos una raíz, sino tres cambios de cruce con el eje $x$.
 
 **Observación importante**
-- Un cambio de signo entre \(a\) y \(b\) garantiza existencia de al menos una raíz, pero no garantiza unicidad.
+- Un cambio de signo entre $a$ y $b$ garantiza existencia de al menos una raíz, pero no garantiza unicidad.
 - Esta figura es un contraejemplo visual a la idea equivocada de que un único cambio de signo implica una sola raíz.
 
-#### Figura 4.2 — Gráfica de una función en \([a,b]\)
+#### Figura 4.2 — Gráfica de una función en $[a,b]$
+
 ![Figura 4.2](./img/nombre-archivo.png)
 
 **Descripción corta:**
 Gráfico cartesiano de f(x) continua en [a,b] con f(a)<0 y f(b)>0, con puntos internos c y d marcados. Entre a y c la curva cruza el eje x dos veces; entre c y d no lo cruza; entre d y b lo cruza dos veces más. Ilustra el caso II: igual signo en los extremos de un subintervalo puede implicar cero raíces o un número par de ellas.
 
 **Tipo de objeto**
-- Gráfico cartesiano de la función \(y=f(x)\)
-- Intervalo considerado: \([a,b]\)
+- Gráfico cartesiano de la función $y=f(x)$
+- Intervalo considerado: $[a,b]$
 
 **Datos visuales relevantes**
-- Eje horizontal: \(x\)
-- Eje vertical: \(y\)
-- Extremo izquierdo del intervalo: \(x=a\)
-- Extremo derecho del intervalo: \(x=b\)
-- Punto inicial visible: \(A=(a,f(a))\), con \(f(a)<0\)
-- Punto final visible: \(B=(b,f(b))\), con \(f(b)>0\)
-- Otros puntos internos en el intervalo \([a,b]\) son: \(x=c\) y \(x=d\)
-- Entre \(x=a\) y \(x=c\) la curva cruza dos veces el eje \(x\); entre \(x=c\) y \(x=d\) no cruza el eje \(x\); y entre \(x=d\) y \(x=b\) cruza dos veces el eje \(x\)
-- Número de intersecciones visibles con el eje \(x\): ...
+- Eje horizontal: $x$
+- Eje vertical: $y$
+- Extremo izquierdo del intervalo: $x=a$
+- Extremo derecho del intervalo: $x=b$
+- Punto inicial visible: $A=(a,f(a))$, con $f(a)<0$
+- Punto final visible: $B=(b,f(b))$, con $f(b)>0$
+- Otros puntos internos en el intervalo $[a,b]$ son: $x=c$ y $x=d$
+- Entre $x=a$ y $x=c$ la curva cruza dos veces el eje $x$; entre $x=c$ y $x=d$ no cruza el eje $x$; y entre $x=d$ y $x=b$ cruza dos veces el eje $x$
+- Número de intersecciones visibles con el eje $x$: ...
 - La función parece continua en el intervalo
 
 **Comportamiento observado**
-- La curva cruza el eje \(x\) cuatro veces dentro del intervalo \([a,b]\).
-- Por lo tanto, la ecuación \(f(x)=0\) tiene cuatro raíces visibles en ese intervalo.
+- La curva cruza el eje $x$ cuatro veces dentro del intervalo $[a,b]$.
+- Por lo tanto, la ecuación $f(x)=0$ tiene cuatro raíces visibles en ese intervalo.
 
 #### Figura 4.3 — Distintos casos del teorema anterior
+
 ![Figura 4.3](./img/figura-4-3.png)
 
 **Descripción corta:**
 Cuatro subgráficos que muestran los casos del teorema III: (1) función creciente con f(a)<0 y f(b)>0 → una raíz; (2) función decreciente con f(a)>0 y f(b)<0 → una raíz; (3) función decreciente con igual signo en ambos extremos → ninguna raíz garantizada; (4) función creciente con igual signo en ambos extremos → ninguna raíz garantizada.
 
 **Descripción general**
-La figura reúne cuatro gráficos de funciones \(y=f(x)\) en un intervalo \([a,b]\), mostrando distintos comportamientos del signo de la función en los extremos del intervalo.
+La figura reúne cuatro gráficos de funciones $y=f(x)$ en un intervalo $[a,b]$, mostrando distintos comportamientos del signo de la función en los extremos del intervalo.
 
 **Caso (1)**
 - Se representa una función creciente.
-- En \(x=a\), la función toma un valor negativo: \(f(a)<0\).
-- En \(x=b\), la función toma un valor positivo: \(f(b)>0\).
-- La gráfica cruza el eje \(x\) dentro del intervalo \((a,b)\).
+- En $x=a$, la función toma un valor negativo: $f(a)<0$.
+- En $x=b$, la función toma un valor positivo: $f(b)>0$.
+- La gráfica cruza el eje $x$ dentro del intervalo $(a,b)$.
 
 **Interpretación:**
-Hay cambio de signo entre \(a\) y \(b\), por lo que si \(f\) es continua en \([a,b]\), existe al menos una raíz en \((a,b)\).
+Hay cambio de signo entre $a$ y $b$, por lo que si $f$ es continua en $[a,b]$, existe al menos una raíz en $(a,b)$.
 
 **Caso (2)**
 - Se representa una función decreciente.
-- En \(x=a\), la función toma un valor positivo: \(f(a)>0\).
-- En \(x=b\), la función toma un valor negativo: \(f(b)<0\).
-- La gráfica cruza el eje \(x\) dentro del intervalo \((a,b)\).
+- En $x=a$, la función toma un valor positivo: $f(a)>0$.
+- En $x=b$, la función toma un valor negativo: $f(b)<0$.
+- La gráfica cruza el eje $x$ dentro del intervalo $(a,b)$.
 
 **Interpretación:**
-También hay cambio de signo entre \(a\) y \(b\), por lo que si \(f\) es continua en \([a,b]\), existe al menos una raíz en \((a,b)\).
+También hay cambio de signo entre $a$ y $b$, por lo que si $f$ es continua en $[a,b]$, existe al menos una raíz en $(a,b)$.
 
 **Caso (3)**
 - Se representa una función decreciente.
-- En \(x=a\), la función toma un valor positivo: \(f(a)>0\).
-- En \(x=b\), la función también toma un valor positivo: \(f(b)>0\).
-- La gráfica no cruza el eje \(x\) en el intervalo mostrado.
+- En $x=a$, la función toma un valor positivo: $f(a)>0$.
+- En $x=b$, la función también toma un valor positivo: $f(b)>0$.
+- La gráfica no cruza el eje $x$ en el intervalo mostrado.
 
 **Interpretación:**
-No hay cambio de signo entre los extremos del intervalo. En este caso, el teorema no garantiza existencia de raíz en \((a,b)\).
+No hay cambio de signo entre los extremos del intervalo. En este caso, el teorema no garantiza existencia de raíz en $(a,b)$.
 
 **Caso (4)**
 - Se representa una función creciente.
-- En \(x=a\), la función toma un valor negativo: \(f(a)<0\).
-- En \(x=b\), la función también toma un valor negativo: \(f(b)<0\).
-- La gráfica no cruza el eje \(x\) en el intervalo mostrado.
+- En $x=a$, la función toma un valor negativo: $f(a)<0$.
+- En $x=b$, la función también toma un valor negativo: $f(b)<0$.
+- La gráfica no cruza el eje $x$ en el intervalo mostrado.
 
 **Interpretación:**
-Tampoco hay cambio de signo entre los extremos del intervalo. En este caso, el teorema no garantiza existencia de raíz en \((a,b)\).
+Tampoco hay cambio de signo entre los extremos del intervalo. En este caso, el teorema no garantiza existencia de raíz en $(a,b)$.
 
 **Resumen comparativo**
 
-| Caso | Signo de \(f(a)\) | Signo de \(f(b)\) | ¿Hay cambio de signo? | ¿Se garantiza una raíz en \((a,b)\)? |
+| Caso | Signo de $f(a)$ | Signo de $f(b)$ | ¿Hay cambio de signo? | ¿Se garantiza una raíz en $(a,b)$? |
 |------|-------------------|-------------------|------------------------|--------------------------------------|
 | (1)  | Negativo          | Positivo          | Sí                     | Sí                                   |
 | (2)  | Positivo          | Negativo          | Sí                     | Sí                                   |
@@ -1362,41 +1369,42 @@ Tampoco hay cambio de signo entre los extremos del intervalo. En este caso, el t
 | (4)  | Negativo          | Negativo          | No                     | No                                   |
 
 **Idea clave**
-El teorema garantiza la existencia de al menos una raíz en \((a,b)\) cuando:
-- \(f\) es continua en \([a,b]\), y
-- \(f(a)\) y \(f(b)\) tienen signos opuestos.
+El teorema garantiza la existencia de al menos una raíz en $(a,b)$ cuando:
+- $f$ es continua en $[a,b]$, y
+- $f(a)$ y $f(b)$ tienen signos opuestos.
 
 En cambio, si los signos en los extremos son iguales, el teorema no permite asegurar la existencia de una raíz dentro del intervalo.
 
 #### Figura 4.4 — Gráfico de una función con varios extremos y raíces en un intervalo
+
 ![Figura 4.4](./img/figura-4-4.png)
 
 **Descripción general**
-La figura muestra la gráfica de una función \(y=f(x)\) en un intervalo que va desde \(a\) hasta \(b\).
-La curva presenta varios máximos locales, mínimos locales y múltiples intersecciones con el eje \(x\).
+La figura muestra la gráfica de una función $y=f(x)$ en un intervalo que va desde $a$ hasta $b$.
+La curva presenta varios máximos locales, mínimos locales y múltiples intersecciones con el eje $x$.
 
 **Elementos señalados en la figura**
-- Extremo izquierdo del intervalo: \(x=a\)
-- Extremo derecho del intervalo: \(x=b\)
-- Puntos interiores marcados sobre el eje \(x\):
-  - \(a_1\)
-  - \(a_2\)
-  - \(a_3\)
-  - \(a_4\)
-  - \(a_5\)
-  - \(a_6\)
-  - \(a_7\)
-  - \(a_8\)
+- Extremo izquierdo del intervalo: $x=a$
+- Extremo derecho del intervalo: $x=b$
+- Puntos interiores marcados sobre el eje $x$:
+  - $a_1$
+  - $a_2$
+  - $a_3$
+  - $a_4$
+  - $a_5$
+  - $a_6$
+  - $a_7$
+  - $a_8$
 
 **Comportamiento cualitativo de la gráfica**
 - La función no es monótona en todo el intervalo.
 - Se observan varios cambios de crecimiento a decrecimiento y viceversa.
-- La curva corta al eje \(x\) en varios puntos del intervalo.
-- Algunos tramos de la función están por encima del eje \(x\) y otros por debajo.
+- La curva corta al eje $x$ en varios puntos del intervalo.
+- Algunos tramos de la función están por encima del eje $x$ y otros por debajo.
 - La figura sugiere la existencia de varias raíces reales en el intervalo considerado.
 
 **Interpretación matemática**
-- La ecuación \(f(x)=0\) posee múltiples soluciones en el intervalo \([a,b]\).
+- La ecuación $f(x)=0$ posee múltiples soluciones en el intervalo $[a,b]$.
 - La presencia de varios máximos y mínimos locales indica que una misma función puede tener varias raíces separadas.
 - Para localizar raíces individuales, conviene dividir el intervalo total en subintervalos donde:
   - haya cambio de signo, o
@@ -1404,12 +1412,12 @@ La curva presenta varios máximos locales, mínimos locales y múltiples interse
 
 **Posible uso en métodos numéricos**
 Esta figura es útil para ilustrar que:
-- un intervalo grande \([a,b]\) puede contener varias raíces;
+- un intervalo grande $[a,b]$ puede contener varias raíces;
 - antes de aplicar métodos de búsqueda de raíces, suele ser necesario aislar cada raíz en un subintervalo adecuado;
 - un cambio de signo en un subintervalo puede usarse como criterio práctico para detectar la posible existencia de una raíz.
 
 **Idea clave**
-Cuando una función presenta oscilaciones y múltiples cruces con el eje \(x\), no basta con estudiar solo el intervalo global \([a,b]\); es necesario analizar subintervalos para identificar y separar las distintas raíces.
+Cuando una función presenta oscilaciones y múltiples cruces con el eje $x$, no basta con estudiar solo el intervalo global $[a,b]$; es necesario analizar subintervalos para identificar y separar las distintas raíces.
 
 ---
 
@@ -1421,7 +1429,7 @@ Cuando una función presenta oscilaciones y múltiples cruces con el eje \(x\), 
 **Planteamiento del problema.** Utilice el método gráfico para determinar el coeficiente de arrastre $c$ necesario para que un paracaidista de masa $m = 68.1\,\mathrm{kg}$ tenga una velocidad de $40\,\mathrm{m/s}$ después de una caída libre de $t = 10\,\mathrm{s}$. Nota: La aceleración de la gravedad es $9.8\,\mathrm{m/s^2}$.
 
 $$
-f(c) = \frac{gm}{c} \left(1 - e^{-c / m\,x}\right) - v
+f(c) = \frac{g\,m}{c} \left(1 - e^{-c / m\,x}\right) - v
 $$
 
 **Solución.** Este problema se resuelve determinando la raíz de la ecuación (PT2.4) usando los parámetros $t = 10$, $g = 9.8$, $v = 40$ y $m = 68.1$:
@@ -1469,16 +1477,16 @@ $$
 - Para lograr la precisión deseada, se detiene el procesamiento cuando la diferencia, en valor absoluto, entre dos valores consecutivos de la variable es menor o igual que E positiva y arbitraria, previamente establecida.
 - Cuando la DIFERENCIA ABSOLUTA resulta:
 
-  $$
+$$
   \left| x_{i-1} - x_i \right| \leq \mathbf{E}
-  $$
+$$
 
 - Una alternativa muy utilizada, consiste en operar sobre el valor de la función que, en este caso es calculada en todos los pasos para estudiar la evolución del cambio de signo de la función.
 - Puede detenerse el procesamiento y adoptar el valor de $x_i$ para el cual resulta:
 
-  $$
+$$
   \left| f(x_i) \right| \leq \mathbf{E} \tag{4.3}
-  $$
+$$
 
 - Donde $\mathbf{E}$ será el error máximo admisible en el procesamiento.
 
@@ -1505,44 +1513,45 @@ $$
 > **P:** Procedimiento.
 
 #### Figura 4.6 — Aplicación del método de bisección
+
 ![Figura 4.6](image_url)
 
 **Descripción general**
-La figura muestra una función continua \(y=f(x)\) en un intervalo inicial \([a,b]\), donde:
-- \(a=a_1\)
-- \(b=b_1\)
+La figura muestra una función continua $y=f(x)$ en un intervalo inicial $[a,b]$, donde:
+- $a=a_1$
+- $b=b_1$
 
 Se representan puntos medios sucesivos del intervalo:
-- \(p_1\)
-- \(p_2\)
-- \(p_3\)
+- $p_1$
+- $p_2$
+- $p_3$
 
 Cada uno de estos puntos genera nuevos subintervalos, ilustrando el procedimiento iterativo del método de bisección.
 
 **Elementos del gráfico**
-- Eje horizontal: variable \(x\)
-- Eje vertical: valores de la función \(f(x)\)
-- Curva: \(y=f(x)\)
+- Eje horizontal: variable $x$
+- Eje vertical: valores de la función $f(x)$
+- Curva: $y=f(x)$
 - Extremos del intervalo inicial:
-  - \(a=a_1\)
-  - \(b=b_1\)
+  - $a=a_1$
+  - $b=b_1$
 - Puntos medios sucesivos:
-  - \(p_1\)
-  - \(p_2\)
-  - \(p_3\)
+  - $p_1$
+  - $p_2$
+  - $p_3$
 
 También se indican los valores:
-- \(f(a)\)
-- \(f(p_2)\)
-- \(f(p_1)\)
-- \(f(b)\)
+- $f(a)$
+- $f(p_2)$
+- $f(p_1)$
+- $f(b)$
 
 **Idea representada**
-El método de bisección parte de un intervalo inicial \([a,b]\) tal que:
-\[
+El método de bisección parte de un intervalo inicial $[a,b]$ tal que:
+$$
 f(a)\,f(b) < 0
-\]
-lo que garantiza, si \(f\) es continua, la existencia de al menos una raíz en \((a,b)\).
+$$
+lo que garantiza, si $f$ es continua, la existencia de al menos una raíz en $(a,b)$.
 
 Luego:
 1. se calcula el punto medio del intervalo;
@@ -1552,56 +1561,56 @@ Luego:
 
 **Secuencia mostrada en la figura**
 - Intervalo inicial
-\[
+$$
 [a_1,b_1]
-\]
+$$
 
 Su punto medio es:
-\[
+$$
 p_1=\frac{a_1+b_1}{2}
-\]
+$$
 
 Según la figura, la raíz buscada queda en el subintervalo izquierdo, por lo que el siguiente intervalo es:
-\[
+$$
 [a_2,b_2]=[a_1,p_1]
-\]
+$$
 
 - Segunda iteración
 El punto medio del nuevo intervalo es:
-\[
+$$
 p_2=\frac{a_2+b_2}{2}
-\]
+$$
 
 De nuevo se selecciona el subintervalo donde permanece el cambio de signo. En la figura, esto conduce a:
-\[
+$$
 [a_3,b_3]=[p_2,b_2]
-\]
+$$
 
 - Tercera iteración
 El nuevo punto medio es:
-\[
+$$
 p_3=\frac{a_3+b_3}{2}
-\]
+$$
 
 Este proceso continúa hasta que el intervalo sea suficientemente pequeño o hasta alcanzar una tolerancia prefijada.
 
 **Relación entre los intervalos**
 En la parte inferior de la figura se muestran los intervalos anidados:
-- \([a_1,b_1]\)
-- \([a_2,b_2]\)
-- \([a_3,b_3]\)
+- $[a_1,b_1]$
+- $[a_2,b_2]$
+- $[a_3,b_3]$
 
 Cada nuevo intervalo está contenido en el anterior y tiene longitud igual a la mitad:
-\[
+$$
 b_n-a_n=\frac{b-a}{2^{\,n-1}}
-\]
+$$
 
 **Interpretación matemática**
 - El método no busca la raíz directamente, sino que la va encerrando en intervalos cada vez más pequeños.
-- Los puntos \(p_1,p_2,p_3,\dots\) son aproximaciones sucesivas de la raíz.
+- Los puntos $p_1,p_2,p_3,\dots$ son aproximaciones sucesivas de la raíz.
 - La convergencia está garantizada si:
-  - \(f\) es continua en \([a,b]\)
-  - \(f(a)f(b)<0\)
+  - $f$ es continua en $[a,b]$
+  - $f(a)f(b)<0$
 
 **Idea clave**
 El método de bisección reduce iterativamente el intervalo que contiene la raíz, conservando siempre el cambio de signo en los extremos del subintervalo elegido.
@@ -1620,18 +1629,18 @@ $$
 
 Paso 3: Realice las siguientes evaluaciones para determinar en qué subintervalo está la raíz:
 
-a) Si $f(x_i)f(x_r) < 0$, entonces la raíz se encuentra dentro del subintervalo inferior o izquierdo. Por lo tanto, haga $x_u = x_r$ y vuelva al paso 2.
+a) Si $f(x_i)f(x_u) > 0$, entonces la raíz se encuentra dentro del subintervalo inferior o izquierdo. Por lo tanto, haga $x_u = x_i$ y vuelva al paso 2.
 
-b) Si $f(x_i)f(x_r) > 0$, entonces la raíz se encuentra dentro del subintervalo superior o derecho. Por lo tanto, haga $x_l = x_r$ y vuelva al paso 2.
+b) Si $f(x_i)f(x_u) < 0$, entonces la raíz se encuentra dentro del subintervalo superior o derecho. Por lo tanto, haga $x_l = x_i$ y vuelva al paso 2.
 
-c) Si $f(x_i)f(x_r) = 0$, la raíz es igual a $x_r$, termina el cálculo.
+c) Si $f(x_i)f(x_u) = 0$, la raíz es igual a $x_i$, termina el cálculo.
 
 - Reiterando el procedimiento, se llegará a un punto de subdivisión en el que, al menos teóricamente, se anula $f(x)$.
 - En general, se obtendrá un par de sucesiones indefinidas monótonas que tienden a un número $u$, tal que:
 
-  $$
+$$
   a \leq a_1 \leq \dots \leq a_n \leq \dots \leq u \leq \dots \leq b_n \leq \dots \leq b_1 \leq b
-  $$
+$$
 
 ---
 
@@ -1660,9 +1669,9 @@ $$
 - Ten la que $n$ representa la cantidad de subdivisiones realizadas en el intervalo $(a; b)$.
 - Tomando límites para $n \to \infty$, resulta: (4.5)
 
-  $$
+$$
   \lim_{n \to \infty} \left(b_n - a_n\right) = \lim_{n \to \infty} \frac{b - a}{2^n}
-  $$
+$$
 
 - Entonces, en el punto $x = u$, es $f(u) = 0$, por estar $u$ incluido en el entorno dado por $b - a$, que, por pequeño, que este sea, la función toma en sus extremos valores de signos opuestos.
 - Ventajas: Converge para cualquier $f$ continua, es decir no hace falta derivabilidad como en otros métodos que veremos más adelante.
@@ -1671,21 +1680,21 @@ $$
 
 - Mediante subdivisiones sucesivas por partes iguales, de un intervalo que contiene la raíz a determinar, se puede construir un algoritmo que permita obtener dicha raíz, con la aproximación que se desee, siempre que se verifique que:
 
-  $$
+$$
   b_n - a_n \leq \mathbf{E} \tag{4.6}
-  $$
+$$
 
 - Se quiere conocer cuántas iteraciones son necesarias, realizar para que el error con que se calcula el valor de la raíz no supere un cierto valor arbitrario $\mathbf{E} > 0$, en cuyo caso por (4.4) y (4.6) es:
 
-  $$
+$$
   b_n - a_n = \frac{b - a}{2^n} \leq \mathbf{E}
-  $$
+$$
 
 - de donde, es posible despejar el número de iteraciones que son necesarias, realizar para que el error sea menor o igual a $\mathbf{E}$:
 
-  $$
+$$
   n \geq \frac{\log(b - a) - \log\mathbf{E}}{\log 2}
-  $$
+$$
 
 - Estudiar la posibilidad de pasar por alto raíces:
   - si solo se cuenta con un intervalo inicial de ACOTACIÓN;
@@ -1737,17 +1746,17 @@ Para x8, la aproximación lograda tiene 4 cifras exactas. Fue necesario hacer oc
 - Vemos otros procedimientos de detención que pueden aplicarse en el Paso 4 del algoritmo anterior, como de los cuales se aplica a cualquiera de las técnicas iterativas consideradas.
 - Seleccionar una tolerancia $x > 0$ y generar $p_1, p_2, \dots, p_n$ hasta que se cumpla alguna de las siguientes condiciones:
 
-  $$
+$$
   |p_n - p_{n-1}| < x;
-  $$
+$$
 
-  $$
+$$
   |p_n - p_{n-1}| / p_n < x; \tag{4.7}
-  $$
+$$
 
-  $$
+$$
   f(p_n) < x.
-  $$
+$$
 
 - Pueden presentarse dificultades al usar cualquiera de estos criterios para detención.
 - Existen sucesiones $\{p_n\}$ con la propiedad de que las diferencias $p_n - p_{n-1}$ convergen a cero mientras que las sucesiones por sí mismas divergen.
@@ -1763,22 +1772,22 @@ Dada $f(x) = 0$, donde, uno de los subintervalos de separación viene dado por $
 - Como $f(x_1)$ y $f(x_2)$ tienen signos diferentes, de ser monótona en el intervalo dado $(x_1; x_2)$, entonces $f(x)$ tendrá una raíz entre $x_1$ y $x_2$.
 - La ecuación de la recta que pasa por los puntos $P_1$ y $P_2$, es:
 
-  $$
+$$
   y - y_1 = \frac{y_2 - y_1}{x_2 - x_1}(x - x_1)
-  $$
+$$
 
 - Para hallar la intersección con el eje de las abscisas se hace $y = 0$, tomando $x$ el valor $x_3$, en la cual $x_3$ es una mejor aproximación del verdadero valor de la raíz
 - Resulta entonces:
 
-  $$
+$$
   - y_{1} = \frac {y_{2} - y_{1}}{x_{2} - x_{1}} \left(x_{3} - x_{1}\right)
-  $$
+$$
 
 - y, despejando de esta última:
 
-  $$
+$$
   x_{3} = \frac {x_{1} y_{2} - x_{2} y_{1}}{y_{2} - y_{1}}
-  $$
+$$
 
 - El valor determinado de esta manera, se sustituye en la función para calcular el correspondiente valor de  $y_{3}$ .
 - Luego se realiza una comparación entre los signos de  $f(x_{3})$  con los de  $f(x_{1})$  y  $f(x_{2})$ , desechando el punto para el cual la función tiene igual signo que  $f(x_{3})$ .
@@ -1803,15 +1812,15 @@ Dada $f(x) = 0$, donde, uno de los subintervalos de separación viene dado por $
 - Se dibuja una recta tangente a la curva en el punto $x = x_{n}$, interceptará al eje de las abscisas en un valor dado por $x = x_{n+1}$, que constituye una aproximación mejorada de la raíz $r$.
 - Se puede observar que la pendiente de la recta tangente a la curva  $y = f(x)$  es:
 
-  $$
+$$
   \operatorname{tg} \alpha = f ^{\prime} \left(x_{n}\right) = \frac {f \left(x_{n}\right)}{x_{n} - x_{n+1}}
-  $$
+$$
 
 - de donde:
 
-  $$
+$$
   x_{n+1} = x_{n} - \frac {f (x_{n})}{f ^{\prime} (x_{n})} \tag {4.8}
-  $$
+$$
 
   Para que esto último tenga sentido, hay que suponer  $f'(x_n) \neq 0$
 
@@ -1824,50 +1833,51 @@ Dada $f(x) = 0$, donde, uno de los subintervalos de separación viene dado por $
 #### Convergencia del método de Newton-Raphson
 
 - Tal como se puede apreciar en la figura 4.9, si se aplica el procedimiento en el punto $x_n = b$, en lugar de lograr una mejor aproximación a la raíz, el procedimiento se hubiera alejado de ella.
-- Lo mismo sucede si el procedimiento seiese aplicado en el punto $x_n = a$.
+- Lo mismo sucede si el procedimiento se hubiese aplicado en el punto $x_n = a$.
 - Fourier, estableció ciertas condiciones sobre el punto en el cual debe ser aplicado el procedimiento de $N-R$, en función de los signos que toman $f(x)$ y $f''(x)$, pues, de lo contrario, la aplicación del método podría resultar divergente.
 
 #### Figura 4.9 - Aplicación del método de Newton-Raphson desde un extremo válido del intervalo
+
 ![Figura 4.9](./img/figura4.9.png)
 **Descripción corta**
-La figura muestra una función \(y=f(x)\) y un intervalo de separación que contiene una raíz \(r\).
+La figura muestra una función $y=f(x)$ y un intervalo de separación que contiene una raíz $r$.
 Se ilustra el caso en que solo uno de los extremos del intervalo permite aplicar correctamente el método de Newton-Raphson, mientras que el otro no resulta adecuado.
 **Elementos representados**
-- Eje horizontal: variable \(x\)
-- Eje vertical: variable \(y\)
-- Curva: \(y=f(x)\)
-- Raíz de la función: \(r\), donde \(f(r)=0\)
-- Extremo derecho del intervalo: \(x_n=b\)
-- Siguiente aproximación obtenida por Newton-Raphson: \(x_{n+1}\)
+- Eje horizontal: variable $x$
+- Eje vertical: variable $y$
+- Curva: $y=f(x)$
+- Raíz de la función: $r$, donde $f(r)=0$
+- Extremo derecho del intervalo: $x_n=b$
+- Siguiente aproximación obtenida por Newton-Raphson: $x_{n+1}$
 **Interpretación geométrica**
-- Se parte del extremo derecho del intervalo, \(x_n=b\).
-- En ese punto se traza la recta tangente a la curva \(y=f(x)\).
-- La intersección de esa tangente con el eje \(x\) determina la siguiente aproximación:
-\[
+- Se parte del extremo derecho del intervalo, $x_n=b$.
+- En ese punto se traza la recta tangente a la curva $y=f(x)$.
+- La intersección de esa tangente con el eje $x$ determina la siguiente aproximación:
+$$
 x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}
-\]
-- En la figura, esta construcción lleva a una nueva aproximación \(x_{n+1}\) situada a la izquierda.
+$$
+- En la figura, esta construcción lleva a una nueva aproximación $x_{n+1}$ situada a la izquierda.
 **Idea representada**
-La figura ilustra que, aunque el intervalo \([a,b]\) contenga una raíz \(r\), no siempre ambos extremos son igualmente convenientes para iniciar Newton-Raphson.
-- Uno de los extremos produce una tangente cuya intersección con el eje \(x\) genera una iteración aceptable.
+La figura ilustra que, aunque el intervalo $[a,b]$ contenga una raíz $r$, no siempre ambos extremos son igualmente convenientes para iniciar Newton-Raphson.
+- Uno de los extremos produce una tangente cuya intersección con el eje $x$ genera una iteración aceptable.
 - El otro extremo puede no ser adecuado, porque la tangente puede alejarse de la raíz, salir del intervalo o producir una secuencia menos favorable.
 **Criterio teórico asociado**
 En el estudio clásico del método de Newton-Raphson, un criterio usual para elegir el extremo inicial consiste en tomar aquel donde:
-\[
+$$
 f(x_0)\,f''(x_0) > 0
-\]
+$$
 Cuando esta condición se cumple, la iteración suele avanzar de manera conveniente hacia la raíz contenida en el intervalo.
 
 **Lectura de la figura**
-- La raíz \(r\) está dentro del intervalo.
-- El extremo \(b\) sí permite construir una iteración de Newton-Raphson adecuada.
+- La raíz $r$ está dentro del intervalo.
+- El extremo $b$ sí permite construir una iteración de Newton-Raphson adecuada.
 - La figura sugiere que el otro extremo no cumple la condición conveniente de arranque.
 
 **Consecuencia numérica**
 Aunque exista un intervalo de separación para una raíz, en Newton-Raphson no basta con conocer el intervalo: también importa desde qué punto inicial se comienza.
 
 **Idea clave**
-En un intervalo que contiene una raíz, puede ocurrir que solo uno de los extremos sea apropiado como valor inicial para Newton-Raphson; por eso la elección de \(x_0\) es parte esencial del método.
+En un intervalo que contiene una raíz, puede ocurrir que solo uno de los extremos sea apropiado como valor inicial para Newton-Raphson; por eso la elección de $x_0$ es parte esencial del método.
 
 ---
 
@@ -1885,125 +1895,125 @@ En un intervalo que contiene una raíz, puede ocurrir que solo uno de los extrem
 ![Figura 4.10](./img/figura4.10.png)
 
 **Descripción general**
-La figura reúne cuatro gráficos de funciones \(y=f(x)\) que ilustran los distintos casos clásicos en los que el método de Newton-Raphson puede aplicarse de forma adecuada dentro de un intervalo \([a,b]\) que contiene una raíz \(r\).
+La figura reúne cuatro gráficos de funciones $y=f(x)$ que ilustran los distintos casos clásicos en los que el método de Newton-Raphson puede aplicarse de forma adecuada dentro de un intervalo $[a,b]$ que contiene una raíz $r$.
 
 En todos los casos:
-- \(r\) es una raíz de la función, es decir, \(f(r)=0\)
+- $r$ es una raíz de la función, es decir, $f(r)=0$
 - la función es derivable en el entorno considerado
 - el punto inicial debe elegirse en un extremo del intervalo que satisfaga la condición:
-\[
+$$
 f(x_0)\,f''(x_0)>0
-\]
+$$
 
 **Caso 1**
 - La función es creciente:
-\[
+$$
 f'(x)>0
-\]
+$$
 - La función es cóncava hacia abajo:
-\[
+$$
 f''(x)<0
-\]
+$$
 - En el extremo conveniente se tiene:
-\[
+$$
 f(x)<0
-\]
+$$
 
 **Signos representados en la figura:**
-\[
+$$
 f<0,\qquad f'>0,\qquad f''<0
-\]
+$$
 
 **Interpretación:**
-La raíz \(r\) está en el intervalo y Newton-Raphson puede iniciarse desde el extremo adecuado, ya que se cumple la condición de aplicabilidad.
+La raíz $r$ está en el intervalo y Newton-Raphson puede iniciarse desde el extremo adecuado, ya que se cumple la condición de aplicabilidad.
 
 **Caso 2**
 - La función es creciente:
-\[
+$$
 f'(x)>0
-\]
+$$
 - La función es cóncava hacia arriba:
-\[
+$$
 f''(x)>0
-\]
+$$
 - En el extremo conveniente se tiene:
-\[
+$$
 f(x)>0
-\]
+$$
 
 **Signos representados en la figura:**
-\[
+$$
 f>0,\qquad f'>0,\qquad f''>0
-\]
+$$
 
 **Interpretación:**
 Este es otro caso favorable para Newton-Raphson, ya que el extremo elegido satisface:
-\[
+$$
 f(x_0)\,f''(x_0)>0
-\]
+$$
 
 **Caso 3**
 - La función es decreciente:
-\[
+$$
 f'(x)<0
-\]
+$$
 - La función es cóncava hacia arriba:
-\[
+$$
 f''(x)>0
-\]
+$$
 - En el extremo conveniente se tiene:
-\[
+$$
 f(x)>0
-\]
+$$
 
 **Signos representados en la figura:**
-\[
+$$
 f>0,\qquad f'<0,\qquad f''>0
-\]
+$$
 
 **Interpretación:**
 También en este caso Newton-Raphson es aplicable desde el extremo correcto del intervalo.
 
 **Caso 4**
 - La función es decreciente:
-\[
+$$
 f'(x)<0
-\]
+$$
 - La función es cóncava hacia abajo:
-\[
+$$
 f''(x)<0
-\]
+$$
 - En el extremo conveniente se tiene:
-\[
+$$
 f(x)<0
-\]
+$$
 
 **Signos representados en la figura:**
-\[
+$$
 f<0,\qquad f'<0,\qquad f''<0
-\]
+$$
 
 **Interpretación:**
 La condición
-\[
+$$
 f(x_0)\,f''(x_0)>0
-\]
+$$
 también se cumple, por lo que el método es aplicable.
 
 **Resumen de los cuatro casos**
 
-| Caso | Signo de \(f\) | Signo de \(f'\) | Signo de \(f''\) | ¿Se cumple \(f(x_0)f''(x_0)>0\)? |
+| Caso | Signo de $f$ | Signo de $f'$ | Signo de $f''$ | ¿Se cumple $f(x_0)f''(x_0)>0$? |
 |------|----------------|-----------------|------------------|-----------------------------------|
-| 1    | \(f<0\)        | \(f'>0\)        | \(f''<0\)        | Sí                                |
-| 2    | \(f>0\)        | \(f'>0\)        | \(f''>0\)        | Sí                                |
-| 3    | \(f>0\)        | \(f'<0\)        | \(f''>0\)        | Sí                                |
-| 4    | \(f<0\)        | \(f'<0\)        | \(f''<0\)        | Sí                                |
+| 1    | $f<0$        | $f'>0$        | $f''<0$        | Sí                                |
+| 2    | $f>0$        | $f'>0$        | $f''>0$        | Sí                                |
+| 3    | $f>0$        | $f'<0$        | $f''>0$        | Sí                                |
+| 4    | $f<0$        | $f'<0$        | $f''<0$        | Sí                                |
 
 **Idea clave**
-El método de Newton-Raphson es aplicable de forma conveniente cuando se elige un valor inicial \(x_0\) tal que:
-\[
+El método de Newton-Raphson es aplicable de forma conveniente cuando se elige un valor inicial $x_0$ tal que:
+$$
 f(x_0)\,f''(x_0)>0
-\]
+$$
 La figura muestra los cuatro esquemas gráficos típicos en los que esta condición puede cumplirse.
 
 ---
@@ -2011,35 +2021,35 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 - Demostración analítica.
 - Tomando los 3 primeros términos del desarrollo en serie de Taylor de orden 2, aplicado en un entorno del punto  $x = a$ , resulta:
 
-  $$
+$$
   f (x) = f (a) + (x - a) f ^{\prime} (a) + \frac {1}{2} (x - a) ^{2} f ^{\prime \prime} (\xi); \quad a <   \xi <   x
-  $$
+$$
 
 - para el valor de la variable igual al de la raíz  $r$ , se verifica que  $f(r) = 0$
 - Suponiendo ahora que, $f'(a) \neq 0$, en el punto $x = r$, se tiene:
 
-  $$
+$$
   0 = f(a) + (r - a)f'(a) + \frac{1}{2}(r - a)^2 f''(\xi); \quad a < \xi < r
-  $$
+$$
 
 - y despejando de esta última, el valor de $r$ correspondiente al segundo término, se obtiene:
 
-  $$
+$$
   r = a - \frac{f(a)}{f'(a)} - \frac{1}{2}(r - a)^2 \frac{f''(\xi)}{f'(a)}; \quad a < \xi < r
-  $$
+$$
 
 - Los dos primeros términos determinan, el valor aproximado de la raíz que, si se lo designa con $a'$, resulta: (4.10)
 
-  $$
+$$
   a' = a - \frac{f(a)}{f'(a)}
-  $$
+$$
 
 - que, como puede comprobarse, es equivalente a N-R. Se demostrará que $a'$ está más próximo a $r$ que el valor de $a$, suponiendo que la función $f(x)$ y la derivada segunda $f''(x)$ tienen igual signo en un entorno del punto $x = a$.
 - En efecto:  $r - a' = -\frac{1}{2} (r - a)^2 \frac{f''(\xi)}{f'(a)}$  (4.9)
 - de donde y luego de dividir ambos miembros por a- a':
-  $$
+$$
   \frac{r - a'}{a' - a} = \frac{1}{2} \frac{(r - a)^2 f''(\xi)}{f(a)} > 0
-  $$
+$$
 - esta igualdad afirma que, si  $f''(\xi)$  tiene igual signo que  $f(a) \Rightarrow$  el numerador y el denominador del primer miembro tienen el mismo signo;
 - o sea, que  $a'$  está situado entre los valores de  $a$  y  $r$ , vale decir,  $a'$  mejora la aproximación dada por  $a$ .
 
@@ -2052,16 +2062,16 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
   - $E < /r - a/$
   - que según la expresión 4.9, en algún momento del cálculo, resulta:
 
-    $$
+$$
     E < \left| \frac{(r - a)^2 f''(\xi)}{2 f'(a)} \right| \tag{4.10}
-    $$
+$$
 
 - Si bien no se conocen todos los valores de las expresiones incluidas en el segundo miembro, pueden tomarse cotas superiores de las expresiones desconocidas que intervienen en ella.
 - Llamando $h$ a la longitud del intervalo $(b - a)\ y$, $K$ a una cota superior de $f''(x)$, resulta entonces:
 
-  $$
+$$
   \mathbf{E} < \left| \frac{h^2 K}{2 f'(a)} \right|
-  $$
+$$
 
 - la que se constituye en la expresión de una cota superior del error cometido en la aplicación del método de NEWTON-RAPHSON.
 
@@ -2071,9 +2081,9 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 
   Punto inicial $x_0 = 3$
 
-  $$
+$$
   x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} = x_n - \frac{x_n^2 - 2}{2x_n} = \frac{x_n}{2} + \frac{1}{x_n}
-  $$
+$$
 
   Y aplicando esto obtenemos
  | x0 = 3 | x3 = 1.41499843... |
@@ -2113,7 +2123,7 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 
 - Ventajas: técnica extremadamente eficaz
 - Dificultad: Necesidad de conocer la derivada de f en cada aproximación.
-- Con frecuencia f es difícil de obtener y requiere de más operaciones aritméticas para calcularse que f(x).
+- Con frecuencia f' es difícil de obtener y requiere de más operaciones aritméticas para calcularse que f(x).
 - A fin de evadir el problema de la evaluación de la derivada en el Método de Newton se lleva a cabo una pequeña variante: Método de la secante.
 
 ---
@@ -2124,9 +2134,9 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 
 - Se presenta con frecuencia la necesidad de resolver:
 
-  $$
+$$
   f(x) = 0
-  $$
+$$
 
 - $f(x)$ es una función de variable real $x$ con coeficientes reales
 - Hallar valores numéricos de la variable independiente $x$, llamadas raíces.
@@ -2140,18 +2150,19 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 
 - Para calcular $r$ de la ecuación $f(x) = 0$ por el **MÉTODO DE ITERACIÓN**, es necesario reescribir la expresión analítica de la ecuación dada, en la forma:
 
-  $$
+$$
   f_1(x) = f_2(x)
-  $$
+$$
 
 - Esto requiere la mayoría de las veces un sencillo tratamiento algebraico de la ecuación dada.
 - Si en un entorno del punto común o de intersección de ambas curvas, en la figura siguiente:
 
-  $$
+$$
   y_1 = f1(x); \quad y_2 = f2(x)
-  $$
+$$
 
 #### Figura 2.4 -
+
 ![Figura.2.4](./img/figura-2-4.png)
 
 - en un entorno del punto $x = r$, la pendiente de la curva $|f_1'(x)| < $ la pendiente de la curva $|f_2'(x)|$
@@ -2160,7 +2171,7 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
 
 - El proceso que es necesario realizar se sintetiza así:
 
-  $$
+$$
   \begin{array}{l}
   x_0 \Rightarrow f_1(x_0) = f_2(x_1) \Rightarrow x_1 \\
   x_1 \Rightarrow f_1(x_1) = f_2(x_2) \Rightarrow x_2 \\
@@ -2168,24 +2179,25 @@ La figura muestra los cuatro esquemas gráficos típicos en los que esta condici
   \vdots \\
   x_n \Rightarrow f_1(x_n) = f_2(x_{n+1}) \Rightarrow x_{n+1}
   \end{array}
-  $$
+$$
 
 - lo cual permite obtener, si el proceso resultase convergente, al valor aproximado $r$, de la raíz buscada.
 
 - Si se parte un $x_0$ y se procede sistemáticamente se obtendrán valores $x_1; x_2; x_3$ que convergen hacia la raíz $r$ buscada.
 
 #### Figura 5.2
+
 ![Figura.5.2](./img/figura-5-2.png)
 Se representan dos funciones:
-- \(y=f_1(x)\), creciente
-- \(y=f_2(x)\), decreciente
+- $y=f_1(x)$, creciente
+- $y=f_2(x)$, decreciente
 
-Ambas curvas se cortan en \(x=r\), que corresponde a la solución del problema:
-\[
+Ambas curvas se cortan en $x=r$, que corresponde a la solución del problema:
+$$
 f_1(x)=f_2(x)
-\]
+$$
 
-Los puntos \(x_0, x_1, x_2, x_3, x_4\) representan aproximaciones sucesivas a la solución \(r\), obtenidas por un procedimiento iterativo.
+Los puntos $x_0, x_1, x_2, x_3, x_4$ representan aproximaciones sucesivas a la solución $r$, obtenidas por un procedimiento iterativo.
 
 **Idea clave**
 La solución buscada es la abscisa del punto de intersección entre ambas curvas.
@@ -2201,15 +2213,15 @@ La solución buscada es la abscisa del punto de intersección entre ambas curvas
 
 - Condición de convergencia: demostrar que $x_{n+1}$ es una mejor aproximación a la raíz $r$ que $x_n$. Para ello, por ser $f_1(r) = f_2(r)$, entonces:
 
-  $$
+$$
   f_1(r) - f_1(x_n) = f_2(r) - f_2(x_{n+1})
-  $$
+$$
 
 - Aplicando el teorema del valor medio a a.m. y tomando módulos, resulta:
 
-  $$
+$$
   \left| r - x_n \right| \cdot \left| f_1'(\xi_1) \right| = \left| r - x_{n+1} \right| \cdot \left| f_2'(\xi_2) \right|
-  $$
+$$
 
 - donde, $r < \xi_1 < x_n$; $r < \xi_2 < x_{n+1}$
 
@@ -2221,9 +2233,9 @@ La solución buscada es la abscisa del punto de intersección entre ambas curvas
 
 - En todo punto de un entorno de $x = r$, por hipótesis se cumple que:
 
-  $$
+$$
   \left| f'_1(x) \right| < \left| f'_2(x) \right|
-  $$
+$$
 
 - Debe ser: $\left| r - x_{n+1} \right| < \left| r - x_n \right|$
 
@@ -2259,13 +2271,13 @@ $$
 
 - Uso más frecuente: cuando la expresión $f(x)$ se puede escribir como $x = g(x)$. Una de las derivadas es constantemente igual a uno. Si $x_0$ es una aproximación al valor de $r$, entonces, si es:
 
-  $$
+$$
   |g'(x)| < 1
-  $$
+$$
 
 - resulta la siguiente sucesión de iteraciones:
 
-  $$
+$$
   \begin{array}{l}
   x_1 = g(x_0) \\
   x_2 = g(x_1) \\
@@ -2273,7 +2285,7 @@ $$
   x_n = g(x_{n-1}) \\
   x_{n+1} = g(x_n) \\
   \end{array}
-  $$
+$$
 
 #### El método gráfico de las dos curvas
 
@@ -2300,18 +2312,18 @@ Representación gráfica en $\mathrm{al}$ y $\mathrm{bl}$ de la convergencia. En
 
 - Nos ofrecen un crédito de 6000 dólares a devolver en 50 mensualidades de 150 dólares. Llamando C al importe del préstamo, n al número de pagos, a al importe del plazo e i al tipo de interés por período, se cumple la ecuación siguiente:
 
-  $$
+$$
   C r ^{n} = a \frac {r ^{n} - 1}{r - 1}
-  $$
+$$
 
 - Obtener el interés del crédito partiendo de la estimación inicial de $r = 1,1$ y con una precisión $< 10^{-6}$.
 - Resolver utilizando el método del punto fijo, tomando tres funciones diferentes para hacer el estudio, analizar en cada caso la convergencia del método.
 
 - $f(x) = 0$, de modo gral., puede ser resuelta haciendo uso de la siguiente expresión recursiva:
 
-  $$
+$$
   x_{n+1} = \phi(X_n) \quad \text{(*)}
-  $$
+$$
 
 - Los métodos categorizados como **MÉTODOS ITERATIVOS**; y se resuelven tomando $x_0$ como una 1era. aproximación de la raíz real $r$.
 - Mediante (*) se puede generar una sucesión $x_0; x_1; x_2; \ldots; x_n$ que aproximan el valor $r$.
@@ -2327,9 +2339,9 @@ $$
 
 - Reemplazando los valores de $x_{n+1}$ y $x_n$ de la expresión (*), por los correspondientes dados en la (5.5), se obtiene (5.7):
 
-  $$
+$$
   r + E_{n+1} = \phi(r + E_n)
-  $$
+$$
 
 - y, aplicando el teorema de TAYLOR al segundo miembro de (5.7), es:
 
@@ -2339,9 +2351,9 @@ $$
 
 - pero, dado que r es una raíz de la ecuación dada, finalmente resulta:
 
-  $$
+$$
   E_{n+1} = E_n \phi'(r) + \frac{1}{2!} E_n^2 \phi''(r) + \frac{1}{3!} E_n^3 \phi'''(r) + \dots
-  $$
+$$
 
 - Considerando las consecuencias de este resultado tan importante, es posible distinguir los siguientes casos:
 
@@ -2349,15 +2361,15 @@ $$
 
   (5.9)
 
-  $$
+$$
   E_{n+1} \cong E_n \phi'(r)
-  $$
+$$
 
-- Si $|\Phi'(r)| < 1$, \rightarrow, c/ término de:
+- Si $|\Phi'(r)| < 1$, $\rightarrow$, c/ término de:
 
-  $$
+$$
   |E_k| > |E_{k+1}| > |E_{k+2}| > \dots > |E_n| \rightarrow 0
-  $$
+$$
 
 - será menor que el anterior, de tal modo que la sucesión $x_0; x_1; x_2; \dots; x_n$ tenderá al valor de r.
 
@@ -2367,9 +2379,9 @@ $$
 
 - Caso 2. - $\phi'(r) = 0; \phi''(r) \neq 0$. Si se despreciara desde el 3er. orden y potencias superiores de $E_n$, (5.13)
 
-  $$
+$$
   E_{n+1} \cong \frac{1}{2} \phi''(r) E_n^2
-  $$
+$$
 
 - Para que la sucesión $x_0; x_1; x_2$; ... converja a la raíz $r$, es necesario que la derivada $2da.$ sea finita y $E_0$ sea relativamente pequeño.
 
@@ -2381,15 +2393,15 @@ $$
 
 - Caso 3. $\phi'(r) = 0; \phi''(r) = 0; \phi'''(r) \neq 0.$
 
-  $$
+$$
   E_{n+1} = E_n \phi'(r) + \frac{1}{2!} E_n^2 \phi''(r) + \frac{1}{3!} E_n^3 \phi'''(r) + \dots
-  $$
+$$
 
 - De manera similar a lo anterior y realizando toda la operatoria, resulta la siguiente relación de errores:
 
-  $$
+$$
   E_{n+1} \cong \frac{1}{3!} \phi'''(r) E_n^3
-  $$
+$$
 
 - Se presenta rara vez en la práctica, obtener una convergencia muy rápida;
 
@@ -2408,33 +2420,33 @@ $$
 - Sean $x_{n-1}$; $x_n$; $x_{n+1}$ aproximaciones sucesivas y consecutivas de la raíz $r$ de $f(x)=0$ obtenidas mediante un método de 1er. Orden DE CONVERGENCIA;
 - Los errores $E_{n-1}$; $E_n$; $E_{n+1}$ correspondientes, están dispuestos $\approx$, según una progresión geométrica:
 
-  $$
+$$
   \frac{E_{n+1}}{E_n} \cong \frac{E_n}{E_{n-1}}
-  $$
+$$
 
 - o, lo que resulta equivalente:
 
-  $$
+$$
   \frac{x_{n+1} - r}{x_n - r} \cong \frac{x_n - r}{x_{n-1} - r}
-  $$
+$$
 
 - Ecuación que, resuelta en términos de $r$, resulta:
 
-  $$
+$$
   r \cong \frac{x_{n-1} x_{n+1} - x_n^2}{x_{n+1} - 2 x_n + x_{n-1}}
-  $$
+$$
 
 - Sumando y restando al segundo miembro de esta última expresión, el término $x_{n+1}$, se obtiene:
 
-  $$
+$$
   r \cong x_{n+1} + \frac{x_{n-1} x_{n+1} - x_n^2}{x_{n+1} - 2 x_n + x_{n-1}} - x_{n+1} = x_{n+1} - \frac{x_{n+1}^2 - 2 x_{n+1} x_n + x_n^2}{x_{n+1} - 2 x_n + x_{n-1}}
-  $$
+$$
 
 - y, en definitiva:
 
-  $$
+$$
   r \cong x_{n+1} - \frac{(x_{n+1} - x_n)^2}{x_{n+1} - 2 x_n + x_{n-1}} \quad \tag{5.20}
-  $$
+$$
 
 - La metodología, haciendo uso de la expresión anterior:
 
@@ -2445,90 +2457,90 @@ $$
 - 4.- Se reiteran los puntos 2 y 3 hasta satisfacer las condiciones de precisión previamente establecidas para la raíz.
 - Ejemplo.-de iteración, conjuntamente con la aceleración de la convergencia de AITKEN, determinar la raíz comprendida en el intervalo (1;2) de la ecuación:
 
-  $$
+$$
   e^x - x^2 - 3 = 0
-  $$
+$$
 
 - con una aproximación de cuatro cifras decimales exactas.
 
 - Solución: Primero, y según las condiciones establecidas, es necesario volver a escribir la ecuación dada bajo la forma:
 
-  $$
+$$
   x = \phi(x) = \sqrt{e^x - 3}
-  $$
+$$
 
 - de donde, puede deducirse que:
 
-  $$
+$$
   \phi'(x) = \frac{e^x}{2\sqrt{e^x - 3}}
-  $$
+$$
 
 - En consecuencia, comenzando con $x_0 = 1$, es negativa la cantidad subradical del denominador, por lo tanto resulta conveniente hacer $x_0 = 1,1$. Con ello:
 
-  $$
+$$
   \phi'(x) \cong 23,27
-  $$
+$$
 
 - Dado que el valor obtenido es > 1 \rightarrow no se generará un proceso convergente.
 - **Resulta imprescindible** escribir la ecuación en forma diferente. Sea:
 
-  $$
+$$
   x = \phi(x) = \ln(x^2 + 3)
-  $$
+$$
 
 - de donde:
 
-  $$
+$$
   \phi'(x) = \frac{2x}{x^2 + 3}
-  $$
+$$
 
 - y finalmente, tomando $x_0 = 1$, resulta:
 
-  $$
+$$
   \phi'(1) = 0,5
-  $$
+$$
 
 - valor aceptable, se requiere que
 
-  $$
+$$
   |\phi'(r)| < 1
-  $$
+$$
 
 - Entonces la relación:
 
-  $$
+$$
   x_{n+1} = \ln(x_n^2 + 3)
-  $$
+$$
 
 - con $x_0 = 1$, es idónea para iniciar el procedimiento descrito, resultando:
 
-  $$
+$$
   x_0 = 1 \quad ; \quad x_1 = 1,38629 \quad ; \quad x_2 = 1,59367
-  $$
+$$
 
 - Utilizando los valores hallados con el objeto de la aplicación de la expresión (5.20), se obtiene:
 
-  $$
+$$
   x_3 = 1,83405
-  $$
+$$
 
 - Aplicando nuevamente el método de iteración original, da como resultado:
 
-  $$
+$$
   x_4 = 1,85062 \quad ; \quad x_5 = 1,86016
-  $$
+$$
 
 - valores que, juntamente con el de $x_3$ y la reiteración de la fórmula de recurrencia (5.20), arroja:
 
-  $$
+$$
   x_6 = 1,87311
-  $$
+$$
 
 - Tomando $x_6$ valor como primera aproximación del método de iteración, resultan:
 
-  $$
+$$
   x_7 = 1,87311 \quad ; \quad x_8 = 1,87311
-  $$
+$$
 
 - En los tres últimos resultados no se ha obtenido mejoría alguna, pudiéndose aceptar $r=1,87311$ como valor de la raíz con todas sus cifras decimales exactas.
 - Resolver el mismo problema utilizando Método de Iteración y comparar el nro. de iteraciones requerido
@@ -2541,45 +2553,46 @@ $$
 - un valor aproximado de la raíz, el que puede ser uno de los extremos de algún intervalo de separación y llamando
 - $x = x_n$ a este punto.
 
-- Desarrollando la función $f(x)$ en serie de TAYLOR con respecto a $x = x_n$ se obtiene: $(**)$
+- Desarrollando la función $f(x)$ en serie de TAYLOR con respecto a $x = x_n$ se obtiene: $(\ast\ast)$
 
-  $$
+$$
   f(x_{n+1}) = f(x_n) + f'(x_n)h + \frac{f''(x_n)h^2}{2!} + \dots
-  $$
+$$
 
-- Si $h$ fuera el incremento particular de $x$ para el cual la serie dada por $(**)$ se redujera a cero, la cantidad $x_n + h$ sería la raíz exacta, como se muestra en la figura 5.4.
+- Si $h$ fuera el incremento particular de $x$ para el cual la serie dada por $(\ast\ast)$ se redujera a cero, la cantidad $x_n + h$ sería la raíz exacta, como se muestra en la figura 5.4.
 
-#### Figura 5.4 - Interpretación del incremento \(h\)
+#### Figura 5.4 - Interpretación del incremento $h$
+
 ![Figura 5.4](./img/figura-5-4.png)
 
 **Idea clave**
-Gráfico de la función \( y = f(x) \) con un punto \( x_n \) sobre el eje \( x \) y la raíz \( r = x_{n+1} \) marcada.
+Gráfico de la función $ y = f(x) $ con un punto $ x_n $ sobre el eje $ x $ y la raíz $ r = x_{n+1} $ marcada.
 
-Ilustra que \( h \) es el incremento que corrige \( x_n \) para aproximarse a la raíz, es decir:
+Ilustra que $ h $ es el incremento que corrige $ x_n $ para aproximarse a la raíz, es decir:
 
-\[
+$$
 x_{n+1} = x_n + h
-\]
+$$
 
 ---
 
 - Vale decir, haciendo uso de solamente los tres primeros términos de la serie dada por (5.21), resulta:
 
-  $$
+$$
   f(x_n) + h\left[f'(x_n) + \frac{f''(x_n)h}{2}\right] = 0
-  $$
+$$
 
 - Un valor aproximado de h, a partir de la expresión (5.22) y sumado a $x_n$ no proporcionará el valor exacto de la raíz, ya que fueron utilizados para su cálculo, solo los tres primeros términos de la serie infinita (5.21).
 - Pero se obtendrá una aproximación mejor de la raíz.
 - Sustituyendo el valor de h encerrado dentro del corchete por la expresión dada por NEWTON-RAPHSON, que es:
 
-  $$
+$$
   h = x_{n+1} - x_n = - \frac{f(x_n)}{f'(x_n)}
-  $$
+$$
 
 - se obtiene:
 
-  $$
+$$
 f(x_n) + h \left[ f'(x_n) + \frac{f''(x_n)h}{2} \right] = 0
 $$
 
@@ -2589,15 +2602,15 @@ $$
 
 - y despejando el valor de h, resulta:
 
-  $$
+$$
   h = x_{n+1} - x_n = - \frac{f(x_n)}{f'(x_n) - \frac{f''(x_n)f(x_n)}{2f'(x_n)}}
-  $$
+$$
 
 - finalmente, despejando $x_{n+1}$, se obtiene:
 
-  $$
+$$
   x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n) - \frac{f''(x_n)f(x_n)}{2f'(x_n)}}
-  $$
+$$
 
 - Con aplicaciones sucesivas, es posible calcular en cada paso, aproximaciones cada vez más cercanas a la raíz, con elevada velocidad de convergencia.
 - Para funciones de 2do. orden de convergencia, es el equivalente a DELTA-cuadrado de AITKEN, aplicado a ec. de 1er. orden de convergencia, para acelerar la misma.
@@ -2638,16 +2651,16 @@ Los sistemas de ecuaciones lineales se utilizan en muchos problemas de ingenier�
 
 También aparecen en aplicaciones matemáticas a las ciencias sociales y al estudio cuantitativo de problemas de administración y economía.
 
-Se tiene un sistema con `n` ecuaciones y `m` incógnitas (orden `n × m`).
+Se tiene un sistema con $n$ ecuaciones y $m$ incógnitas (orden $n \times  m$).
 
-- Si los `C_i` no son simultáneamente nulos, el sistema es **no homogéneo**, y las ecuaciones deben ser linealmente independientes (LI) para obtener soluciones únicas.
-- Si todos los `C_i` valen `0`, el sistema es **homogéneo**, y solo existen soluciones no triviales si todas las ecuaciones no son LI.
+- Si los $C_i$ no son simultáneamente nulos, el sistema es **no homogéneo**, y las ecuaciones deben ser linealmente independientes (LI) para obtener soluciones únicas.
+- Si todos los $C_i$ valen $0$, el sistema es **homogéneo**, y solo existen soluciones no triviales si todas las ecuaciones no son LI.
 
 $$
 \begin{cases}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1m}x_m = C_1 \\\\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2m}x_m = C_2 \\\\
-\vdots \\\\
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1m}x_m = C_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2m}x_m = C_2 \\
+\vdots \\
 a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nm}x_m = C_n
 \end{cases}
 $$
@@ -2662,39 +2675,39 @@ $$
 A X = C
 $$
 
-- Si a la matriz `A` se le adiciona la columna formada por `C`, se obtiene la **matriz orlada** o **ampliada**.
-- Se llama **rango** de una matriz `A` al máximo número de filas linealmente independientes de `A`.
-- Sean `r` y `r'` las características (rangos) de la matriz del sistema `A` y de la matriz orlada `A'`, respectivamente.
+- Si a la matriz $A$ se le adiciona la columna formada por $C$, se obtiene la **matriz orlada** o **ampliada**.
+- Se llama **rango** de una matriz $A$ al máximo número de filas linealmente independientes de $A$.
+- Sean $r$ y $r'$ las características (rangos) de la matriz del sistema $A$ y de la matriz orlada $A'$, respectivamente.
 
 Llamando:
 
-- `r`: característica de la matriz del sistema
-- `r'`: característica de la matriz orlada
-- `m`: número de variables del sistema
-- `n`: número de ecuaciones del sistema
+- $r$: característica de la matriz del sistema
+- $r'$: característica de la matriz orlada
+- $m$: número de variables del sistema
+- $n$: número de ecuaciones del sistema
 
 todo lo referente al comportamiento algebraico de los sistemas de ecuaciones se sintetiza en el:
 
 #### Teorema de Rouché-Frobenius
 
-> La condición necesaria y suficiente para que un sistema de `n` ecuaciones y `m` incógnitas sea **compatible**, es que la matriz `A` y la orlada `A'` tengan la misma característica.
+> La condición necesaria y suficiente para que un sistema de $n$ ecuaciones y $m$ incógnitas sea **compatible**, es que la matriz $A$ y la orlada $A'$ tengan la misma característica.
 
 Casos:
 
-- Si `r ≠ r'`: sistema **incompatible** → no tiene solución.
-- Si `r = r'` y `r = m`: sistema **determinado** → una solución.
-- Si `r = r'` y `r < m`: sistema **indeterminado** → infinitas soluciones, con grado de indeterminación `m - r`.
+- Si $r \neq  r'$: sistema **incompatible** → no tiene solución.
+- Si $r = r'$ y $r = m$: sistema **determinado** → una solución.
+- Si $r = r'$ y $r < m$: sistema **indeterminado** → infinitas soluciones, con grado de indeterminación $m - r$.
 
-- Si `r > m` (caso no contemplado en el teorema de Rouché-Frobenius), el sistema es **sobredeterminado**.
+- Si $r > m$ (caso no contemplado en el teorema de Rouché-Frobenius), el sistema es **sobredeterminado**.
 
 Los principales métodos algebraicos para resolver ecuaciones lineales simultáneas son:
 
 - **A)** método de eliminación de incógnitas mediante combinaciones lineales (**Gauss**)
 - **B)** utilización de determinantes (**regla de Cramer**)
 
-La regla de Cramer, calculando determinantes por medio de menores, requiere `(n - 1)(n + 1)!` productos, por lo que resulta poco práctica para resolver sistemas grandes.
+La regla de Cramer, calculando determinantes por medio de menores, requiere $(n - 1)(n + 1)!$ productos, por lo que resulta poco práctica para resolver sistemas grandes.
 
-Supondremos a continuación que `A` es una matriz de `n × m`, formada por ecuaciones linealmente independientes.
+Supondremos a continuación que $A$ es una matriz de $n \times  m$, formada por ecuaciones linealmente independientes.
 
 Para resolver numéricamente este tipo de sistemas se utilizan:
 
@@ -2712,7 +2725,7 @@ Los métodos iterativos son estrictamente numéricos y dan una solución aproxim
 
 #### Método de eliminación de Gauss
 
-Dado un conjunto de `n` ecuaciones con `n` incógnitas, linealmente independientes, se trata de lograr un sistema triangular equivalente, que se resuelve con facilidad mediante la denominada **sustitución inversa**.
+Dado un conjunto de $n$ ecuaciones con $n$ incógnitas, linealmente independientes, se trata de lograr un sistema triangular equivalente, que se resuelve con facilidad mediante la denominada **sustitución inversa**.
 
 La técnica se basa en dos fases:
 
@@ -2723,9 +2736,9 @@ El esquema de Gauss se inicia reduciendo un conjunto de ecuaciones simultáneas:
 
 $$
 \begin{cases}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1m}x_m = C_1 \\\\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2m}x_m = C_2 \\\\
-\vdots \\\\
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1m}x_m = C_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2m}x_m = C_2 \\
+\vdots \\
 a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nm}x_m = C_n
 \end{cases}
 $$
@@ -2734,9 +2747,9 @@ a un sistema triangular de la forma:
 
 $$
 \begin{cases}
-a_{11}^{(1)}x_1 + a_{12}^{(1)}x_2 + \cdots + a_{1n}^{(1)}x_n = C_1^{(1)} \\\\
-a_{22}^{(2)}x_2 + a_{23}^{(2)}x_3 + \cdots + a_{2n}^{(2)}x_n = C_2^{(2)} \\\\
-\vdots \\\\
+a_{11}^{(1)}x_1 + a_{12}^{(1)}x_2 + \cdots + a_{1n}^{(1)}x_n = C_1^{(1)} \\
+a_{22}^{(2)}x_2 + a_{23}^{(2)}x_3 + \cdots + a_{2n}^{(2)}x_n = C_2^{(2)} \\
+\vdots \\
 a_{nn}^{(n-1)}x_n = C_n^{(n-1)}
 \end{cases}
 $$
@@ -2745,15 +2758,15 @@ Los superíndices indican los nuevos coeficientes que se forman en el proceso de
 
 1. Eliminación de las incógnitas
 
-El paso inicial será eliminar la primera incógnita `x_1` desde la segunda hasta la `n`-ésima ecuación.
+El paso inicial será eliminar la primera incógnita $x_1$ desde la segunda hasta la $n$-ésima ecuación.
 
-Para ello, se multiplica la ecuación inicial por `a_{21}/a_{11}`.
+Para ello, se multiplica la ecuación inicial por $a_{21}/a_{11}$.
 
-El proceso de multiplicación del primer renglón por `a_{21}/a_{11}` es equivalente a dividirla entre `a_{11}` y multiplicarla por `a_{21}`.
+El proceso de multiplicación del primer renglón por $a_{21}/a_{11}$ es equivalente a dividirla entre $a_{11}$ y multiplicarla por $a_{21}$.
 
 Luego se resta esa ecuación transformada de la segunda fila, obteniéndose una nueva ecuación con coeficientes modificados. El superíndice prima indica que los elementos han cambiado sus valores originales.
 
-El procedimiento continúa con las ecuaciones restantes; por ejemplo, la primera ecuación se puede multiplicar por `a_{31}/a_{11}` y el resultado se resta de la tercera ecuación.
+El procedimiento continúa con las ecuaciones restantes; por ejemplo, la primera ecuación se puede multiplicar por $a_{31}/a_{11}$ y el resultado se resta de la tercera ecuación.
 
 El procedimiento se repite y da como resultado un sistema modificado.
 
@@ -2761,13 +2774,13 @@ El procedimiento se repite y da como resultado un sistema modificado.
 - El coeficiente de la incógnita que se va a eliminar en las ecuaciones que la siguen se denomina **coeficiente pivote** o **elemento pivote**.
 - Luego se repite el procedimiento para eliminar la segunda incógnita.
 
-2. Aplicando un procedimiento similar a todas las ecuaciones con coeficientes `a'_{ij}`, se elimina `x_2` desde la tercera ecuación en adelante.
+2. Aplicando un procedimiento similar a todas las ecuaciones con coeficientes $a'_{ij}$, se elimina $x_2$ desde la tercera ecuación en adelante.
 
 Este procedimiento, utilizando diferentes ecuaciones pivote, se continúa hasta que el conjunto original haya sido reducido a uno de forma triangular.
 
-3. Una vez obtenido el sistema triangular, la última ecuación suministra directamente el valor de `x_n`.
+3. Una vez obtenido el sistema triangular, la última ecuación suministra directamente el valor de $x_n$.
 
-El valor obtenido se sustituye en la penúltima ecuación para obtener el valor de `x_{n-1}`, y así sucesivamente.
+El valor obtenido se sustituye en la penúltima ecuación para obtener el valor de $x_{n-1}$, y así sucesivamente.
 
 Este procedimiento es el denominado **sustitución inversa**.
 
@@ -2784,10 +2797,10 @@ El tiempo necesario para determinar los cálculos, así como el subsecuente erro
 
 En una computadora, el tiempo que se tarda en realizar divisiones y multiplicaciones es más o menos igual, y resulta mayor que el de sumas y restas.
 
-Para valores grandes de `n`:
+Para valores grandes de $n$:
 
-- el número total de multiplicaciones y divisiones es aproximadamente `n^3 / 3`
-- de modo similar, el número total de adiciones y sustracciones también crece aproximadamente con `n^3`
+- el número total de multiplicaciones y divisiones es aproximadamente $n^3 / 3$
+- de modo similar, el número total de adiciones y sustracciones también crece aproximadamente con $n^3$
 
 **Tabla de crecimiento**
 
@@ -2804,8 +2817,8 @@ Resolver el sistema:
 
 $$
 \begin{cases}
-2x_1 + 2x_2 - 5x_3 = 13 \\\\
-2x_1 + 3x_2 + 4x_3 = 20 \\\\
+2x_1 + 2x_2 - 5x_3 = 13 \\
+2x_1 + 3x_2 + 4x_3 = 20 \\
 3x_1 - x_2 + 3x_3 = 10
 \end{cases}
 $$
@@ -2818,33 +2831,33 @@ $$
 x_1 = 1,\qquad x_2 = 2,\qquad x_3 = 3
 $$
 
-**Eliminación de Gauss — Resolución del sistema lineal `n × n`**
+**Eliminación de Gauss — Resolución del sistema lineal $n \times  n$**
 
 Entrada
-- número de incógnitas y de ecuaciones `n`
-- matriz ampliada `A = (a_{ij})`, con `1 \le i \le n` y `1 \le j \le n+1`
+- número de incógnitas y de ecuaciones $n$
+- matriz ampliada $A = (a_{ij})$, con $1 \le i \le n$ y $1 \le j \le n+1$
 
 Salida
 - soluciones, o mensaje: **“no tiene solución única”**
 
 Algoritmo
 
-1. Para `i = 1, ..., n-1`, realizar los pasos 2 a 4.
-2. Sea `p` el entero más pequeño con `i \le p \le n` y `a_{pi} \ne 0`.
-3. Si no puede encontrarse tal `p`, entonces: **OUTPUT("no existe solución única")** y detener.
-4. Si `p \ne i`, intercambiar `E_p \leftrightarrow E_i`.
-5. Para `j = i+1, ..., n`, realizar pasos 5 y 6.
-6. Sea `m_{ji} = a_{ji} / a_{ii}`.
-7. Realizar `E_j - m_{ji}E_i \to E_j`.
-8. Si `a_{nn} = 0`, entonces: **OUTPUT("no existe solución única")** y detener.
-9. Sea `x_n = a_{n,n+1} / a_{nn}`.
-10. Para `i = n-1, ..., 1`, sea:
+1. Para $i = 1, \dots , n-1$, realizar los pasos 2 a 4.
+2. Sea $p$ el entero más pequeño con $i \le p \le n$ y $a_{pi} \ne 0$.
+3. Si no puede encontrarse tal $p$, entonces: **OUTPUT("no existe solución única")** y detener.
+4. Si $p \ne i$, intercambiar $E_p \leftrightarrow E_i$.
+5. Para $j = i+1, \dots , n$, realizar pasos 5 y 6.
+6. Sea $m_{ji} = a_{ji} / a_{ii}$.
+7. Realizar $E_j - m_{ji}E_i \to E_j$.
+8. Si $a_{nn} = 0$, entonces: **OUTPUT("no existe solución única")** y detener.
+9. Sea $x_n = a_{n,n+1} / a_{nn}$.
+10. Para $i = n-1, \dots , 1$, sea:
 
 $$
 x_i = \frac{1}{a_{ii}}\left(a_{i,n+1} - \sum_{j=i+1}^{n} a_{ij}x_j\right)
 $$
 
-11. Output: `(x_1, ..., x_n)`.
+11. Output: $(x_1, \dots , x_n)$.
 
 **Estrategias de pivoteo**
 
@@ -2856,7 +2869,7 @@ $$
 E_k \leftrightarrow E_p
 $$
 
-donde `p` es el entero más pequeño mayor que `k` tal que el correspondiente elemento pivote no sea cero.
+donde $p$ es el entero más pequeño mayor que $k$ tal que el correspondiente elemento pivote no sea cero.
 
 Para reducir el error de redondeo, frecuentemente es necesario realizar intercambios de renglones aun cuando los elementos pivote no sean nulos.
 
@@ -2878,13 +2891,13 @@ para los índices correspondientes del proceso.
 
 donde:
 
-- `a`: elemento de la matriz orlada
-- `a'`: elemento de la matriz transformada
-- `i`: número de fila
-- `j`: número de columna
-- `k`: identificación de la fila pivote
-- `n`: cantidad de filas
-- `m`: cantidad de columnas de la matriz orlada (`n + 1`)
+- $a$: elemento de la matriz orlada
+- $a'$: elemento de la matriz transformada
+- $i$: número de fila
+- $j$: número de columna
+- $k$: identificación de la fila pivote
+- $n$: cantidad de filas
+- $m$: cantidad de columnas de la matriz orlada ($n + 1$)
 
 Aplicando reiteradamente el proceso se llega a obtener un sistema triangular.
 
@@ -2894,7 +2907,7 @@ $$
 x_n = \frac{a_{nm}}{a_{nn}}
 $$
 
-y para `i = n-1, n-2, ..., 1`:
+y para $i = n-1, n-2, \dots , 1$:
 
 $$
 x_i = \frac{1}{a_{ii}}\left(a_{im} - \sum_{j=i+1}^{n} a_{ij}x_j\right)
@@ -2923,14 +2936,14 @@ Se distingue del método de Gauss en que, cuando se elimina una incógnita, esta
 
 Los pasos descriptos se pueden realizar utilizando fórmulas para determinar todos los elementos de la nueva matriz.
 
-Si `a` son los elementos de la matriz procesada y `b` los de la matriz resultante, se actualizan las filas y columnas según las expresiones indicadas en el apunte.
+Si $a$ son los elementos de la matriz procesada y $b$ los de la matriz resultante, se actualizan las filas y columnas según las expresiones indicadas en el apunte.
 
 **Precauciones**
 
-Si el elemento pivote `a_{11} = 0`, el programa debería incluir la lógica necesaria para verificar que el pivote en cada una de las matrices sea diferente de cero y efectuar, consecuentemente, el intercambio de filas si fuese necesario.
+Si el elemento pivote $a_{11} = 0$, el programa debería incluir la lógica necesaria para verificar que el pivote en cada una de las matrices sea diferente de cero y efectuar, consecuentemente, el intercambio de filas si fuese necesario.
 
 El intercambio de renglones no alterará el orden de las incógnitas en la matriz columna final.
-Cuando `a_{11}` sea muy pequeño en comparación con el orden de magnitud general de los otros elementos de la columna, su utilización podría disminuir la precisión.
+Cuando $a_{11}$ sea muy pequeño en comparación con el orden de magnitud general de los otros elementos de la columna, su utilización podría disminuir la precisión.
 Es conveniente agregar al programa la codificación que permita comparar los valores absolutos de los coeficientes de la primera columna y poner como ecuación pivote la que tenga el mayor coeficiente en la primera incógnita, en valor absoluto.
 
 ### Comparación de los métodos
@@ -2949,8 +2962,8 @@ Resolver mediante el método de Gauss-Jordan el sistema:
 
 $$
 \begin{cases}
-2x_1 + 2x_2 - 5x_3 = 13 \\\\
-2x_1 + 3x_2 + 4x_3 = 20 \\\\
+2x_1 + 2x_2 - 5x_3 = 13 \\
+2x_1 + 3x_2 + 4x_3 = 20 \\
 3x_1 - x_2 + 3x_3 = 10
 \end{cases}
 $$
@@ -2977,15 +2990,15 @@ Es un método clasificado como **iterativo**.
 - Adecuado para resolver sistemas con centenares de ecuaciones e incógnitas, ya que reduce el número de operaciones aritméticas y los efectos de la propagación de errores en las mismas.
 - En sistemas con altos porcentajes de 0, son eficientes tanto en almacenamiento de computadora como en el tiempo de cálculo.
 
-**Definición:** Una matriz cuadrada \(A\) recibe la denominación de **diagonalmente dominante** si:
+**Definición:** Una matriz cuadrada $A$ recibe la denominación de **diagonalmente dominante** si:
 
-\[
+$$
 a_{ii} \ge \sum_{j \ne i} a_{ij}, \quad \forall i
-\]
+$$
 
-con desigualdad estricta, para por lo menos una de las \(i\).
+con desigualdad estricta, para por lo menos una de las $i$.
 
-La condición para que el método de Gauss-Seidel, aplicado a un sistema de ecuaciones lineales simultáneas, sea convergente, es que la matriz \(A\), de coeficientes del sistema, debe ser **diagonalmente dominante**.
+La condición para que el método de Gauss-Seidel, aplicado a un sistema de ecuaciones lineales simultáneas, sea convergente, es que la matriz $A$, de coeficientes del sistema, debe ser **diagonalmente dominante**.
 
 Un sistema diagonalmente dominante es condición **suficiente** para asegurar la convergencia, pero no es condición **necesaria**.
 
@@ -2995,43 +3008,43 @@ Un sistema diagonalmente dominante es condición **suficiente** para asegurar la
 2. Partiendo de la primera ecuación, determinar un nuevo valor para la incógnita dominante, utilizando para las otras incógnitas los valores supuestos según lo descripto en 1.
 3. Pasar a la segunda ecuación y calcular el valor de la incógnita dominante, utilizando para ello el ya calculado en el paso anterior y los valores supuestos en las otras incógnitas.
 4. Reiterar el procedimiento descripto con todas las demás ecuaciones, siempre para la incógnita dominante, utilizando los últimos valores calculados. Completado este paso se dice que se ha concluido una **iteración**.
-5. Iterar los pasos 2, 3 y 4 hasta que el valor de cada incógnita difiera del valor respectivo obtenido en la iteración previa, en una cantidad menor que un \(E\) positivo y arbitrario previamente fijado.
+5. Iterar los pasos 2, 3 y 4 hasta que el valor de cada incógnita difiera del valor respectivo obtenido en la iteración previa, en una cantidad menor que un $E$ positivo y arbitrario previamente fijado.
 
 #### Algoritmo de Gauss-Seidel
 
 **Entrada**
-- Número de ecuaciones e incógnitas \( n \).
-- Elementos de la matriz \( A \) (\( a_{ij} \)).
-- Vector \( b \) (\( b_i \)).
-- Aproximación inicial \( x^{(0)} \).
-- Tolerancia \( TOL \).
-- Número máximo de iteraciones \( N \).
+- Número de ecuaciones e incógnitas $ n $.
+- Elementos de la matriz $ A $ ($ a_{ij} $).
+- Vector $ b $ ($ b_i $).
+- Aproximación inicial $ x^{(0)} $.
+- Tolerancia $ TOL $.
+- Número máximo de iteraciones $ N $.
 
 **Salida**
-- Solución aproximada \( x_1, \dots, x_n \).
+- Solución aproximada $ x_1, \dots, x_n $.
 - Mensaje si se excede el número máximo de iteraciones.
 
 **Pasos**
-1. Inicializar \( k = 1 \).
-2. Mientras \( k \leq N \):
-   3. Para \( i = 1, \dots, n \):
-      \[
+1. Inicializar $ k = 1 $.
+2. Mientras $ k \leq N $:
+   3. Para $ i = 1, \dots, n $:
+$$
       x_i = \frac{-\sum_{j=1}^{i-1} a_{ij} x_j - \sum_{j=i+1}^{n} a_{ij} x0_j + b_i}{a_{ii}}
-      \]
-   4. Si \( \|x - x0\| < TOL \), salir con la solución \( (x_1, \dots, x_n) \).
-   5. Incrementar \( k = k + 1 \).
-   6. Actualizar \( x0_i = x_i \).
-7. Si se excede \( N \), salir con mensaje de "numero máximo de iteraciones excedido". PARAR.
+$$
+   4. Si $ \|x - x0\| < TOL $, salir con la solución $ (x_1, \dots, x_n) $.
+   5. Incrementar $ k = k + 1 $.
+   6. Actualizar $ x0_i = x_i $.
+7. Si se excede $ N $, salir con mensaje de "numero máximo de iteraciones excedido". PARAR.
 
 #### Consideraciones Adicionales sobre el Método de Gauss-Seidel
 
-En el **Paso 3 del algoritmo de Gauss-Seidel**, se requiere que cada elemento diagonal \( a_{ii} \) de la matriz \( A \) sea distinto de cero. Esto se debe a que, durante el proceso iterativo, se divide por \( a_{ii} \) para calcular el nuevo valor de cada incógnita.
+En el **Paso 3 del algoritmo de Gauss-Seidel**, se requiere que cada elemento diagonal $ a_{ii} $ de la matriz $ A $ sea distinto de cero. Esto se debe a que, durante el proceso iterativo, se divide por $ a_{ii} $ para calcular el nuevo valor de cada incógnita.
 
-- **Si \( a_{ii} = 0 \) y el sistema es no singular:**
-  - Es posible **reordenar las ecuaciones** del sistema para que ningún \( a_{ii} \) sea cero.
+- **Si $ a_{ii} = 0 $ y el sistema es no singular:**
+  - Es posible **reordenar las ecuaciones** del sistema para que ningún $ a_{ii} $ sea cero.
   - Esto garantiza que el método pueda aplicarse sin problemas.
 
-Para **acelerar la convergencia** del método de Gauss-Seidel, los elementos diagonales \( a_{ii} \) deberían ser:
+Para **acelerar la convergencia** del método de Gauss-Seidel, los elementos diagonales $ a_{ii} $ deberían ser:
 - **Lo más grandes posible** en valor absoluto, en comparación con los demás elementos de su fila.
 - Esto hace que la matriz sea **más diagonalmente dominante**, mejorando la estabilidad y velocidad de convergencia del método.
 
@@ -3040,34 +3053,34 @@ Para **acelerar la convergencia** del método de Gauss-Seidel, los elementos dia
 #### Ejemplo
 
 Sistema de Ecuaciones
-\[
+$$
 \begin{cases}
 2x_1 + 10x_2 + x_3 = 51 \\
 x_1 + 2x_2 + 10x_3 = 61 \\
 10x_1 + x_2 + 2x_3 = 44
 \end{cases}
-\]
+$$
 
 Iteraciones
-1. **Primera iteración** (valores iniciales \( x_1 = x_2 = x_3 = 0 \)):
-   \[
+1. **Primera iteración** (valores iniciales $ x_1 = x_2 = x_3 = 0 $):
+$$
    x_2 = 5.1, \quad x_3 = 5.08, \quad x_1 = 2.874
-   \]
+$$
 
 2. **Segunda iteración**:
-   \[
+$$
    x_2 = 4.0172, \quad x_3 = 5.00916, \quad x_1 = 2.996448
-   \]
+$$
 
 3. **Tercera iteración**:
-   \[
+$$
    x_1 = 2.999941296, \quad x_2 = 3.999794400, \quad x_3 = 5.000396320
-   \]
+$$
 
-**Criterio de parada:** Las diferencias entre iteraciones son menores que \( E = 0.02 \).
+**Criterio de parada:** Las diferencias entre iteraciones son menores que $ E = 0.02 $.
 
 Conclusión
-La precisión no depende exclusivamente del valor de \(E\), sino también de la velocidad de convergencia; es decir, que las diferencias de los resultados obtenidos en dos iteraciones consecutivas pueden diferir en menos de un \(E\), aun cuando estos resultados se encuentren lejos de los verdaderos valores de las incógnitas.
+La precisión no depende exclusivamente del valor de $E$, sino también de la velocidad de convergencia; es decir, que las diferencias de los resultados obtenidos en dos iteraciones consecutivas pueden diferir en menos de un $E$, aun cuando estos resultados se encuentren lejos de los verdaderos valores de las incógnitas.
 
 Para obtener mayor seguridad y precisión se recomienda utilizar las ecuaciones de error para concluir la aproximación de las incógnitas.
 
@@ -3077,84 +3090,84 @@ Para obtener mayor seguridad y precisión se recomienda utilizar las ecuaciones 
 
 La eliminación de Gauss resuelve de forma satisfactoria sistemas de la forma:
 
-\[
+$$
 A \cdot x = b
-\]
+$$
 
-Resulta ineficiente cuando deben resolverse ecuaciones con los mismos coeficientes \(A\), pero con diferentes constantes del lado derecho \(b\).
+Resulta ineficiente cuando deben resolverse ecuaciones con los mismos coeficientes $A$, pero con diferentes constantes del lado derecho $b$.
 
-Los métodos de descomposición LU separan el tiempo usado en las eliminaciones para la matriz \(A\) de las manipulaciones en el lado derecho \(b\).
+Los métodos de descomposición LU separan el tiempo usado en las eliminaciones para la matriz $A$ de las manipulaciones en el lado derecho $b$.
 
-Una vez que \(A\) se ha descompuesto, los múltiples vectores del lado derecho \(b\) se pueden evaluar de manera eficiente.
+Una vez que $A$ se ha descompuesto, los múltiples vectores del lado derecho $b$ se pueden evaluar de manera eficiente.
 
 ---
 
-Suponga que la matriz \(A\) es una matriz \(m \times n\) y se puede escribir como el producto de dos matrices:
+Suponga que la matriz $A$ es una matriz $m \times n$ y se puede escribir como el producto de dos matrices:
 
-\[
+$$
 A = L U
-\]
+$$
 
-donde \(L\) es una matriz triangular inferior con números 1 en la diagonal y \(U\) es una matriz triangular superior.
+donde $L$ es una matriz triangular inferior con números 1 en la diagonal y $U$ es una matriz triangular superior.
 
 Entonces, para resolver el sistema:
 
-\[
+$$
 A x = b
-\]
+$$
 
 escribimos:
 
-\[
+$$
 A x = (L U)x = L(Ux)
-\]
+$$
 
 Una posible estrategia de solución consiste en tomar:
 
-\[
+$$
 y = Ux
-\]
+$$
 
-y resolver para \(y\):
+y resolver para $y$:
 
-\[
+$$
 Ly = b
-\]
+$$
 
-Como la matriz \(L\) es triangular inferior, este sistema puede resolverse mediante sustitución hacia adelante. Una vez encontrados los valores de \(y\), las incógnitas del sistema inicial se obtienen despejando \(x\) de:
+Como la matriz $L$ es triangular inferior, este sistema puede resolverse mediante sustitución hacia adelante. Una vez encontrados los valores de $y$, las incógnitas del sistema inicial se obtienen despejando $x$ de:
 
-\[
+$$
 Ux = y
-\]
+$$
 
 #### Pasos en la descomposición LU
 
 1. **Paso de descomposición LU:**
-   \(A\) se factoriza o “descompone” en las matrices triangulares inferior \(L\) y superior \(U\).
+   $A$ se factoriza o “descompone” en las matrices triangulares inferior $L$ y superior $U$.
 
 2. **Paso de la sustitución:**
-   \(L\) y \(U\) se usan para determinar una solución \(\{X\}\) para un lado derecho \(b\). Este paso se divide en dos:
-   - Primero, la ecuación \(Ly=b\) se usa para generar un vector intermedio \(y\) mediante sustitución hacia adelante.
-   - Después, el resultado se sustituye en la ecuación \(Ux=y\), que se resuelve por sustitución hacia atrás para \(x\).
+   $L$ y $U$ se usan para determinar una solución $\{X\}$ para un lado derecho $b$. Este paso se divide en dos:
+   - Primero, la ecuación $Ly=b$ se usa para generar un vector intermedio $y$ mediante sustitución hacia adelante.
+   - Después, el resultado se sustituye en la ecuación $Ux=y$, que se resuelve por sustitución hacia atrás para $x$.
 
-#### Observaciones sobre \(U\)
+#### Observaciones sobre $U$
 
 Usando la descomposición LU como versión de la eliminación de Gauss:
 
-\[
+$$
 U =
 \begin{bmatrix}
 a_{11} & a_{12} & a_{13} \\
 0 & a'_{22} & a'_{23} \\
 0 & 0 & a''_{33}
 \end{bmatrix}
-\]
+$$
 
-Se observa fácilmente que \(U\) es el resultado directo de la eliminación hacia adelante.
+Se observa fácilmente que $U$ es el resultado directo de la eliminación hacia adelante.
 
 Para un sistema de tres ecuaciones:
 
-\[
+$$
 \begin{bmatrix}
 a_{11} & a_{12} & a_{13} \\
 a_{21} & a_{22} & a_{23} \\
@@ -3167,42 +3180,42 @@ x_1 \\ x_2 \\ x_3
 \begin{bmatrix}
 b_1 \\ b_2 \\ b_3
 \end{bmatrix}
-\]
+$$
 
 El primer paso en la eliminación de Gauss consiste en multiplicar el renglón 1 por el factor:
 
-\[
+$$
 f_{21} = \frac{a_{21}}{a_{11}}
-\]
+$$
 
-y restar el resultado al segundo renglón para eliminar \(a_{21}\).
+y restar el resultado al segundo renglón para eliminar $a_{21}$.
 
 De forma similar, el renglón 1 se multiplica por:
 
-\[
+$$
 f_{31} = \frac{a_{31}}{a_{11}}
-\]
+$$
 
-y el resultado se resta al tercer renglón para eliminar \(a_{31}\).
+y el resultado se resta al tercer renglón para eliminar $a_{31}$.
 
 El paso final es multiplicar el segundo renglón modificado por:
 
-\[
+$$
 f_{32} = \frac{a'_{32}}{a'_{22}}
-\]
+$$
 
-y restar el resultado al tercer renglón para eliminar \(a'_{32}\).
+y restar el resultado al tercer renglón para eliminar $a'_{32}$.
 
 De ello resulta:
 
-\[
+$$
 L =
 \begin{bmatrix}
 1 & 0 & 0 \\
 f_{21} & 1 & 0 \\
 f_{31} & f_{32} & 1
 \end{bmatrix}
-\]
+$$
 
 ---
 
@@ -3210,25 +3223,25 @@ f_{31} & f_{32} & 1
 
 Resolver el siguiente sistema de ecuaciones utilizando la descomposición LU:
 
-\[
+$$
 \begin{cases}
 4x_1 - 2x_2 + x_3 = 11 \\
 20x_1 - 7x_2 + 12x_3 = 70 \\
 -8x_1 + 13x_2 + 17x_3 = 17
 \end{cases}
-\]
+$$
 
 De forma matricial:
 
-\[
+$$
 Ax = B
-\]
+$$
 
-Obtención de \(U\)
+Obtención de $U$
 
 Aplicando eliminación de Gauss obtenemos:
 
-\[
+$$
 \begin{bmatrix}
 4 & -2 & 1 \\
 20 & -7 & 12 \\
@@ -3247,28 +3260,28 @@ Aplicando eliminación de Gauss obtenemos:
 0 & 0 & -2
 \end{bmatrix}
 \ = U
-\]
+$$
 
-Luego, para \(L\):
+Luego, para $L$:
 
-\[
+$$
 f_{21} = \frac{20}{4} = 5, \qquad f_{31} = \frac{-8}{4} = -2, \qquad f_{32} = \frac{9}{3} = 3
-\]
+$$
 
 Por tanto:
 
-\[
+$$
 L =
 \begin{bmatrix}
 1 & 0 & 0 \\
 5 & 1 & 0 \\
 -2 & 3 & 1
 \end{bmatrix}
-\]
+$$
 
-Resolver \(Ly = b\)
+Resolver $Ly = b$
 
-\[
+$$
 \begin{bmatrix}
 1 & 0 & 0 \\
 5 & 1 & 0 \\
@@ -3281,17 +3294,17 @@ y_1 \\ y_2 \\ y_3
 \begin{bmatrix}
 11 \\ 70 \\ 17
 \end{bmatrix}
-\]
+$$
 
 De donde:
 
-\[
+$$
 y_1 = 11,\qquad y_2 = 15,\qquad y_3 = -6
-\]
+$$
 
-Resolver \(Ux = y\)
+Resolver $Ux = y$
 
-\[
+$$
 \begin{bmatrix}
 4 & -2 & 1 \\
 0 & 3 & 7 \\
@@ -3304,19 +3317,19 @@ x_1 \\ x_2 \\ x_3
 \begin{bmatrix}
 11 \\ 15 \\ -6
 \end{bmatrix}
-\]
+$$
 
 Entonces:
 
-\[
+$$
 x_3 = 3,\qquad x_2 = -2,\qquad x_1 = 1
-\]
+$$
 
 ---
 
 Se considerará la solución de ecuaciones algebraicas lineales simultáneas homogéneas, que tienen la forma:
 
-\[
+$$
 \begin{cases}
 a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0 \\
 a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0 \\
@@ -3324,48 +3337,48 @@ a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0 \\
 a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = 0
 \end{cases}
 \tag{6.20}
-\]
+$$
 
 El sistema puede escribirse en notación matricial como:
 
-\[
+$$
 A \cdot X = 0
 \tag{6.21}
-\]
+$$
 
 ---
 
 ### Generalidades
 
 - Un conjunto de ecuaciones homogéneas como el (6.20) tiene siempre una solución, ya que la matriz ampliada y la del sistema presentan el mismo rango.
-- Si el rango \(r\) de la matriz de coeficientes del conjunto de ecuaciones es igual al orden \(n\), el sistema tiene una única solución, que es la denominada **solución trivial**:
+- Si el rango $r$ de la matriz de coeficientes del conjunto de ecuaciones es igual al orden $n$, el sistema tiene una única solución, que es la denominada **solución trivial**:
 
-\[
+$$
 x_1 = x_2 = \cdots = x_n = 0
-\]
+$$
 
 - Para este conjunto de ecuaciones, todas las ecuaciones del sistema son linealmente independientes, por lo tanto:
 
-\[
+$$
 \det A \ne 0
-\]
+$$
 
-- Existen soluciones **no triviales** si, y solo si, \(r < n\).
+- Existen soluciones **no triviales** si, y solo si, $r < n$.
 - Entonces:
 
-\[
+$$
 \det A = 0
-\]
+$$
 
-- \(r\): número de ecuaciones linealmente independientes.
-- \(n-r\): ecuaciones linealmente dependientes.
+- $r$: número de ecuaciones linealmente independientes.
+- $n-r$: ecuaciones linealmente dependientes.
 - Para este tipo de soluciones, no se encuentran valores únicos para las incógnitas. Se establecen relaciones entre las incógnitas.
-- Cualquier combinación de valores de \(x_i\) que satisface estas relaciones constituye una solución.
+- Cualquier combinación de valores de $x_i$ que satisface estas relaciones constituye una solución.
 - Los problemas más importantes que se plantean en la aplicación de ecuaciones homogéneas son aquellos denominados de **valores característicos**.
 
 Cuando se trata de escribir un modelo matemático, las ecuaciones pueden expresarse, de manera cartesiana, en la forma:
 
-\[
+$$
 \begin{cases}
 (a_{11}-\lambda)x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0 \\
 a_{21}x_1 + (a_{22}-\lambda)x_2 + \cdots + a_{2n}x_n = 0 \\
@@ -3373,107 +3386,107 @@ a_{21}x_1 + (a_{22}-\lambda)x_2 + \cdots + a_{2n}x_n = 0 \\
 a_{n1}x_1 + a_{n2}x_2 + \cdots + (a_{nn}-\lambda)x_n = 0
 \end{cases}
 \tag{6.22}
-\]
+$$
 
-donde los \(a_{ij}\) son reales, las \(x_i\) son las variables del sistema y \(\lambda\) es un parámetro particular del sistema que tiene valores, en general, desconocidos.
+donde los $a_{ij}$ son reales, las $x_i$ son las variables del sistema y $\lambda$ es un parámetro particular del sistema que tiene valores, en general, desconocidos.
 
 En notación matricial:
 
-\[
+$$
 (A - \lambda I)X = 0
 \tag{6.23}
-\]
+$$
 
-- Al incorporar la matriz identidad \(I\), se puede utilizar a \((A - \lambda I)\) como matriz de coeficientes.
-- La matriz columna \(X\) recibe el nombre de **vector característico**, **autovector** o **eigenvector**; siendo las \(x_i\) las componentes de dicho vector.
-- Los valores que se obtienen para \(\lambda\) se conocen como **valores característicos**, **autovalores** o **eigenvalores** de la matriz \(A\).
+- Al incorporar la matriz identidad $I$, se puede utilizar a $(A - \lambda I)$ como matriz de coeficientes.
+- La matriz columna $X$ recibe el nombre de **vector característico**, **autovector** o **eigenvector**; siendo las $x_i$ las componentes de dicho vector.
+- Los valores que se obtienen para $\lambda$ se conocen como **valores característicos**, **autovalores** o **eigenvalores** de la matriz $A$.
 
-Dado que \(\lambda\) aparece como incógnita, es posible hacer que el determinante de dicha matriz sea igual a cero. Llamando \(D\) a este determinante:
+Dado que $\lambda$ aparece como incógnita, es posible hacer que el determinante de dicha matriz sea igual a cero. Llamando $D$ a este determinante:
 
-\[
+$$
 D = |A - \lambda I| = 0
 \tag{6.24}
-\]
+$$
 
-Encontrando valores para \(\lambda\) que hagan \(D = 0\), se tendrá la solución.
+Encontrando valores para $\lambda$ que hagan $D = 0$, se tendrá la solución.
 
-El desarrollo algebraico del determinante \(D\) produce un polinomio de grado \(n\), de la forma:
+El desarrollo algebraico del determinante $D$ produce un polinomio de grado $n$, de la forma:
 
-\[
+$$
 \lambda^n + p_1\lambda^{n-1} + p_2\lambda^{n-2} + \cdots + p_n = 0
 \tag{6.25}
-\]
+$$
 
 - Este polinomio recibe el nombre de **polinomio característico** o **ecuación característica**.
-- Es necesario resolver el polinomio y obtener los \(\lambda\) que hacen \(D = 0\).
-- Las \(n\) raíces reciben el nombre de **autovalores** o **valores característicos**.
-- Los valores característicos se sustituyen, uno a la vez, en el conjunto original de ecuaciones para obtener un sistema correspondiente de relaciones entre las incógnitas \(x\) para cada sustitución.
+- Es necesario resolver el polinomio y obtener los $\lambda$ que hacen $D = 0$.
+- Las $n$ raíces reciben el nombre de **autovalores** o **valores característicos**.
+- Los valores característicos se sustituyen, uno a la vez, en el conjunto original de ecuaciones para obtener un sistema correspondiente de relaciones entre las incógnitas $x$ para cada sustitución.
 
-Las relaciones dependerán del rango \(r\) de la matriz \((A - \lambda I)\).
+Las relaciones dependerán del rango $r$ de la matriz $(A - \lambda I)$.
 
-- Si \(r = n - 1\), las relaciones serán tales que la hipótesis de un valor para una incógnita producirá un valor correspondiente para cada una de las ecuaciones restantes.
-- Si \(r = n - 2\), las relaciones serán tales que se tendrán que suponer los valores de dos incógnitas para poder obtener un valor correspondiente a cada una de las incógnitas restantes.
+- Si $r = n - 1$, las relaciones serán tales que la hipótesis de un valor para una incógnita producirá un valor correspondiente para cada una de las ecuaciones restantes.
+- Si $r = n - 2$, las relaciones serán tales que se tendrán que suponer los valores de dos incógnitas para poder obtener un valor correspondiente a cada una de las incógnitas restantes.
 
-Cuando \(n\) es relativamente pequeño (2 o 3), el desarrollo de determinantes por menores para obtener el polinomio característico es sencillo, y la posterior determinación de raíces no presenta grandes dificultades.
+Cuando $n$ es relativamente pequeño (2 o 3), el desarrollo de determinantes por menores para obtener el polinomio característico es sencillo, y la posterior determinación de raíces no presenta grandes dificultades.
 
-- Para calcular el determinante de una matriz de \(n \times n\), se requieren del orden de \(n!\) multiplicaciones/divisiones y sumas/restas.
-- Incluso con valores de \(n\) relativamente pequeños, la cantidad de cálculos se torna inmanejable.
-- Cuando \(n\) es grande, esta determinación se vuelve muy difícil, si no imposible, y se debe apelar a algún procedimiento numérico.
+- Para calcular el determinante de una matriz de $n \times n$, se requieren del orden de $n!$ multiplicaciones/divisiones y sumas/restas.
+- Incluso con valores de $n$ relativamente pequeños, la cantidad de cálculos se torna inmanejable.
+- Cuando $n$ es grande, esta determinación se vuelve muy difícil, si no imposible, y se debe apelar a algún procedimiento numérico.
 
 ---
 
 ### Método de Faddeev-LeVerrier
 
-Este método constituye una técnica eficiente para generar los coeficientes \(p_i\) del polinomio característico (6.25), tanto cuando la matriz \(A\) de los coeficientes es simétrica, como cuando no lo es.
+Este método constituye una técnica eficiente para generar los coeficientes $p_i$ del polinomio característico (6.25), tanto cuando la matriz $A$ de los coeficientes es simétrica, como cuando no lo es.
 
 Tiene la ventaja adicional de que se obtiene automáticamente, al finalizar el proceso, la matriz inversa del sistema:
 
-\[
+$$
 A^{-1}
-\]
+$$
 
 Traza de una matriz:
-La traza de una matriz cuadrada, que se designa mediante \(\operatorname{tr}(A)\), es:
+La traza de una matriz cuadrada, que se designa mediante $\operatorname{tr}(A)$, es:
 
-\[
+$$
 \operatorname{tr}(A) = a_{11} + a_{22} + \cdots + a_{nn}
 \tag{6.26}
-\]
+$$
 
-Genera en su procedimiento una sucesión de matrices \(B_1, B_2, \dots, B_n\), de las que se obtienen una serie de valores \(b_k\), con \(k = 1,2,\dots,n\), que sustituidos en el polinomio de Faddeev-LeVerrier dan como resultado los coeficientes \(p_k\).
+Genera en su procedimiento una sucesión de matrices $B_1, B_2, \dots, B_n$, de las que se obtienen una serie de valores $b_k$, con $k = 1,2,\dots,n$, que sustituidos en el polinomio de Faddeev-LeVerrier dan como resultado los coeficientes $p_k$.
 
-\[
+$$
 (-1)^n\left(\lambda^n - b_1\lambda^{n-1} - b_2\lambda^{n-2} - \cdots - b_n\right)=0
 \tag{6.27}
-\]
+$$
 
-El factor \((-1)^n\) se utiliza para dar a los términos los signos que tendría el polinomio característico si hubiese sido generado desarrollando el determinante correspondiente.
+El factor $(-1)^n$ se utiliza para dar a los términos los signos que tendría el polinomio característico si hubiese sido generado desarrollando el determinante correspondiente.
 
-Los valores de \(b_k\) se obtienen así:
+Los valores de $b_k$ se obtienen así:
 
-\[
+$$
 B_1 = A, \qquad b_1 = \operatorname{tr}(B_1)
-\]
+$$
 
-\[
+$$
 B_2 = A(B_1 - b_1 I), \qquad b_2 = \frac{1}{2}\operatorname{tr}(B_2)
 \tag{6.28}
-\]
+$$
 
-\[
+$$
 \vdots
-\]
+$$
 
-\[
+$$
 B_n = A(B_{n-1} - b_{n-1}I), \qquad b_n = \frac{1}{n}\operatorname{tr}(B_n)
-\]
+$$
 
-Puede demostrarse que la inversa de la matriz \(A\), cuyos valores característicos se desea hallar, se determina a partir de la ecuación:
+Puede demostrarse que la inversa de la matriz $A$, cuyos valores característicos se desea hallar, se determina a partir de la ecuación:
 
-\[
+$$
 A^{-1} = \frac{1}{b_n}(B_{n-1} - b_{n-1}I)
 \tag{6.29}
-\]
+$$
 
 ---
 
@@ -3481,47 +3494,47 @@ A^{-1} = \frac{1}{b_n}(B_{n-1} - b_{n-1}I)
 
 Supóngase que se ha obtenido, como modelo matemático de algún problema determinado, el siguiente sistema lineal homogéneo de ecuaciones:
 
-\[
+$$
 \begin{cases}
 (3-\lambda)x_1 + 2x_2 + 4x_3 = 0 \\
 2x_1 + (0-\lambda)x_2 + 2x_3 = 0 \\
 4x_1 + 2x_2 + (3-\lambda)x_3 = 0
 \end{cases}
-\]
+$$
 
 La matriz del sistema es:
 
-\[
+$$
 A =
 \begin{bmatrix}
 3 & 2 & 4 \\
 2 & 0 & 2 \\
 4 & 2 & 3
 \end{bmatrix}
-\]
+$$
 
-Cálculo de \(B_1\) y \(b_1\)
+Cálculo de $B_1$ y $b_1$
 
-\[
+$$
 B_1 = A =
 \begin{bmatrix}
 3 & 2 & 4 \\
 2 & 0 & 2 \\
 4 & 2 & 3
 \end{bmatrix}
-\]
+$$
 
 Entonces:
 
-\[
+$$
 b_1 = \operatorname{tr}(B_1) = 3 + 0 + 3 = 6
-\]
+$$
 
-Cálculo de \(B_2\) y \(b_2\)
+Cálculo de $B_2$ y $b_2$
 
 Primero:
 
-\[
+$$
 B_1 - b_1 I =
 \begin{bmatrix}
 3 & 2 & 4 \\
@@ -3540,11 +3553,11 @@ B_1 - b_1 I =
 2 & -6 & 2 \\
 4 & 2 & -3
 \end{bmatrix}
-\]
+$$
 
 Luego:
 
-\[
+$$
 B_2 = A(B_1 - b_1 I) =
 \begin{bmatrix}
 3 & 2 & 4 \\
@@ -3562,19 +3575,19 @@ B_2 = A(B_1 - b_1 I) =
 2 & 8 & 2 \\
 4 & 2 & 11
 \end{bmatrix}
-\]
+$$
 
 Entonces:
 
-\[
+$$
 b_2 = \frac{1}{2}\operatorname{tr}(B_2)=\frac{1}{2}(11+8+11)=15
-\]
+$$
 
-Cálculo de \(B_3\) y \(b_3\)
+Cálculo de $B_3$ y $b_3$
 
 Primero:
 
-\[
+$$
 B_2 - b_2 I =
 \begin{bmatrix}
 11 & 2 & 4 \\
@@ -3593,11 +3606,11 @@ B_2 - b_2 I =
 2 & -7 & 2 \\
 4 & 2 & -4
 \end{bmatrix}
-\]
+$$
 
 Luego:
 
-\[
+$$
 B_3 = A(B_2 - b_2 I) =
 \begin{bmatrix}
 3 & 2 & 4 \\
@@ -3615,45 +3628,45 @@ B_3 = A(B_2 - b_2 I) =
 0 & 8 & 0 \\
 0 & 0 & 8
 \end{bmatrix}
-\]
+$$
 
 Entonces:
 
-\[
+$$
 b_3 = \frac{1}{3}\operatorname{tr}(B_3)=\frac{1}{3}(8+8+8)=8
-\]
+$$
 
 #### Polinomio característico
 
-Sustituyendo los valores de los \(b_k\) en el polinomio de Faddeev-LeVerrier, se obtiene:
+Sustituyendo los valores de los $b_k$ en el polinomio de Faddeev-LeVerrier, se obtiene:
 
-\[
+$$
 (-1)^3(\lambda^3 - 6\lambda^2 - 15\lambda - 8)=0
-\]
+$$
 
 De donde resulta:
 
-\[
+$$
 -\lambda^3 + 6\lambda^2 + 15\lambda + 8 = 0
-\]
+$$
 
-o, multiplicando por \(-1\):
+o, multiplicando por $-1$:
 
-\[
+$$
 \lambda^3 - 6\lambda^2 - 15\lambda - 8 = 0
-\]
+$$
 
 Las raíces de este polinomio son los autovalores:
 
-\[
+$$
 \lambda_1 = 8, \qquad \lambda_2 = -1, \qquad \lambda_3 = -1
-\]
+$$
 
 #### Matriz inversa
 
-Para hallar la matriz inversa del sistema, se aplica (6.29) con \(b_3 = 8\):
+Para hallar la matriz inversa del sistema, se aplica (6.29) con $b_3 = 8$:
 
-\[
+$$
 A^{-1} = \frac{1}{8}(B_2 - 15I) = \frac{1}{8}
 \begin{bmatrix}
 -4 & 2 & 4 \\
@@ -3666,7 +3679,7 @@ A^{-1} = \frac{1}{8}(B_2 - 15I) = \frac{1}{8}
 \frac{2}{8} & -\frac{7}{8} & \frac{2}{8} \\[6pt]
 \frac{4}{8} & \frac{2}{8} & -\frac{4}{8}
 \end{bmatrix}
-\]
+$$
 
 ---
 
@@ -3679,80 +3692,80 @@ Se utiliza en aquellos casos en que solamente se desea conocer el autovalor más
 Una ventaja adicional de este método es que los autovalores se obtienen simultáneamente con sus respectivos autovectores.
 Para determinar el autovalor más grande, supóngase que tanto los elementos de la matriz como el autovalor son reales. Sea el sistema:
 
-\[
+$$
 (A-\lambda I)X = 0
 \tag{6.38}
-\]
+$$
 
 donde, realizando el producto indicado por el paréntesis, se obtiene:
 
-\[
+$$
 AX - \lambda IX = AX - \lambda X = 0
-\]
+$$
 
 y transponiendo términos:
 
-\[
+$$
 AX = \lambda X
 \tag{6.39}
-\]
+$$
 
 Haciendo uso sistemático de esta última ecuación (6.39) y realizando los siguientes pasos:
 
-1. **Asignar valores arbitrarios** a las componentes de \(X\), designándolo con \(X_0\).
-   Se sustituye en el primer miembro de \(AX = \lambda X\), con lo cual se obtiene la primera aproximación del segundo miembro.
-   En general, resulta satisfactorio tomar los valores para \(x_i = 1\), para \(i=1,2,\dots,n\).
+1. **Asignar valores arbitrarios** a las componentes de $X$, designándolo con $X_0$.
+   Se sustituye en el primer miembro de $AX = \lambda X$, con lo cual se obtiene la primera aproximación del segundo miembro.
+   En general, resulta satisfactorio tomar los valores para $x_i = 1$, para $i=1,2,\dots,n$.
 
-2. **Dividir los elementos del vector** \(X_1\) por \(\lambda x_1\), para que la primera componente se reduzca a la unidad.
+2. **Dividir los elementos del vector** $X_1$ por $\lambda x_1$, para que la primera componente se reduzca a la unidad.
 
-\[
+$$
 AX_0 = \lambda X_1
-\]
+$$
 
-3. Se utilizan las componentes del vector obtenido como valores mejorados de \(X\), sustituyéndolos en el primer miembro de (6.39) para volver a obtener así una mejor aproximación en un siguiente paso.
+3. Se utilizan las componentes del vector obtenido como valores mejorados de $X$, sustituyéndolos en el primer miembro de (6.39) para volver a obtener así una mejor aproximación en un siguiente paso.
 
-4. Se repiten los pasos II y III hasta que la expresión (6.39) quede esencialmente satisfecha, es decir, se cumpla con la cantidad \(E\) fijada de antemano.
+4. Se repiten los pasos II y III hasta que la expresión (6.39) quede esencialmente satisfecha, es decir, se cumpla con la cantidad $E$ fijada de antemano.
 
 Al iterar se conforma una sucesión:
 
-\[
+$$
 AX_0, \; A^2X_0, \; \dots, \; A^kX_0
-\]
+$$
 
-siendo \(X_0\) un vector arbitrario supuesto inicialmente. Las potencias de la matriz \(A\) que componen la sucesión son las que le dan el nombre al método.
+siendo $X_0$ un vector arbitrario supuesto inicialmente. Las potencias de la matriz $A$ que componen la sucesión son las que le dan el nombre al método.
 
 **¿Cómo determinar el autovalor más pequeño y su autovector asociado?**
 
-Es necesario premultiplicar por la inversa de \(A\), resultando:
+Es necesario premultiplicar por la inversa de $A$, resultando:
 
-\[
+$$
 A^{-1}AX = A^{-1}\lambda X
-\]
+$$
 
-\[
+$$
 X = \lambda A^{-1}X
-\]
+$$
 
 o equivalentemente:
 
-\[
+$$
 A^{-1}X = \frac{1}{\lambda}X
 \tag{6.36}
-\]
+$$
 
-La expresión anterior producirá una convergencia al valor más pequeño del autovalor \(\lambda\).
+La expresión anterior producirá una convergencia al valor más pequeño del autovalor $\lambda$.
 
 ---
 
 #### Conclusiones
 
 - La convergencia puede resultar lenta si los autovalores máximo e inmediatamente menor tienen valores similares, o si otro tanto ocurre con el mínimo e inmediatamente mayor.
-- La convergencia es hacia el autovalor máximo. Si el autovalor máximo tiene multiplicidad dos, las componentes del autovector convergen a cualquiera de los dos que están asociados a aquel, dependiendo esto del vector \(X\) supuesto inicialmente.
+- La convergencia es hacia el autovalor máximo. Si el autovalor máximo tiene multiplicidad dos, las componentes del autovector convergen a cualquiera de los dos que están asociados a aquel, dependiendo esto del vector $X$ supuesto inicialmente.
 - En caso de que el vector supuesto inicialmente sea ortogonal con el autovector asociado al autovalor máximo de la matriz traspuesta, convergerá al autovalor que le sigue en magnitud en lugar de hacerlo al máximo.
-- Como los autovalores son cantidades que hacen que el determinante de la matriz de coeficientes \((A - \lambda I)\) sea cero, el rango \(r\) de la matriz de coeficientes debe ser necesariamente menor que el orden \(n\) de la matriz.
-- Si el rango de la matriz de coeficientes es una unidad menor que el orden, el sistema de ecuaciones homogéneas que se va a resolver contiene \(n-1\) ecuaciones independientes para determinar las \(n\) componentes de los autovectores.
-- Si el rango de la matriz de coeficientes es dos unidades menor que el orden, es necesario suponer valores para dos componentes del autovector para hallar valores para otras componentes. Habrá solo \(n-2\) ecuaciones independientes en el sistema. Se dice que el espacio de soluciones es bidimensional.
-- Si \(n-r = 3\), se deben suponer tres componentes del autovector, y el espacio de soluciones será tridimensional. El razonamiento es idéntico cuando el grado de indeterminación es mayor.
+- Como los autovalores son cantidades que hacen que el determinante de la matriz de coeficientes $(A - \lambda I)$ sea cero, el rango $r$ de la matriz de coeficientes debe ser necesariamente menor que el orden $n$ de la matriz.
+- Si el rango de la matriz de coeficientes es una unidad menor que el orden, el sistema de ecuaciones homogéneas que se va a resolver contiene $n-1$ ecuaciones independientes para determinar las $n$ componentes de los autovectores.
+- Si el rango de la matriz de coeficientes es dos unidades menor que el orden, es necesario suponer valores para dos componentes del autovector para hallar valores para otras componentes. Habrá solo $n-2$ ecuaciones independientes en el sistema. Se dice que el espacio de soluciones es bidimensional.
+- Si $n-r = 3$, se deben suponer tres componentes del autovector, y el espacio de soluciones será tridimensional. El razonamiento es idéntico cuando el grado de indeterminación es mayor.
 
 ---
 
@@ -3770,43 +3783,46 @@ Temas a desarrollar:
 
 Una de las clases más útiles de funciones que mapean los números reales sobre sí mismos son los **polinomios algebraicos**. Estos son funciones de la forma:
 
-\[
+$$
 P_n(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0
-\]
+$$
 
-donde \( n \) es un entero no negativo y \( a_0, \ldots, a_n \) son constantes reales.
+donde $ n $ es un entero no negativo y $ a_0, \ldots, a_n $ son constantes reales.
 
 **Importancia de los polinomios:**
 - Aproximan de manera uniforme a las funciones continuas.
 - La derivada y la integral indefinida de un polinomio son fáciles de calcular y también son polinomios.
 
-#### Figura - Aproximación polinómica uniforme en \([a,b]\)
+#### Figura - Aproximación polinómica uniforme en $[a,b]$
+
 ![Aproximación polinómica](./img/aproximacion-polinomica.png)
 
-La figura representa geométricamente que, si \(f\) es continua en \([a,b]\), entonces puede aproximarse uniformemente mediante un polinomio \(P(x)\).
+La figura representa geométricamente que, si $f$ es continua en $[a,b]$, entonces puede aproximarse uniformemente mediante un polinomio $P(x)$.
 
 Se muestran:
-- la función original \(y=f(x)\)
-- el polinomio aproximante \(y=P(x)\)
-- las curvas de referencia \(y=f(x)+\epsilon\) y \(y=f(x)-\epsilon\)
+- la función original $y=f(x)$
+- el polinomio aproximante $y=P(x)$
+- las curvas de referencia $y=f(x)+\epsilon$ y $y=f(x)-\epsilon$
 
 La condición
-\[
+$$
 |f(x)-P(x)|<\epsilon \quad \text{para toda } x\in[a,b]
-\]
-significa que la gráfica de \(P(x)\) queda completamente contenida dentro de la banda delimitada por \(f(x)+\epsilon\) y \(f(x)-\epsilon\) en todo el intervalo \([a,b]\).
+$$
+significa que la gráfica de $P(x)$ queda completamente contenida dentro de la banda delimitada por $f(x)+\epsilon$ y $f(x)-\epsilon$ en todo el intervalo $[a,b]$.
 
 ### Idea clave
-El polinomio \(P(x)\) aproxima a \(f(x)\) con un error uniforme menor que \(\epsilon\) en todo el intervalo.
+
+El polinomio $P(x)$ aproxima a $f(x)$ con un error uniforme menor que $\epsilon$ en todo el intervalo.
+
 ---
 
 ### Teorema de Aproximación de Weierstrass
 
-Si \( f \) está definida y es continua en el intervalo \([a, b]\), entonces, para cada \( \epsilon > 0 \), existe un polinomio \( P(x) \) tal que:
+Si $ f $ está definida y es continua en el intervalo $[a, b]$, entonces, para cada $ \epsilon > 0 $, existe un polinomio $ P(x) $ tal que:
 
-\[
+$$
 |f(x) - P(x)| < \epsilon \quad \text{para toda } x \in [a, b]
-\]
+$$
 
 ---
 
@@ -3823,7 +3839,7 @@ Si \( f \) está definida y es continua en el intervalo \([a, b]\), entonces, pa
 
 #### Definición
 
-La **interpolación numérica** consiste en encontrar un valor aproximado de una función \( y \) para un valor de \( x \) que no está explícitamente en la tabla de datos, pero sí dentro del intervalo de trabajo \([x_0, x_n]\).
+La **interpolación numérica** consiste en encontrar un valor aproximado de una función $ y $ para un valor de $ x $ que no está explícitamente en la tabla de datos, pero sí dentro del intervalo de trabajo $[x_0, x_n]$.
 
 **Ejemplo:**
 - Una línea recta une dos puntos (polinomio de 1er grado).
@@ -3836,89 +3852,83 @@ La **interpolación numérica** consiste en encontrar un valor aproximado de una
 
 #### Proposición
 
-Dados \( n+1 \) puntos con abscisas distintas entre sí, existe **un único polinomio de grado \( n \)** que pasa por todos ellos.
+Dados $ n+1 $ puntos con abscisas distintas entre sí, existe **un único polinomio de grado $ n $** que pasa por todos ellos.
 
-#### Figura 7.1 — Polinomio interpolador de grado \(n\)
+#### Figura 7.1 — Polinomio interpolador de grado $n$
+
 ![Figura 7.1](./img/figura-7-1.png)
 
-La figura muestra \(n+1\) puntos:
-\[
+La figura muestra $n+1$ puntos:
+$$
 A_0,\ A_1,\ A_2,\ \dots,\ A_{n-1},\ A_n
-\]
+$$
 con abscisas distintas:
-\[
+$$
 x_0,\ x_1,\ x_2,\ \dots,\ x_{n-1},\ x_n
-\]
+$$
 
-Todos estos puntos pertenecen al polinomio interpolador \(P_n(x)\).
+Todos estos puntos pertenecen al polinomio interpolador $P_n(x)$.
 
-Si se tienen \(n+1\) puntos con abscisas distintas, entonces existe un único polinomio de grado \(n\) que pasa por todos ellos.
+Si se tienen $n+1$ puntos con abscisas distintas, entonces existe un único polinomio de grado $n$ que pasa por todos ellos.
 
-En la figura también se indica una separación uniforme \(h\) entre abscisas consecutivas.
+En la figura también se indica una separación uniforme $h$ entre abscisas consecutivas.
 
 ### Idea clave
-El polinomio \(P_n(x)\) queda completamente determinado por los \(n+1\) puntos dados.
+
+El polinomio $P_n(x)$ queda completamente determinado por los $n+1$ puntos dados.
 
 ---
 
-- Considerando que por los \(n+1\) puntos \(A_0\); \(A_1\); ...; \(A_n\), pasa a lo sumo una parábola que representa un polinomio \(P_n(x)\) de grado \(n\).
+- Considerando que por los $n+1$ puntos $A_0$; $A_1$; ...; $A_n$, pasa a lo sumo una parábola que representa un polinomio $P_n(x)$ de grado $n$.
 
-- Entonces conocidos \(n+1\) puntos, la parábola de grado \(n\) que pasa por ellos, permite asignar a cada valor de \(x\), un valor de \(y\), que será considerado como el valor de interpolación buscado.
+- Entonces conocidos $n+1$ puntos, la parábola de grado $n$ que pasa por ellos, permite asignar a cada valor de $x$, un valor de $y$, que será considerado como el valor de interpolación buscado.
 
 ### Tablas con Valores Equidistantes
 
-**Definición**: Se asume que los valores de \( x \) están equiespaciados:
+**Definición**: Se asume que los valores de $ x $ están equiespaciados:
 
-\[
+$$
 x_1 - x_0 = x_2 - x_1 = \cdots = x_n - x_{n-1} = h
-\]
+$$
 
 ---
 
 ### Tabla de Diferencias Avanzadas
 
-\[
+$$
 \begin{array}{ccccc}
 x & y & \Delta y & \Delta^2 y & \Delta^3 y \\[6pt]
-
 x_0 & y_0 & & & \\[6pt]
-
 x_1 = x_0 + h & y_1 & \Delta y_0 = y_1 - y_0 & & \\[6pt]
-
 x_2 = x_1 + h & y_2 & \Delta y_1 = y_2 - y_1 &
 \Delta^2 y_0 = \Delta y_1 - \Delta y_0 & \\[6pt]
-
 x_3 = x_2 + h & y_3 & \Delta y_2 = y_3 - y_2 &
 \Delta^2 y_1 = \Delta y_2 - \Delta y_1 &
 \Delta^3 y_0 = \Delta^2 y_1 - \Delta^2 y_0 \\[6pt]
-
 x_4 = x_3 + h & y_4 & \Delta y_3 = y_4 - y_3 &
 \Delta^2 y_2 = \Delta y_3 - \Delta y_2 &
 \Delta^3 y_1 = \Delta^2 y_2 - \Delta^2 y_1 \\[6pt]
-
 \vdots & \vdots & \vdots & \vdots & \vdots \\[6pt]
-
 x_{n-1} = x_{n-2} + h & y_{n-1} & \Delta y_{n-2} = y_{n-1} - y_{n-2} &
 \Delta^2 y_{n-3} = \Delta y_{n-2} - \Delta y_{n-3} &
 \Delta^3 y_{n-4} = \Delta^2 y_{n-3} - \Delta^2 y_{n-4} \\[6pt]
-
 x_n = x_{n-1} + h & y_n & \Delta y_{n-1} = y_n - y_{n-1} &
 \Delta^2 y_{n-2} = \Delta y_{n-1} - \Delta y_{n-2} &
 \Delta^3 y_{n-3} = \Delta^2 y_{n-2} - \Delta^2 y_{n-3}
 \end{array}
-\]
+$$
 
-\[
+$$
 \Delta y_0 = y_1 - y_0
-\]
+$$
 
-\[
+$$
 \Delta^2 y_0 = \Delta y_1 - \Delta y_0 = y_2 - 2y_1 + y_0
-\]
+$$
 
-\[
+$$
 \Delta^3 y_0 = \Delta^2 y_1 - \Delta^2 y_0 = y_3 - 3y_2 + 3y_1 - y_0
-\]
+$$
 
 Las diferencias calculadas arriba reciben el nombre de **DIFERENCIAS AVANZADAS**.
 
@@ -3926,21 +3936,21 @@ Las diferencias calculadas arriba reciben el nombre de **DIFERENCIAS AVANZADAS**
 
 ### Cálculo de Diferencias
 
-\[
+$$
 \Delta y_0 = y_1 - y_0
-\]
-\[
+$$
+$$
 \Delta^2 y_0 = y_2 - 2y_1 + y_0
-\]
-\[
+$$
+$$
 \Delta^3 y_0 = y_3 - 3y_2 + 3y_1 - y_0
-\]
+$$
 
 **Generalización:**
 
-\[
+$$
 \Delta^n y_0 = \sum_{i=0}^n (-1)^i \binom{n}{i} y_{n-i}
-\]
+$$
 
 ---
 
@@ -3948,43 +3958,43 @@ Las diferencias calculadas arriba reciben el nombre de **DIFERENCIAS AVANZADAS**
 
 ### Polinomio Interpolante
 
-\[
+$$
 P_n(x) = a_0 + a_1 (x - x_0) + a_2 (x - x_0)(x - x_1) + \cdots + a_n (x - x_0)(x - x_1) \cdots (x - x_{n-1})
-\]
+$$
 
 ### Coeficientes
 
-\[
+$$
 a_0 = y_0
-\]
-\[
+$$
+$$
 a_1 = \frac{\Delta y_0}{h}
-\]
-\[
+$$
+$$
 a_2 = \frac{\Delta^2 y_0}{2! h^2}
-\]
-\[
+$$
+$$
 \vdots
-\]
-\[
+$$
+$$
 a_n = \frac{\Delta^n y_0}{n! h^n}
-\]
+$$
 
 ### Fórmula Final
 
-\[
+$$
 P_n(x) = y_0 + \frac{\Delta y_0}{h} (x - x_0) + \frac{\Delta^2 y_0}{2! h^2} (x - x_0)(x - x_1) + \cdots + \frac{\Delta^n y_0}{n! h^n} (x - x_0)(x - x_1) \cdots (x - x_{n-1})
-\]
+$$
 
 ---
 
 ### Cambio de Variable
 
-Si \( x = x_0 + h u \), entonces:
+Si $ x = x_0 + h u $, entonces:
 
-\[
+$$
 P_n(x) = P_n(x_0 + h u) = y_0 + u \Delta y_0 + \frac{u(u-1)}{2!} \Delta^2 y_0 + \cdots + \frac{u(u-1)\cdots(u-n+1)}{n!} \Delta^n y_0
-\]
+$$
 
 ---
 
@@ -3992,9 +4002,9 @@ P_n(x) = P_n(x_0 + h u) = y_0 + u \Delta y_0 + \frac{u(u-1)}{2!} \Delta^2 y_0 + 
 
 Si las diferencias de orden superior a 1 son nulas:
 
-\[
+$$
 P_1(x) = y_0 + \frac{\Delta y_0}{h} (x - x_0)
-\]
+$$
 
 ---
 
@@ -4002,15 +4012,15 @@ P_1(x) = y_0 + \frac{\Delta y_0}{h} (x - x_0)
 
 Si las diferencias de orden superior a 2 son nulas:
 
-\[
+$$
 P_2(x) = y_0 + \frac{\Delta y_0}{h} (x - x_0) + \frac{\Delta^2 y_0}{2! h^2} (x - x_0)(x - x_1)
-\]
+$$
 
 **Fórmula alternativa:**
 
-\[
+$$
 y = \frac{y_2 - 2y_1 + y_0}{2h^2} x^2 + \frac{y_2 - y_0}{2h} x + y_1
-\]
+$$
 
 *Figura — Gráfico de $f(x) = \ln x$ comparando la estimación cuadrática $P_2(x)$ con la estimación lineal en $[1, 4]$. La curva cuadrática se aproxima más al valor verdadero, ilustrando la mayor precisión de la interpolación de segundo orden.*
 
@@ -4022,54 +4032,46 @@ y = \frac{y_2 - 2y_1 + y_0}{2h^2} x^2 + \frac{y_2 - y_0}{2h} x + y_1
 
 #### Tabla de diferencias atrasadas
 
-\[
+$$
 \begin{array}{ccccc}
 x & y & \nabla y & \nabla^2 y & \nabla^3 y \\[6pt]
-
 x_0 & y_0 & & & \\[6pt]
-
 x_1 = x_0 + h & y_1 & \nabla y_1 = y_1 - y_0 & & \\[6pt]
-
 x_2 = x_1 + h & y_2 & \nabla y_2 = y_2 - y_1 &
 \nabla^2 y_2 = \nabla y_2 - \nabla y_1 & \\[6pt]
-
 x_3 = x_2 + h & y_3 & \nabla y_3 = y_3 - y_2 &
 \nabla^2 y_3 = \nabla y_3 - \nabla y_2 &
 \nabla^3 y_3 = \nabla^2 y_3 - \nabla^2 y_2 \\[6pt]
-
 x_4 = x_3 + h & y_4 & \nabla y_4 = y_4 - y_3 &
 \nabla^2 y_4 = \nabla y_4 - \nabla y_3 &
 \nabla^3 y_4 = \nabla^2 y_4 - \nabla^2 y_3 \\[6pt]
-
 \vdots & \vdots & \vdots & \vdots & \vdots \\[6pt]
-
 x_{n-1} = x_{n-2} + h & y_{n-1} & \nabla y_{n-1} = y_{n-1} - y_{n-2} &
 \nabla^2 y_{n-1} = \nabla y_{n-1} - \nabla y_{n-2} &
 \nabla^3 y_{n-1} = \nabla^2 y_{n-1} - \nabla^2 y_{n-2} \\[6pt]
-
 x_n = x_{n-1} + h & y_n & \nabla y_n = y_n - y_{n-1} &
 \nabla^2 y_n = \nabla y_n - \nabla y_{n-1} &
 \nabla^3 y_n = \nabla^2 y_n - \nabla^2 y_{n-1}
 \end{array}
-\]
+$$
 
 Las diferencias calculadas arriba reciben el nombre de **DIFERENCIAS ATRASADAS**.
 
 #### Polinomio Interpolante
 
-\[
+$$
 P_n(x) = y_n + \frac{\nabla y_n}{h} (x - x_n) + \frac{\nabla^2 y_n}{2! h^2} (x - x_n)(x - x_{n-1}) + \cdots + \frac{\nabla^n y_n}{n! h^n} (x - x_n)(x - x_{n-1}) \cdots (x - x_1)
-\]
+$$
 
 ---
 
 #### Cambio de Variable
 
-Si \( x = x_n + h u \):
+Si $ x = x_n + h u $:
 
-\[
+$$
 P_n(x) = y_n + u \nabla y_n + \frac{u(u+1)}{2!} \nabla^2 y_n + \cdots + \frac{u(u+1)\cdots(u+n-1)}{n!} \nabla^n y_n
-\]
+$$
 
 ## Unidad 6: Diferenciación e Integración Numérica
 
@@ -4413,7 +4415,6 @@ Cada valor de la tabla se obtiene combinando los dos valores de la columna anter
 - No es incorrecto afirmar que: Todo proceso físico que implique un cambio continuo puede ser enunciado matemáticamente en forma de ecuaciones diferenciales.
 - A modo de ilustración se presenta a continuación algunos ejemplos relevantes en los que aparecen ecuaciones diferenciales.
 
-
 - Caída de los cuerpos con resistencia del medio proporcional a la velocidad.
 - Descomposición de una sustancia radiactiva.
 - Tasa de población.
@@ -4429,7 +4430,6 @@ $$
 x'(t) - k x(t) = 0
 $$
 - K es una constante de proporcionalidad
-
 
 - Def. Se llama **ecuación diferencial ordinaria de orden n** a toda ecuación que establece una relación entre: la variable independiente de la ecuación: $x$, la función buscada $y = f(x)$ y sus derivadas hasta el orden n:
 
@@ -4447,7 +4447,6 @@ El término **ordinaria** se emplea para indicar que hay una sola variable indep
 
 Si hubiese mas de una variable independiente, hablaríamos de ecuaciones en derivadas parciales
 
-
 - Def. : Se llama **orden de la ecuación diferencial** al orden de la derivada superior de la función que aparece en la ecuación diferencial
 - Ejemplos:
 - La ecuación $y'' + y = 0$ es una ecuación de **segundo orden o de orden 2**.
@@ -4462,7 +4461,6 @@ $$
 - Def. : Se llama **solución general** de una ecuación diferencial a la familia de todas las funciones que verifican la ecuación.
 - Def. : Se llama **solución particular** de una ecuación diferencial a cualquiera de las funciones que verifican la ecuación.
 
-
 - La solución general de la ec. diferencial:
 - $y'x + y = 0$
 - Es $y(x) = C/x$, donde C es una constante arbitraria.
@@ -4471,7 +4469,6 @@ $$
 - La solución de una ecuación diferencial ordinaria es una función en términos de la variable independiente y de parámetros que satisfacen la ecuación diferencial original.
 - Dado que la solución general de una ecuación diferencial depende de constantes arbitrarias, es posible imponer condiciones adicionales a las funciones solución de esas ecuaciones.
 - Por ej., imponer que la función solución (o alguna de sus derivadas) pase por algún punto dado del espacio. En este sentido se definen las ecuaciones de Cauchy y las ecuaciones de contorno.
-
 
 Def.: Para una ec. dif. de orden n  $F(x,y,y',y'',\dots \dots ,y^{(n)}) = 0$  dada por la formula:
 
@@ -4489,7 +4486,6 @@ $$
 
 Esto implica que, de todas las soluciones de la ecuación, es posible seleccionar aquella que cumpla, por ejemplo, condiciones del tipo  $y(0) = 0$ ,  $y'(0) = 3$ , de donde la solución obtenida es  $y(x) = 3 \sin(x)$ .
 
-
 Se dice pues que esta función es la solución del problema de Cauchy:
 
 $$
@@ -4502,7 +4498,6 @@ $$
 \left\{ \begin{array}{l} F(x, y, y' y'', \dots, y^n) = 0 \\ y(x_0) = y_0 \\ y(x_1) = y_1 \\ \dots \\ y(x_{n-1}) = y_{n-1} \end{array} \right.
 $$
 
-
 - Dada una ecuación diferencial de orden n, cuando se imponen n condiciones adicionales sobre la función y sus derivadas en un mismo punto (una condición para cada orden de derivación) hablamos de problemas de Cauchy.
 - Si se impone a la función solución pasar por n puntos dados (y no se impone ninguna condición sobre las derivadas de la función), hablamos de problemas de contorno.
 - Existe una tercera posibilidad, que es la de combinar las dos anteriores. En este caso, se hablaría de problemas mixtos
@@ -4512,7 +4507,6 @@ Ejemplo: Dada la ecuación $y''(x) + y = 0$, resolver un problema de contorno si
 $$
 y(0) = 1, \quad y\left(\frac{\pi}{2}\right) = 0
 $$
-
 
 - De donde la solución obtenida es: $y(x) = \cos(x)$.
 - Se dice que esta función es la solución del problema de contorno:
@@ -4532,8 +4526,8 @@ $$
 - **TEOREMA:**
 - La ecuación $y' = 0$ tiene como solución general la familia de funciones $y(x) = C$, donde $C$ es cualquier número real.
 
-
 #### Teorema
+
 - Si $f(x)$ es una función continua, la ecuación $y' = f(x)$ tiene como solución general la familia de funciones
 
 $$
@@ -4541,6 +4535,7 @@ y(x) = C + \int f(x) \, dx
 $$
 
 #### Ejemplo
+
 La ecuación $y' = x$ es del tipo anterior. Por tanto, la solución general:
 
 $$
@@ -4551,7 +4546,6 @@ Aplicación de métodos de resolución numérica para ecuaciones diferenciales o
 
 - Es imposible la aplicación de la integración exacta, se desean calcular para valores de la variable $x$, los valores numéricos correspondientes de $y$, que satisfacen una ecuación diferencial dada, con un cierto grado de aproximación previamente establecido.
 - El proceso de integración será realizado prescindiendo del conocimiento de la expresión analítica de la función solución $y = y(x)$ que resolvería, el problema.
-
 
 - En aquellos casos en que la solución exacta no resuelve el problema en forma práctica.
 - Necesidad de recurrir al uso de computadoras, por las características propias del problema, que involucran un número muy grande de pasos, de proceso complejo, imposible de realizar mediante métodos analíticos.
@@ -4569,12 +4563,10 @@ en la cual, $y'$ no es simplemente función de la variable independiente $x$, si
 - No es posible, la integración directa de la misma mediante algunas reglas estudiadas con anterioridad.
 - $y(x)$ la función buscada en la ecuación.
 
-
 ![img-0.jpeg](img-0.jpeg)
 
 ![img-1.jpeg](img-1.jpeg)
 Fig. 9.1.- Sol. de la ec. diferencial
-
 
 Un método simple que permite una solución aproximada de
 
@@ -4606,7 +4598,6 @@ $$
 y_0' = f(x_0; y_0)
 $$
 
-
 La variación de $y$ desde $x = x_0$ hasta $x = x_0 + h$ se representa mediante el área bajo la curva $y'$ entre los valores señalados de $x$, teniendo en cuenta que:
 
 $$
@@ -4637,7 +4628,6 @@ $$
 y_1' = f(x_1; y_1) \tag{9.5}
 $$
 
-
 Entonces, como la diferencia $y_{2} - y_{1}$ es aproximadamente igual al área comprendida bajo $y'$ desde $x_{1}$ hasta $x_{2}$; o sea, $A_{2}$ de la figura 9.1 (a), resulta:
 
 $$
@@ -4650,19 +4640,15 @@ $$
 y_{n+1} = y_{n} + y_{n}'h \tag{9.5}
 $$
 
-
 ![img-2.jpeg](img-2.jpeg)
 FIGURA 25.2
 Método de Euler.
-
 
 ![img-3.jpeg](img-3.jpeg)
 FIGURA 25.3
 Comparación de la solución verdadera con una solución numérica usando el método de Euler, para la integral de $y' = -2x^2 + 12x^2 - 20x + 8.5$ desde $x = 0$ hasta $x = 4$ con un tamaño de paso de 0.5. La condición inicial en $x = 0$ es $y = 1$.
 
-
 ![img-4.jpeg](img-4.jpeg)
-
 
 La que generalmente, es conocida como FORMULA DE INTEGRACIÓN HACIA ADELANTE DE EULER.
 
@@ -4673,10 +4659,10 @@ El MÉTODO DE EULER se clasifica como MÉTODO QUE EMPIEZA POR SI MISMO
 ![img-5.jpeg](img-5.jpeg)
 Fig. 9.2
 
-
 La representación de la solución $y = y(x)$ obtenida por EULER, puede apreciarse en la figura 9.2, donde es posible observar que el método de EULER se aproxima, en efecto, por medio de segmentos de recta a la solución exacta del problema. Se obtiene una aproximación a la curva representativa de la solución mediante una poligonal.
 
 #### Error en el método de Euler
+
 Comparando la ecuación $y_{n+1} = y_n + y'_n$ $h$ con la expresión del desarrollo en serie de Taylor se observa:
 
 - Constituida por los dos primeros términos de Taylor.
@@ -4687,14 +4673,13 @@ Comparando la ecuación $y_{n+1} = y_n + y'_n$ $h$ con la expresión del desarro
 
 $h$ se debe mantener lo más pequeño posible
 
-
 #### Método modificado de Euler
-Si $h$ es grande\rightarrow los efectos de la propagación de los errores, invalidarían cualquier resultado obtenido, luego de un número no muy grande de pasos.
+
+Si $h$ es grande$\rightarrow$ los efectos de la propagación de los errores, invalidarían cualquier resultado obtenido, luego de un número no muy grande de pasos.
 
 El método de EULER, es poco preciso.
 
 ![img-6.jpeg](img-6.jpeg)
-
 
 ![img-7.jpeg](img-7.jpeg)
 Fig. 9.3
@@ -4707,7 +4692,6 @@ $$
 
 en la que se conoce el valor de $y = y_0$ cuando $x = x_0$; suponiendo también que, las representaciones gráficas de $y$ e $y'$, son las que se muestran en la figura 9.3(a) y 9.3(b).
 
-
 - Se sustituye en $y' = f(x; y)$ el valor inicial conocido de $y$,
 - Se obtiene el correspondiente valor de $y'$ para $x = x_0$; y mediante la fórmula de EULER, se obtiene un valor aproximado para $y_1$, mediante la siguiente expresión
 
@@ -4717,11 +4701,11 @@ $$
 
 llamado **VALOR DE PREDICCIÓN** de $y_1$. En la expresión (9.7), el término $y_0'h$ es el área rectangular $A_1$.
 
-Este área es diferente al área real bajo la curva dada, \rightarrow el valor de predicción de $y_1$, difiere del valor real.
+Este área es diferente al área real bajo la curva dada, $\rightarrow$ el valor de predicción de $y_1$, difiere del valor real.
 
 Si el valor de predicción de $y_1$ se sustituye en $y' = f(x; y)$, se obtiene un valor aproximado de $y_1'$:
 
-$y_1'$ se basa en el valor de predicción se utiliza \rightarrow la notación $P(y_1')$ para representarlo: $P(y'_1) = (f(x_1; P(y_1))$
+$y_1'$ se basa en el valor de predicción se utiliza $\rightarrow$ la notación $P(y_1')$ para representarlo: $P(y'_1) = (f(x_1; P(y_1))$
 
 Luego utilizando el área trapezoidal rayada que se muestra en 9.3 (a) como aproximación al área verdadera $y'$, es posible determinar un valor corregido de $y_1'$:
 
@@ -4730,7 +4714,6 @@ C(y_1) = y_0 + \frac{y_0' + P(y'_1)}{2}h \tag{9.8}
 $$
 
 denominada **ECUACIÓN DE CORRECCIÓN**.
-
 
 Esta característica del método es la que permite que se lo clasifique como **MÉTODO PREDICTOR-CORRECTOR**.
 
@@ -4754,7 +4737,6 @@ $C(y_{i+1}) = y_i + \frac{y_i' + C(y_{i+1}')}{2} h$ (e)
 
 (c) $C(y_{i+1}) = y_i + \frac{y_i' + P(y_{i+1}')}{2} h$
 
-
 Donde, las expresiones (9.9) (d) y (e) deben ser iteradas hasta tanto dos aproximaciones sucesivas de $C(y_{i+1})$ cumplan con la condición de error, previamente establecida.
 
 El método modificado de EULER es un método que EMPIEZA POR SI MISMO y se clasifica como de PREDICTOR-CORRECTOR, destinado a resolver PROBLEMAS DE VALORES INICIALES.
@@ -4766,7 +4748,6 @@ $$
 $$
 
 por lo que resulta de mayor precisión que el método de EULER estudiado en el punto anterior.
-
 
 #### Ejercicio
 
@@ -4792,7 +4773,6 @@ $$
 
 Es decir $k_1$ aparece en la ecuación $k_2$, la cual aparece en la $k_3$, etc. Como cada $k$ es una evaluación funcional, esta recurrencia vuelve eficiente a los métodos **RK** para cálculos en computadora.
 
-
 En la cual las $a_i$ son constantes que más adelante serán calculadas y los $k_i$ toman la forma:
 
 $$
@@ -4811,17 +4791,14 @@ $$
 
 donde las $p$ y las $q$ son constantes.
 
-
 - El valor de n, permite establecer, el ORDEN del método de RUNGE-KUTTA;
 - Por lo tanto, con más propiedad se debería denominar METODOLOGÍA DE RUNGE-KUTTA, en vez de MÉTODOS DE RUNGE-KUTTA.
 - Estos métodos empiezan por sí mismos, y teóricamente, es posible desarrollar un conjunto de ecuaciones (9.10) y (9.11) que logren cualquier grado de precisión deseado.
 - Ventajas de esta metodología: la facilidad de programación y procesamiento.
 
-
 - Desventaja: El requisito de que la función $f(x;y)$ debe ser calculada para varios $x$ e $y$ que difieren muy poco, en cada paso del procesamiento.
 - Lo anterior lo convierte, en un método menos eficiente en lo que respecta a tiempo de procesamiento que otros métodos de precisión comparable.
 - Inconveniente: es la dificultad que se presenta en estimar el error por paso para las soluciones intermedias de los métodos de orden superior de RUNGE-KUTTA.
-
 
 Repasaremos algunos conceptos estudiados en el Análisis Matemático.
 
@@ -4832,7 +4809,6 @@ dy' = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy \tag{9
 $$
 
 Donde sus componentes (coeficientes) son los del **gradiente** de la función.
-
 
 y su derivada con respecto a la variable $x$, es:
 
@@ -4848,7 +4824,6 @@ $$
 
 Operando de manera similar, es posible obtener las derivadas de mayor orden.
 
-
 El desarrollo en serie de TAYLOR del segundo miembro de $y' = f(x; y)$, en el punto $(x_i; y_i)$, se puede expresar mediante:
 
 $$
@@ -4862,6 +4837,7 @@ $$
 donde las constantes $b; c$ son los incrementos de las variables $x; y$, respectivamente.
 
 #### Método de Runge-Kutta de primer orden
+
 A efectos ilustrativos, para aportar claridad respecto de la aplicación de la metodología estudiada, se deduce el algoritmo correspondiente al método de RUNGE-KUTTA de 1er. orden el que, se reduce al método de EULER cuando $a_1 = 1$, pues, siendo en este caso $n = 1$, resulta:
 
 $$
@@ -4871,7 +4847,6 @@ $$
 $$
 y_{i+1} = y_i + a_1 k_1
 $$
-
 
 pero, dado que:
 
@@ -4888,6 +4863,7 @@ $$
 que no es otra cosa que la fórmula de EULER, como se deseaba demostrar.
 
 #### Método de Runge-Kutta de segundo orden
+
 Tomando siempre como base la expresión
 
 $$
@@ -4910,7 +4886,6 @@ $$
 k_{2} = h f (x_{i} + p_{1} h; y_{i} + q_{1 1} k_{1})
 $$
 
-
 El problema consiste en determinar los valores de los parámetros:
 
 $a_1; a_2; p_1; q_{11}$ de manera que la expresión:
@@ -4925,14 +4900,11 @@ en la figura 9.4. El área sombreada con trazos representa $k_1$ y el área
 
 sombreada con puntos $k_2$.
 
-
 ![img-0.jpeg](img-0.jpeg)
-
 
 ![img-1.jpeg](img-1.jpeg)
 METODO DE RUNGE-KUTTA DE SEGUNDO ORDEN (4)
 Fig. 9.4
-
 
 Para hallar los valores de  $a_1$ ;  $a_2$ ;  $p_1$ ;  $q_{11}$ , la expresión
 
@@ -4955,7 +4927,6 @@ De las expresiones (9.1) y (9.12, diferencial total de una función compuesta), 
 (9.18)  $y_{i}^{\prime} = f(x_{i};y_{i})$
 
 (9.19)  $y_{i}^{\prime \prime} = \frac{\partial f(x_{i};y_{i})}{\partial x} +\frac{\partial f(x_{i};y_{i})}{\partial y} f(x_{i};y_{i})$
-
 
 Sustituyendo ahora, las fórmulas (9.18) y (9.19), se obtiene (9.20)
 
@@ -4981,7 +4952,6 @@ $$
 
 si las ecuaciones (9.15) y (9.20) van a contener términos similares.
 
-
 Esto se puede lograr desarrollando $k_2 = h f(x_i + p_1 h; y_i + q_{11} k_1)$ en términos de una serie de TAYLOR para dos variables; según (9.14), considerando que $b = p_1 h$; $c = q_{11} k_1$, se puede escribir:
 
 $$
@@ -4991,7 +4961,6 @@ k_2 = h f(x_i + p_1 h; y_i + q_{11} k_1) = h \left\{ f(x_i; y_i) + p_1 h \frac{\
 \left. \left. + q_{11}^2 k_1^2 \frac{\partial f(x_i; y_i)}{\partial y^2} \right] + \dots \right\} \tag{9.21}
 \end{array}
 $$
-
 
 Sustituyendo en $y_{i+1} = y_i + a_1 k_1 + a_2 k_2$
 
@@ -5007,6 +4976,7 @@ y_{i+1} = y_i + a_1 h f(x_i; y_i) + a_2 h f(x_i; y_i) + a_2 h^2 \left[ \frac{\pa
 $$
 
 #### Comparación término a término
+
 Igualando los coeficientes de los términos semejantes de las expresiones (9.20) y
 
 $$
@@ -5017,7 +4987,6 @@ y_{i+1} = y_i + a_1 h f(x_i; y_i) + a_2 h f(x_i; y_i) + a_2 h^2 \left[ \frac{\pa
 \end{array}
 $$
 
-
 Igualando los coeficientes de los términos semejantes de las expresiones (9.20) y (9.22) se obtienen las tres ec. Independientes:
 
 $$
@@ -5025,7 +4994,6 @@ $$
 $$
 
 que tienen cuatro incógnitas. Se trata de un sistema indeterminado de grado uno. Entonces, asignando un valor arbitrario a una de las incógnitas y resolviendo el sistema para determinar las otras tres, es posible obtener tantos conjuntos diferentes de valores, y a la vez, otros tantos conjuntos diferentes de ecuaciones (9.15) y (9.16) como se desee.
-
 
 El procedimiento no es arbitrario. Puede demostrarse que en el método de segundo orden de RUNGE-KUTTA, la mayor precisión se alcanza cuando $a_1$ toma el valor $1/2$; con lo cual resulta:
 
@@ -5049,12 +5017,11 @@ $$
 
 expresiones que en conjunto constituyen el MÉTODO DE RUNGE-KUTTA DE SEGUNDO ORDEN.
 
-
 #### Error del método de Runge-Kutta de segundo orden
+
 Una solución obtenida a partir de la aplicación de las ecuaciones dadas por las expresiones (9.24) tendrá que cometer, forzosamente, un error por truncamiento en cada paso, del orden de $h^3$, ya que, para la obtención de las ecuaciones (9.24) se han utilizado fórmulas truncadas, en las cuales fueron despreciados todos los términos que contienen a $h^3$ y sus potencias mayores.
 
 El conjunto de expresiones (9.24) se puede utilizar para resolver ecuaciones diferenciales con una precisión equivalente a la del MÉTODO MODIFICADO DE EULER.
-
 
 Reemplazando los valores de $k_1$ y $k_2$ en la expresión de $y_{i+1}$
 
@@ -5074,7 +5041,6 @@ $$
 f[x_i + h; y_i + hf(x_i; y_i)] = P(y_{i+1}')
 $$
 
-
 Resulta, sustituyéndolas en la (9.25):
 
 $$
@@ -5084,17 +5050,16 @@ $$
 que es equivalente al MÉTODO MODIFICADO DE EULER cuando se omiten las iteraciones sucesivas, en cada paso.
 
 #### Método de Runge-Kutta de mayor orden
+
 De lo estudiado, es posible deducir que los MÉTODOS DE RUNGE-KUTTA de primero y segundo orden no sustituyen con ventajas apreciables a los de EULER y MODIFICADO DE EULER, respectivamente.
 
 Para obtener métodos de RUNGE-KUTTA con mayor precisión es preciso hacer $n=3; 4; \ldots$ y seguir un procedimiento similar al utilizado para deducir el MÉTODO RUNGE-KUTTA de segundo orden, conservando en los desarrollos en serie de TAYLOR los términos que contienen $h^3; h^4; \ldots$ etc.
-
 
 Por ej., para $n=3$ se llegará a un sistema de seis ecuaciones con ocho incógnitas, y haciendo una selección particular de valores para dos de esos parámetros, de manera que las expresiones resultantes maximicen la precisión, se obtiene el siguiente conjunto de ecuaciones, las que constituyen el MÉTODO DE RUNGE-KUTTA DE TERCER ORDEN:
 
 $$
 y_{i+1} = y_i + \frac{1}{6} (k_1 + 4k_2 + k_3) \tag{9.26}
 $$
-
 
 Donde:
 
@@ -5118,11 +5083,9 @@ $$
 
 pues, se han despreciado en los desarrollos en serie de TAYLOR, utilizados para deducirlo, todos aquellos términos que contienen $h^4$, y sus potencias mayores.
 
-
 Ya en este orden, el MÉTODO DE RUNGE-KUTTA sustituye con ciertas ventajas de precisión a todos los estudiados anteriormente.
 
 El método más frecuentemente utilizado, dentro de la metodología estudiada, es el MÉTODO DE RUNGE-KUTTA DE CUARTO ORDEN, el que resulta de hacer $n=4$ en la expresión (9.10), igualar términos hasta los que contienen $h^4$ y seleccionar un conjunto particular de los parámetros arbitrarios, que maximicen la precisión.
-
 
 Los resultados del cálculo descripto en el párrafo anterior, concluyen en el siguiente conjunto de ecuaciones:
 
@@ -5150,12 +5113,13 @@ $$
 
 que, en su conjunto constituyen el método aludido.
 
-
 #### Representación gráfica de pendientes
+
 ![img-2.jpeg](img-2.jpeg)
 FIGURA 25.15 Representación gráfica de las pendientes estimadas empleadas en el método RK de cuarto orden.
 
 #### Error en los métodos de Runge-Kutta de mayor orden
+
 En el último algoritmo, dado por las expresiones (9.27), debido a que se han despreciado en los desarrollos en serie de TAYLOR correspondientes, los términos que contienen $h^4$, como aquellos que contienen potencias mayores, se cometen un error:
 
 $$
@@ -5163,7 +5127,6 @@ $$
 $$
 
 lo que convierte a este, en un método apto para resolver problemas normales de ingeniería y otras ramas científicas.
-
 
 En general, por la misma razón apuntada al estudiar el error de los métodos de RUNGE-KUTTA del orden primero al cuarto, para el de orden $n$ será:
 
@@ -5177,13 +5140,13 @@ por lo cual, al menos teóricamente, es posible desarrollar un conjunto de ecuac
 
 Análisis Numérico.- Burden y Faires.- Ed. IberoAmérica. 1996.-
 
-
 #### Problemas de valores iniciales que no empiezan por sí mismos
+
 - Estos métodos pueden ser definidos como aquellos para los cuales un solo valor de la variable dependiente, dada en la solución inicial, no es suficiente para dar inicio al procedimiento de integración numérica.
 - Es necesario el conocimiento de más de un punto de la solución, según el caso (en general 3,4 0 más).
 
-
 #### Método de Milne
+
 Sea la ecuación diferencial general de primer orden y primer grado, :
 
 $$
@@ -5196,11 +5159,9 @@ Se dividirá el área bajo un arco dado de la curva $y' = f(x; y)$ en cuatro int
 
 El área real bajo esta porción de curva se aproxima considerando el área de estas cuatro franjas como la abarcada por una parábola de segundo grado que tiene tres puntos en común con la curva real
 
-
 ![img-0.jpeg](img-0.jpeg)
 
 - Figura 10.1 -
-
 
 Si se hace coincidir el eje de las ordenadas con $y_{i-1}'$ no se pierde generalidad y se tiene la ventaja de simplificar las expresiones. De esta manera, el área bajo la parábola está dada por:
 
@@ -5220,7 +5181,6 @@ $$
 a = \frac{y_i' - 2y_{i-1}' + y_{i-2}'}{2h^2}, \quad c = y_{i-1}' \tag{10.3}
 $$
 
-
 > Sustituyendo los coeficientes dados por (10.3) en la (10.2) se obtiene, para el área $A$ de las cuatro franjas:
 
 $$
@@ -5231,9 +5191,7 @@ Expresión que será utilizada como parte de la ecuación de predicción.
 
 Considerando la ecuación (10.1), esta técnica consiste en obtener valores apropiados de $y$ utilizando una ecuación de PREDICCIÓN y corrigiendo luego estos valores, por el uso iterativo de una ecuación de CORRECCIÓN.
 
-
 ![img-1.jpeg](img-1.jpeg)
-
 
 Ecuación de PREDICCIÓN DE MILNE :
 
@@ -5253,7 +5211,6 @@ Y utiliza la regla de SIMPSON para determinar el área de dos franjas bajo una c
 
 ![img-2.jpeg](img-2.jpeg)
 
-
 La ecuación de CORRECCIÓN DE MILNE está dada por:
 
 $$
@@ -5265,7 +5222,6 @@ $$
 - Este último se utiliza, entonces en (10.6) para obtener un corregido de $y_4$.
 - Dado que se ha partido del supuesto que se conocen cuatro valores de $y$, deben ser calculadas las derivadas primeras en los respectivos puntos: $y_0', y_1'; y_2'; y_3'$.
 
-
 Deben ser determinados de alguna manera valores para: $Y_1', Y_2', Y_3', Y_1', Y_2', Y_3$
 
 El uso de la serie de TAYLOR, resulta preciso para determinar los tres primeros valores que permiten iniciar el procedimiento. Es necesario conocer las derivadas sucesivas primeras en el punto $x = x_0$, para lograr su aplicación.
@@ -5275,7 +5231,6 @@ Es de buena práctica recurrir al uso del Método de Runge-Kutta para obtener aq
 La solución de la ecuación $y' = f(x; y)$ se puede lograr utilizando el método de RUNGE-KUTTA de cuarto orden, pero el método de MILNE utiliza menos tiempo de procesamiento y la estimación del error es más sencilla y precisa.
 
 La ecuación de corrección expresada en (10.6), juntamente con la ecuación diferencial dada (10.1), se utilizan en forma iterativa hasta que dos valores consecutivos de $y_{i+1}$ difieran en menos de un cierto E previamente establecido.
-
 
 Ejemplo 10.1.- Resolver la ecuación diferencial $y' = x + y$, con la condición inicial (0;0) en el intervalo (0;2,4), siendo $h = 0,3$ y tomando $\mathbf{E} < 0,001$.
 
@@ -5288,7 +5243,6 @@ y(0,6) = 0,222 \quad ; \quad y'(0,6) = 0,822 \\
 y(0,9) = 0,560 \quad ; \quad y'(0,9) = 1,460 \\
 \end{array}
 $$
-
 
 Métodos que no se inician por sí mismos
 
@@ -5315,8 +5269,8 @@ Aplicando sistemáticamente las ecuaciones (10.5), (10.1) y (10.6) se obtiene
 |  2,1 | 5,062 | 7,162 | 5,066 | 7,166 | 5,066  |
 |  2,4 | 7,618 | 10,018 | 7,622 | 10,019 | 7,623  |
 
-
 #### Error en el método de Milne
+
 Las ecuaciones de Predicción (10.5) y de Corrección (10.6) resultan exactas bajo condiciones muy particulares. Puede demostrarse que el error cometido con la aplicación de las ecuaciones es del orden:
 
 $$
@@ -5328,6 +5282,7 @@ donde  $x_{i - 3} <   \theta <  x_{i - 1}$
 El error no puede ser calculado con exactitud, pero, puede acotarse tomando el extremo del intervalo que hace máxima la derivada cuarta de  $f$ .
 
 #### Generalización del método de Milne
+
 Los principios empleados en la deducción de las fórmulas de Predicción (10.5) y Corrección (10.6) del método se prestan a ser extendidas a otros. Esto hace aumentar la precisión de las fórmulas pero, se requerirán más de cuatro puntos de la curva integral. Para el caso particular de 6 franjas bajo la curva  $y'(x)$ :
 
 $$
@@ -5344,21 +5299,21 @@ $$
 E \leq \left| - \frac {8}{9 4 5} h ^{7} f ^{V I I} (\theta) \right| \quad (1 0.1 0) \quad x_{i - 5} <   \theta <   x_{i - 2}
 $$
 
-
 #### Estabilidad de los métodos de integración
+
 PASO: conjunto de operaciones aritméticas elementales y decisiones lógicas que componen la parte del algoritmo de resolución de una ecuación diferencial, destinada a determinar el valor de la variable en cada punto del intervalo comprometido en el procesamiento.
 
 El error por paso de un método aproximado se denomina **ERROR LOCAL**, puesto que es un error que se introduce en el paso correspondiente del proceso de integración.
 
 El **ERROR TOTAL** que existe en la solución durante un paso particular (diferencia entre el valor verdadero y el valor calculado numéricamente) depende no solo de la magnitud de los errores locales introducidos por ese paso particular, sino también de las características de propagación de los errores locales que se han introducido en los pasos previos.
 
+Sea la ecuación diferencial:
 
-Sea la ecuación diferencial: $$y' = f(x; y)$$ (10.1)
+$$ y' = f(x; y) \tag{10.1} $$
 
 **Definición 10.1.-** "Se dice que un método numérico es ESTABLE, si en el proceso de integrar una ecuación diferencial, donde $f_y < 0$, la diferencia entre la solución real y la solución numérica (error total), tiende a disminuir en magnitud conforme la integración progresa".
 
 **Definición 10.2.-** "Se dice que un método numérico destinado a resolver ecuaciones diferenciales, es RELATIVAMENTE ESTABLE, si la velocidad de crecimiento del error total durante el proceso de integración es menor que la velocidad de crecimiento del valor absoluto de la solución".
-
 
 La **estabilidad** de un método de integración numérica no se define en el caso en que la derivada con respecto a $y$ sea mayor que cero $(f_y > 0)$.
 
@@ -5376,7 +5331,6 @@ $$
 
 Si es $m < 1$, el método se considera relativamente estable
 
-
 **Estabilidad relativa**: es también importante cuando se utiliza para resolver una ecuación, para la cual $f_y < 0$, la solución tiende a cero asintóticamente, porque, se desea una solución precisa que encierre un valor de $y$ muy cercano a cero.
 
 La velocidad de disminución del error total debe ser mayor que la de la solución. En forma analítica, si la solución tiene la forma:
@@ -5393,7 +5347,6 @@ $$
 
 en el cual $m > 1$, para que el método se considere relativamente estable.
 
-
 Los conceptos de ESTABILIDAD y ESTABILIDAD RELATIVA son independientes y no excluyentes; de ningún modo el primero implica al segundo, como parte propia; ni tampoco que, el segundo invalida al primero de los mencionados.
 
 La propagación de los errores durante una integración no es un obstáculo serio en la solución de la mayoría de los problemas prácticos. El uso de valores relativamente pequeños de $h$ suministrará respuestas suficientemente precisas, independientemente de las características de estabilidad o estabilidad relativa del método numérico empleado.
@@ -5401,6 +5354,7 @@ La propagación de los errores durante una integración no es un obstáculo seri
 Sin embargo, si se desearan soluciones sobre intervalos de integración muy grandes, se deberá recurrir a métodos estables o relativamente estables
 
 #### Método de Hamming
+
 Esté método, permite resolver ecuaciones diferenciales del tipo $y' = f(x; y)$ y es ESTABLE y RELATIVAMENTE ESTABLE.
 
 Se trata, de un método del tipo PREDICTOR - CORRECTOR
@@ -5417,12 +5371,11 @@ $$
 y_{i+1} = a_i y_i + a_{i-1} y_{i-1} + a_{i-2} y_{i-2} + h \left[ b_{i+1} y_{i+1}' + b_i y_i' + b_{i-1} y_{i-1}' \right] \tag{10.15}
 $$
 
-
-Sustituyendo los valores de $y_{i-2}$; $y_{i-1}$; $y_{i'}$; $y_{i-1}'$; $y_{i+1}'$ por sus respectivos desarrollos en serie de TAYLOR en función de $y_i$, se obtiene:
+Sustituyendo los valores de $y_{i-2}$; $y_{i-1}$; $y_i$; $y_{i-1}'$; $y_{i+1}'$ por sus respectivos desarrollos en serie de TAYLOR en función de $y_i$, se obtiene:
 
 $$
 \begin{array}{l}
-y_{i+1} = a_i y_i + a_{i-1} \left[ y_i + y_i'(-h) + \frac{1}{2!} y_i''(-h)^2 + \frac{1}{3!} y''_i'(-h)^3 + \dots \right] + \tag{10.16} \\
+y_{i+1} = a_i y_i + a_{i-1} \left[ y_i + y_i'(-h) + \frac{1}{2!} y_i''(-h)^2 + \frac{1}{3!} y'''_i(-h)^3 + \dots \right] + \tag{10.16} \\
 \quad + a_{i-2} \left[ y_i + y_i'(-2h) + \frac{1}{2!} y_i''(-2h)^2 + \frac{1}{3!} y_i''(-2h)^3 + \dots \right] + \\
 \quad + h \left\{ b_{i+1} \left[ y_i' + y_i''h + \frac{1}{2!} y_i''h^2 + \frac{1}{3!} y_i^{IV} h^3 + \dots \right] + b_{i} y_i' + \right. \\
 \quad \left. + b_{i-1} \left[ y_i' + y_i''(-h) + \frac{1}{2!} y_i''(-h)^2 + \frac{1}{3!} y_i^{IV} (-h)^3 + \dots \right] \right\}
@@ -5434,7 +5387,6 @@ El desarrollo en serie de TAYLOR de la función $y_{i+1}$, resulta:
 $$
 y_{i+1} = y_i + h y_i' + \frac{1}{2!} h^2 y_i'' + \frac{1}{3!} h^3 y_i''' + \dots \tag{10.17}
 $$
-
 
 Igualando los coeficientes, en la expresión (10.16) con los homólogos de (10.17), se llega al siguiente conjunto de ecuaciones lineales simultáneas:
 
@@ -5452,7 +5404,6 @@ $$
 
 Sistema con seis incógnitas. Será necesario, de una sexta ecuación para determinar su valor, HAMMING demuestra que $a_{i-1} = 0$, se logra una ecuación de corrección que es estable y relativamente estable cuando se imponen ciertas condiciones a la magnitud del incremento $h$.
 
-
 Utilizando $a_{i-1} = 0$, el sistema (10.18) arroja los siguientes valores:
 
 $$
@@ -5464,7 +5415,6 @@ La sustitución de los valores obtenidos, en la ecuación (10.15) produce la ECU
 $$
 C(y_{i+1}) = \frac{1}{8} \left\{9 y_i - y_{i-2} + 3 h \left[ P(y_{i+1}') + 2 y_i' - y_{i-1}' \right] \right\} \tag{10.20}
 $$
-
 
 Esta ecuación es ESTABLE y RELATIVAMENTE ESTABLE cuando $f_y < 0$, si se toma:
 
@@ -5480,7 +5430,6 @@ $$
 h < \frac{0,4}{f_y} \tag{10.22}
 $$
 
-
 Para mantener pequeño el error por paso, el valor de $h$ debe ser menor que los especificados por las relaciones (10.21) y (10.22). En este método es del orden de $h^2$.
 
 Operación del método: calcular los valores de $y_{i-2}$; $y_{i-1}$; $y_i$; $y_{i-2}'$; $y_{i-1}'$; $y_i'$.
@@ -5490,6 +5439,7 @@ Una vez obtenidos, predecir el valor de $y_{i+1}$ por medio de la fórmula (10.5
 Por último, corregir las predicciones mediante la aplicación iterativa de la fórmula de corrección de HAMMING (10.20), hasta obtener la convergencia deseada.
 
 #### Método modificado de Hamming
+
 La mayor parte del error que se comete en el cálculo del valor de predicción, se puede eliminar utilizando la siguiente ecuación:
 
 $$
@@ -5510,7 +5460,6 @@ $$
 
 Donde $F(y_{i+1})$ representa directamente, es decir sin iteraciones, el VALOR FINAL DEL MÉTODO MODIFICADO DE HAMMING
 
-
 Este método también resulta estable y relativamente estable si se aplica en el caso en que $f_y < 0$, tomando el incremento:
 
 $$
@@ -5524,6 +5473,7 @@ h < \frac{0,4}{f_y}
 $$
 
 #### Análisis del error
+
 El objetivo primordial del análisis del error consiste en suministrar un método para controlar el error total
 
 El error total en cualquier paso proviene, de las siguientes fuentes:
@@ -5532,11 +5482,9 @@ a) El ERROR POR REDONDEO
 b) El ERROR POR TRUNCAMIENTO
 c) El ERROR ACUMULADO
 
-
 Se debe recordar que, en ocasiones, los valores iniciales con que se da origen al proceso están afectados de ciertos errores denominados INHERENTES. En estos casos no tiene ningún sentido calcular la solución con mayor precisión que la que justifican los datos utilizados, seleccionando un tamaño de paso demasiado pequeño.
 
 Tarea crítica es definir el tamaño del paso. Es necesario examinar el efecto de cada uno de los errores por paso, en función del incremento y su influencia sobre el error total.
-
 
 El error POR REDONDEO está presente en cada paso y su magnitud depende de la capacidad del soporte de la computadora utilizada. Es independiente del tamaño del intervalo, y aumenta en proporción con el número de pasos comprometidos en el procesamiento.
 
@@ -5544,17 +5492,15 @@ El error POR TRUNCAMIENTO aparece también en cada paso del proceso, pero es fun
 
 La única forma de controlar el error total por paso consiste en controlar el error por truncamiento, en cada paso el error total disminuye conforme se reduce el error por truncamiento de cada paso.
 
-
 #### Selección de un método de integración numérica
+
 Habiéndose estudiado algunos de los métodos de integración numérica existentes, para resolver ecuaciones diferenciales, y el error que en cada uno de ellos se comete.
 
 Es conveniente compararlos desde un punto de vista tal que permita seleccionar el más apto para una aplicación determinada, siguiendo ciertos criterios definidos:
 
-
 1. Cuando el intervalo de integración de un problema es relativamente corto, es poco probable que la estabilidad sea un problema, de manera que un método simple como el de Euler o Modificado de Euler, es aceptable
 2. Para intervalos que involucran un gran nro de pasos, el error por truncamiento por paso debe mantenerse pequeño. Los métodos de Milne y de Hamming resultan adecuados en este caso.
 3. En caso de intervalos muy grandes, deberá utilizarse el método de Hamming para valores de $h$ que lo hagan estable, además de realizar un análisis del error en cada paso
-
 
 4. Cuando se desea un error por truncamiento por paso pequeño y no es importante el tiempo por procesamiento, resulta conveniente el método de 4to orden de Runge-Kutta
 
